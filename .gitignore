@@ -1,3 +1,13 @@
+## OSX Stuff
+.DS_Store
+
+## Vim stuff
+*.swo
+*.swp
+
+## Readme Stuff
+README.md.html
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
