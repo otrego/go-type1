@@ -7,9 +7,11 @@ who created a series of tsumego
 books. This repository gives more instruction how to install these Type1 fonts
 and how to use them.
 
-### What's here
+### In
 
-  - In `fonts/`, we have the base .afm, .pfa, pfb, and .tfm files.
+In `fonts/`, we have the base .afm, .pfa, pfb, and .tfm files.  This represents
+a large amount of the work. However, we still have to create the latex support
+files.
 
 ### Resources
 
@@ -19,4 +21,7 @@ For more details, see:
   - [sgf2dg on CPAN](http://search.cpan.org/~reid/Games-Go-Sgf2Dg-4.211/sgf2dg)
   - [Font Intallation Guide](
     http://www.ctan.org/tex-archive/info/Type1fonts/fontinstallationguide/)
-
+  - [Font Tutorial](
+    http://www.tug.org/mactex/fonts/fonttutorial-current.html)
+  - [Discussion on LaTeX font installation I found useful](
+    http://macosx-tex.576846.n2.nabble.com/font-install-July-6-td611560.html)
