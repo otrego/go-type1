@@ -1,0 +1,35 @@
+%Filename: fxmr8a.mtx
+%Created by: tex fxm-drv
+%Created using: \afmtomtx{fxmr8a}{fxmr8a}
+
+%This file contains the information of fxmr8a.afm in a form
+%more easily read by TeX. It is used by the fontinst package.
+
+%THIS FILE CAN BE DELETED.
+
+\relax
+\metrics
+
+\needsfontinstversion{1.933}
+
+\storemapdata{fxmr8a}{\fromafm{fxmr8a}{gooegb}}{}
+\setint{italicslant}{0}
+\setint{underlinethickness}{50}
+\setint{maxheight}{1240}
+\setint{maxdepth_neg}{0}
+\setrawglyph{exclam}{fxmr8a}{10pt}{33}{1200}{1214}{14}{0}
+\setrawglyph{parenleft}{fxmr8a}{10pt}{40}{1200}{620}{10}{0}
+\setrawglyph{parenright}{fxmr8a}{10pt}{41}{1200}{1210}{0}{0}
+\setrawglyph{asterisk}{fxmr8a}{10pt}{42}{1200}{1210}{10}{0}
+\setrawglyph{plus}{fxmr8a}{10pt}{43}{1200}{1210}{10}{0}
+\setrawglyph{comma}{fxmr8a}{10pt}{44}{1200}{1220}{0}{0}
+\setrawglyph{period}{fxmr8a}{10pt}{46}{1200}{1220}{0}{0}
+\setrawglyph{colon}{fxmr8a}{10pt}{58}{1200}{1199}{0}{0}
+\setrawglyph{semicolon}{fxmr8a}{10pt}{59}{1200}{1214}{14}{0}
+\setrawglyph{less}{fxmr8a}{10pt}{60}{1200}{620}{20}{0}
+\setrawglyph{greater}{fxmr8a}{10pt}{62}{1200}{620}{20}{0}
+\setrawglyph{at}{fxmr8a}{10pt}{64}{1200}{1199}{0}{0}
+\setrawglyph{bracketleft}{fxmr8a}{10pt}{91}{1200}{1220}{20}{0}
+\setrawglyph{bracketright}{fxmr8a}{10pt}{93}{1200}{1220}{20}{0}
+
+\endmetrics

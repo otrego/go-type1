@@ -21,7 +21,11 @@ For more details, see:
   - [sgf2dg on CPAN](http://search.cpan.org/~reid/Games-Go-Sgf2Dg-4.211/sgf2dg)
   - [Font Intallation Guide](
     http://www.ctan.org/tex-archive/info/Type1fonts/fontinstallationguide/)
+  - [fontinst guide](
+    http://www.ctan.org/tex-archive/fonts/utilities/fontinst/doc/manual/)
   - [Font Tutorial](
     http://www.tug.org/mactex/fonts/fonttutorial-current.html)
   - [Discussion on LaTeX font installation I found useful](
     http://macosx-tex.576846.n2.nabble.com/font-install-July-6-td611560.html)
+  - [Converting METAFONT to type 1](
+    http://www.ntg.nl/eurotex/szabo.pdf)
