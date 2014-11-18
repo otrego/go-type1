@@ -35,47 +35,42 @@ There's also:
     - For me, 
 
 ### Installation Steps for Gooe
-Note: mktexlsr=texhash
+If it comes up, know that: mktexlsr=texhash
 
       texhome=$(kpsewhich -expand-var "\$TEXMFHOME")
 
-      cd gooe-type1
+      cd go-type1
       texhome=$(kpsewhich -var-value TEXMFHOME)
+      echo $texhome   # Should be non empty
       mkdir -p $texhome/tex/latex/gooe
-      mkdir -p $texhome/fonts/map/gooe
+      mkdir -p $texhome/fonts/map/dvips/gooe
       mkdir -p $texhome/fonts/type1/gooe
-      mkdir -p $texhome/fonts/afm/gooe
       mkdir -p $texhome/fonts/tfm/gooe
       cp gooe-fonts/gooemacs.sty $texhome/tex/latex/gooe
       cp gooe-fonts/gooe.map $texhome/fonts/map/dvips/gooe
       cp gooe-fonts/*.pfb $texhome/fonts/type1/gooe
-      cp gooe-fonts/*.afm $texhome/fonts/afm/gooe
       cp gooe-fonts/*.tfm $texhome/fonts/tfm/gooe
       texhash $texhome
       updmap --enable Map=gooe.map
+      updmap
 
-      Check that with: kpsewhich gooemacs.sty
-### Igo Installation
+### Installation Steps for Igo
+Essentially the same as above, but here for completeness
 
-      cd gooe-type1
+      cd go-type1
       texhome=$(kpsewhich -var-value TEXMFHOME)
-      mkdir -p $texhome/fonts/source/igo
+      echo $texhome   # Should be non empty
       mkdir -p $texhome/tex/latex/igo
-      mkdir -p $texhome/dvips/igo
-      cp igo-type1/igo.sty $texhome/tex/latex/igo
-      cp igo-type1/igo.map $texhome/dvips/igo
-      cp igo-type1/*.pfb $texhome/fonts/source/igo
+      mkdir -p $texhome/fonts/map/dvips/igo
+      mkdir -p $texhome/fonts/type1/igo
+      mkdir -p $texhome/fonts/tfm/igo
+      cp igo-fonts/igo.sty $texhome/tex/latex/igo
+      cp igo-fonts/igo.map $texhome/fonts/map/dvips/igo
+      cp igo-fonts/*.pfb $texhome/fonts/type1/igo
+      cp igo-fonts/*.tfm $texhome/fonts/tfm/igo
       texhash $texhome
-
-      updmap --enable Map=$texhome/igo-type1/igo.map
-
-
-      cp igo-type1/igo.map
-      updmap-sys --enable Map=fontname.map
-
-Ideas what worked?
-- In $texlocal dir
-- moving map files to fonts/map
+      updmap --enable Map=igo.map
+      updmap
 
 ### Resources
 
