@@ -12,11 +12,23 @@ helped by the existence of [Nyamcoder's
 instructions for Igo](https://github.com/nyamcoder/tex-src/blob/master/baduk/baduk.tex)
 with Igo.
 
+These packages are designed to work with LaTeX, but there's no reason it
+shouldn't work with a LaTeX compatible compiler like XeTeX.
+
 ### What's here
 
-In `fonts/`, we have the base .afm, .pfa, pfb, and .tfm files.  This represents
-a large amount of the work. However, we still have to create the latex support
-files.
+There are two directories of interest in this repository:
+
+      gooe-fonts/
+      igo-fonts/
+
+In both of these, there are 4 types of files of interest:
+
+  - *.pfb* : these are the Type1 font definitions
+  - *.tfm* : the LaTeX font metric files.
+  - *.map* : the mapping-declaration files that tell latex how to associate the
+    fonts with names
+  - *.sty* : macro files that make it easier to work with the font
 
 ### Tex and Tex Distributions.
 
@@ -71,6 +83,14 @@ Essentially the same as above, but here for completeness
       texhash $texhome
       updmap --enable Map=igo.map
       updmap
+
+### What's next
+
+It should just work! What do I mean? Just make sure in your LaTeX, you have the
+following at the top:
+
+       \usepackage[T1]{fontenc}
+
 
 ### Resources
 
