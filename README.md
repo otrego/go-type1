@@ -1,10 +1,14 @@
-# Gooe Type1
+# Go: Type 1
 
-Type1 Font versions of the Gooe fonts
+This is a repository dedicated to storing the Type1 font versions of popular Go
+fonts. In particular, this repo contains the Type1 versions of:
+  - Igo
+  - Gooe
 
 This work derives from [Vit Brunner (tasuki)](https://github.com/tasuk)
-who created a series of tsumego books. This repository gives more instruction
-how to install these Type1 fonts and how to use them.
+who created a series of tsumego books using Gooe and was tremendously helped by the existenc
+of [Nyamcoder's work](https://github.com/nyamcoder/tex-src/blob/master/baduk/baduk.tex)
+with Igo.
 
 ### What's here
 
@@ -35,12 +39,16 @@ Note: mktexlsr=texhash
 
       cd gooe-type1
       texhome=$(kpsewhich -var-value TEXMFHOME)
-      mkdir -p $texhome/fonts/map/gooe
       mkdir -p $texhome/tex/latex/gooe
-      mkdir -p $texhome/dvips/igo
+      mkdir -p $texhome/fonts/map/gooe
+      mkdir -p $texhome/fonts/type1/gooe
+      mkdir -p $texhome/fonts/afm/gooe
+      mkdir -p $texhome/fonts/tfm/gooe
       cp gooe-fonts/gooemacs.sty $texhome/tex/latex/gooe
       cp gooe-fonts/gooe.map $texhome/fonts/map/dvips/gooe
       cp gooe-fonts/*.pfb $texhome/fonts/type1/gooe
+      cp gooe-fonts/*.afm $texhome/fonts/afm/gooe
+      cp gooe-fonts/*.tfm $texhome/fonts/tfm/gooe
       texhash $texhome
       updmap --enable Map=gooe.map
 
