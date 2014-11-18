@@ -38,13 +38,11 @@ TeX, you can find the location of your TEX directories with:
 
   - $TEXMFHOME: The place to install user-specific files.
     - kpsewhich -expand-var "\$TEXMFHOME"
-    - Usually ~/texmf
 
 There's also:
 
   - $TEXMFLOCAL: The place for site-wide local files
     - kpsewhich -expand-var "\$TEXMFLOCAL"
-    - For me, 
 
 ### Installation Steps for Gooe
 If it comes up, know that: mktexlsr=texhash
