@@ -7,10 +7,10 @@ fonts. In particular, this repo contains the Type1 versions of fonts:
   - Gooe
 
 This work derives from [Vit Brunner (tasuki)](https://github.com/tasuk)
-who created a series of tsumego books using Gooe. Later, it was tremendously
-helped by the existence of [Nyamcoder's
+who created a series of tsumego books using the Gooe font. Later, it was
+tremendously helped by the existence of [Nyamcoder's
 instructions for Igo](https://github.com/nyamcoder/tex-src/blob/master/baduk/baduk.tex)
-with Igo.
+using the Igo font.
 
 These packages are designed to work with LaTeX, but there's no reason it
 shouldn't work with a LaTeX compatible compiler like XeTeX.
