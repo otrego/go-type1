@@ -1,0 +1,403 @@
+\documentclass[fleqn]{article}
+
+\usepackage{url}
+\usepackage{igo}
+\usepackage{amstext}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\sloppy
+
+\begin{document}
+
+\title{Typesetting Go diagrams in \TeX\ or \LaTeX\ with \textit{igo}}
+\author{{\'E}tienne Dupuis\thanks{igo@lestourtereaux.fr}}
+\date{April 2003; February 2006}
+\maketitle
+
+\section{Introduction}
+
+The package \textit{igo} is based on \textit{go}, a package written in $1991$ by Hanna Ko{\l}odziejska\footnote{See Ko{\l}odziejska, Hanna, \textit{Go diagrams with \TeX}, November 1991.}. Although \textit{igo} contains roughly the same commands as the original package and uses the fonts created by Ko{\l}odziejska, it has (hopefully) been improved by
+\begin{enumerate}
+	\item
+		Using command names less likely to conflict with standard AMS packages;
+	\item
+		Allowing different board sizes to be used;
+	\item
+		Understanding a standardized notation for board coordinates;
+	\item
+		Providing the facility to work on more than one board.
+	\item
+		Allowing stones included in text to be resized\footnote{This feature was introduced by N. Nemov in version 0.60 from 2006}.    
+\end{enumerate}
+Moreover, a few commands were reworked to define positions or game sequences more conveniently. 
+
+The current package also contains enhancements by Nikolay Nemov and Frank Mittelbach, to which the author expresses warm thanks.
+
+\subsection{What's new?}
+
+The following commands and features are new since the original package release of March 2003:
+\begin{itemize}
+	\item
+		Stones included in text are resized according to the selected text size.
+	\item
+		Command \verb|\cleargobansymbols| clears all stone numbers and goban symbols.
+	\item
+		New font sizes have been added. They are selected using command \verb|\igofontsize{n}|.
+	\item
+		New symbols are available for displaying on stones.
+\end{itemize}
+
+Some small enhancements which may not be readily visible have also been included.
+
+A \textbf{breaking change}\marginpar{\framebox{\Large{!\ }}} was made while upgrading to version 0.60. In prior versions, a line break (\verb|\break|) was inserted after diagrams. This line break was removed. The original behavior is available by inserting the following definition after including the \textit{igo} package: \[\verb|\let\igobreakafterdiagram=\break|.\]
+		
+\section{User Manual}
+
+Let's start with an exercise taken from a book by James Davies, \textit{Life and Death}\footnote{Elementary Go Series vol. 4, Kiseido Publishing Company, \copyright 1975, 1996}~:
+
+\medskip
+\begin{minipage}[c][1.0\height][c]{0.65\textwidth}
+\begin{verbatim}
+	\white{b4,c4,d4,e4,f4,g3,g2,c3}
+	\black{b3,b2,c2,d3,e3,f3,f2}
+	\begin{center}
+		\shortstack{\showgoban\\White to kill}
+	\end{center}
+\end{verbatim}
+\end{minipage}
+%
+\begin{minipage}[c][1.0\height][r]{0.25\textwidth}
+\white{b4,c4,d4,e4,f4,g3,g2,c3}
+\black{b3,b2,c2,d3,e3,f3,f2}
+\begin{center}
+	\shortstack{\showgoban\\White to kill}
+\end{center}
+\end{minipage}
+\medskip
+
+The package uses a \textit{standard} notation for the goban coordinates, that is columns are labelled from $a$ (left) to $t$ (right) and rows from $1$ (bottom) to $19$ (top). Note that the letter $i$ is not used in this notation. Although this notation is suitable for board sizes up to $25 \times 25$, this package extends it to boards of size up to $50 \times 50$ by using capital letters for columns $26$ to $50$. The command \verb|\showgoban|, as opposed to \verb|\showfullgoban|, displays only a part of the board. More precisely, let $m$ and $M$ be the indices of the minimum and maximum rows of the board on which a stone can be found. Rows $m-1$ to $M+1$ will be displayed, unless $m-2$ or $M+2$ brings us to the side of the board, in which case an additional row will be included. Same rules apply for columns. For example, let us see what happens when we resize the board:
+
+\medskip
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{verbatim}
+	\gobansize{9}
+	\showgoban
+\end{verbatim}
+\end{minipage}
+%
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{center}
+	\gobansize{9}
+	\showgoban
+\end{center}
+\end{minipage}
+
+Of course, such a behavior may not always give the desired diagram, hence one can specify the region of the board to display:
+
+\medskip
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{verbatim}
+	\showgoban[a1,h6]
+\end{verbatim}
+\end{minipage}
+%
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{center}
+	\showgoban[a1,h6]
+\end{center}
+\end{minipage}
+
+Let us reset the board size (with \verb|\gobansize{19}|) \gobansize{19} and go back to our \textit{White to kill} problem. The solution is marked in the following (oversized) diagram by the stone \verb|\whitestone[\igotriangle]| \whitestone[\igotriangle]:
+
+\medskip
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{verbatim}
+	\white[\igotriangle]{c1}
+	\gobansymbol{f1}{x}
+	\largegoban\showgoban
+\end{verbatim}
+\end{minipage}
+%
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{center}
+	\largegoban
+	\white[\igotriangle]{e1}
+	\gobansymbol{f1}{x}
+	\showgoban
+\end{center}
+\end{minipage}
+
+White's \whitestone[\igotriangle] threatens to invade black's group by playing at intersection $x$. The invasion would be fatal to black as after
+
+\medskip
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{verbatim}
+	\black[1]{d1,f1,-,d2}
+	\showgoban
+\end{verbatim}
+\end{minipage}
+%
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{center}
+	\black[1]{d1,f1,-,d2}
+	\showgoban
+\end{center}
+\end{minipage}
+
+black can't prevent white from capturing the right half of his group. However, even if black plays at $x$, he may not escape his fate :
+
+\medskip
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{verbatim}
+	\clear{d1}
+	\black[1]{f1,d2,c1,g1,a3,a1}
+	\showgoban
+\end{verbatim}
+\end{minipage}
+%
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{center}
+	\clear{d1}
+	\black[1]{f1,d2,c1,g1,a3,a1}
+	\showgoban
+\end{center}
+\end{minipage}
+
+Finally, we conclude this manual with a joseki, thereby illustrating a few more commands:
+
+\medskip
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{verbatim}
+	\smallgoban
+	\cleargoban
+	\white[1]{c16,e16,e17,f17,d17,f16}
+	\copytogoban{2}
+	\white[7]{c14,k17}
+	\showgoban
+\end{verbatim}
+\end{minipage}
+%
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{center}
+	\smallgoban
+	\cleargoban
+	\white[1]{c16,e16,e17,f17,d17,f16}
+	\copytogoban{2}
+	\white[7]{c14,k17}
+	\showgoban
+\end{center}
+\end{minipage}
+
+The position after the sixth move is preserved by copying it to another goban. This goban may be set as the working one, as shown by the following commands:
+
+\medskip
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{verbatim}
+	\usegoban{2}
+	\cleargobansymbols
+	\white[1]{c14,k17}
+	\showgoban
+\end{verbatim}
+\end{minipage}
+%
+\begin{minipage}[c][1.0\height][c]{0.45\textwidth}
+\begin{center}
+	\usegoban{2}  
+	\cleargobansymbols
+	\white[1]{c14,k17}
+	\showgoban
+\end{center}
+\end{minipage}
+
+\section{Reference}
+
+\subsection{Parameter Syntax}
+\label{sec:parameters}
+
+The following parameter types are used in the macro syntax that follows :
+\begin{description}
+	\item [n] --- A positive integer, zero not included.
+	\item [symbol] --- A digit (0--9) or a letter (A--Z or a--z). More symbols may be added in the future. Any volunteer to edit the metafont ?
+	\item [glyph] --- A positive integer, \verb|\igonone| or one of \[\verb|\igotriangle|, \quad \verb|\igosquare|, \quad \verb|\igocircle|, \quad \verb|\igocross|.\] These numbers or glyphs decorate stones, except \verb|\igonone|, which stands for no decoration. A \emph{glyph} can also be a \TeX\ command which returns a number, for example \verb|\thepage|.
+	\item [intersection] --- A goban intersection. Columns are labelled with a letter, left to right, $a$ begin the first, $b$ the second, etc. Letter $i$ is not used. Capital letters are used for column $26$ and above. Rows are labelled with a number, bottom to top. A goban intersection is thus a letter followed by a number, e.g. \textit{c12}.
+	\item [intersection-pair] --- A pair of intersections, e.g. \textit{a4,k12}. There are no spaces after the comma. The first intersection must be smaller or equal than the second, in the sense that the first column must not be at right of the second and the first row must not be above the second, e.g. \textit{d3,d9} is valid but \textit{s8,q15} is not.
+	\item [intersection-list] --- A comma separated list of intersections, e.g. \textit{c14,g3,t17,f1}. The list may contain a single intersection. No spaces should be used. Skipping a list entry can be achieved with symbol $-$, as in \textit{c14,g3,-,t17,f1}, which is a five element list.
+\end{description}
+Optional parameters are enclosed in square brackets while compulsory ones are delimited by braces.
+
+\subsection{The Goban}
+
+The goban can be resized with
+\begin{displaymath}
+	\verb|\gobansize{n}|, \quad\text{where $2 \leq n \leq 50$}.
+\end{displaymath}
+Note that it is possible to put stones outside the goban; they will eventually be displayed if the goban is made large enough to contain them. Likewise, no stones are removed if the goban is reduced. Default size is $19 \times 19$.
+
+\subsection{Adding Stones}
+\label{sec:stones}
+
+Stones can be added with \[\verb|\white[glyph]{intersection-list}| \quad\text{or its counterpart}\] \[\verb|\black[glyph]{intersection-list}|.\] These commands add stones at each of the given intersections. However, the exact behavior of the commands vary depending on the (optional) glyph given. If this glyph is a positive number or \verb|\igonone|, stone colors will alternate, the stone number (if applicable) increasing with each intersection of the list. Finally, if the symbol is \verb|\igotriangle|, \verb|\igosquare|, etc. all stones displayed will be of the same color and will wear the same glyph. For example, \[\verb|\white[14]{c1,b1,d1}| \quad\text{is equivalent to}\] \[\verb|\white[14]{c1}| \quad \verb|\black[15]{b1,d1}|.\] If an intersection is not free, the new stone replaces the one already on the intersection.
+
+Here is another example which illustrates the difference the optional arguments make:
+
+\medskip
+\begin{minipage}[c][1.0\height][c]{0.32\textwidth}
+\begin{center}
+	\cleargoban
+	\black[1]{c4,e4,h4,d7,e5,f5}
+	\showgoban[a1,j8]\break
+	\verb|\black[1]{...}|
+\end{center}
+\end{minipage}
+\begin{minipage}[c][1.0\height][c]{0.33\textwidth}
+\begin{center}
+	\cleargoban
+	\black[\igonone]{c4,e4,h4,d7,e5,f5}
+	\showgoban[a1,j8]\break
+	\verb|\black[\igonone]{...}|
+\end{center}
+\end{minipage}
+\begin{minipage}[c][1.0\height][c]{0.32\textwidth}
+\begin{center}
+	\cleargoban
+	\black{c4,e4,h4,d7,e5,f5}
+	\showgoban[a1,j8]\break
+	\verb|\black{...}|
+\end{center}
+\end{minipage}
+\medskip
+
+To help game editing, the following command clears all stone numbers and all symbols on the current board: \[\verb|\cleargobansymbols|.\] For example, if this command is used on the left diagram above, the result would be the second diagram.
+
+\subsection{Removing Stones}
+
+Stones may be removed with \[\verb|\clear{intersection-list}| \quad\text{or with}\] \[\verb|\cleargoban[intersection-pair]|.\] For the latter, if the optional parameter is omitted the whole goban is cleared. Note that stones outside the goban (if any) are not removed hence one should clear a goban after changing its size.
+
+\subsection{Displaying the Goban}
+
+Command \[\verb|\showfullgoban|\] is used to display the goban. The diagram is put in a box which can be centered for example with \LaTeX's \verb|center| environment. One may also put the goban inside figures, tables or use any other package to display more than one diagram on a single line, etc. Command \[\verb|\showgoban[intersection-pair]|\] is used to partially display the goban. If the optional parameter is omitted, \textit{igo} computes which region of the goban should be displayed. The region is computed as follow :
+\begin{enumerate}
+	\item
+		The region to display is the smallest one that includes all stones that can be found on the goban. If this region has width or height less than two, then the region is defined as the full goban. 
+	\item
+		If possible a border of one row (or column) is added to enclose the region defined above. The border is extended to two rows (or columns) on the sides that are near the border of the goban.
+\end{enumerate}
+Note that hoshi points have been defined for $9 \times 9$, $13 \times 13$ and $19 \times 19$ gobans only.
+
+When using one of the above command to display a goban, the diagram box is immediately followed by a \verb|\igobreakafterdiagram| command, which is currently set to do nothing. Note that in previous version of this package, the command was set to \[\verb|\let\igobreakafterdiagram=\break|.\]
+
+The diagram displayed can be resized with \[\verb|\igofontsize{n}|, \quad\text{where $n \in \{5, 6, 7, 8, 9, 10, 11, 12, 15, 20\}$}.\] For convenience (and backward compatibility), the following commands may also be used: 
+\[\begin{array}{lll}
+	\verb|\smallgoban|  & \longmapsto & \verb|\igofontsize{10}| \quad\text{(default value)} \\
+	\verb|\normalgoban| & \longmapsto & \verb|\igofontsize{15}| \\
+	\verb|\largegoban|  & \longmapsto & \verb|\igofontsize{20}|.
+\end{array}\]
+The modification applies to all further diagrams.
+
+\subsection{Adding Symbols}
+
+Special symbols can be added on empty intersections of a goban with \[\verb|\gobansymbol{intersection-list}{symbol}|.\] The list of available symbols is given in section~\ref{sec:parameters}. Since version 0.62 of this package, consecutive symbols may be added using
+\[\verb|\gobansymbols{intersection-list}{symbol}|.\] The given symbol is \emph{incremented} for each intersection, as shown in the example below.
+
+\medskip
+\begin{minipage}[c][1.0\height][c]{0.49\textwidth}
+\begin{center}
+	\cleargoban
+	\gobansymbol{b2,d3,-,c4}{a}
+	\showgoban\break
+	\verb|\gobansymbol{b2,d3,-,c4}{a}|
+\end{center}
+\end{minipage}
+\begin{minipage}[c][1.0\height][c]{0.49\textwidth}
+\begin{center}
+	\cleargoban
+	\gobansymbols{b2,d3,-,c4}{a}
+	\showgoban\break
+	\verb|\gobansymbols{b2,d3,-,c4}{a}|
+\end{center}
+\end{minipage}
+\medskip
+
+All symbols may be cleared at once using \[\verb|\cleargobansymbols|.\] Note though that this commands also removes the stone numbers, as detailed in section~\ref{sec:stones}.
+
+\subsection{Displaying Individual Stones}
+
+Stones may be displayed within text with \[\verb|\whitestone[glyph]| \quad\text{and}\] \[\verb|\blackstone[glyph]|.\] These stones are scaled according to text font size by usual \TeX\ commands (see Table \ref{tab:fonts}): \\
+\begin{tabular}{ll}
+\verb|{\tiny \blackstone[5] and...}| & {\tiny \blackstone[5] and tiny text \whitestone[\igotriangle]} \\
+\verb|{\scriptsize \blackstone[6] and...}| & {\scriptsize \blackstone[6] and scriptsize text \whitestone[\igosquare]} \\
+\verb|{\footnotesize \blackstone[7] and...}| & {\footnotesize \blackstone[7] and footnotesize text \whitestone[\igocircle]} \\
+\verb|{\small \blackstone[8] and...}| & {\small \blackstone[8] and small text \whitestone[\igocross]} \\
+\verb|{\normalsize \blackstone[10] and...}| & {\normalsize \blackstone[10] and normalsize \whitestone[\igotriangle]} \\
+\ldots & \ldots
+\end{tabular}
+Larger stones inserted in normal 10pt text are displayed as follow: \par
+\verb|{\large \blackstone[10]}| --- some text {\large \blackstone[10]} and {\large \whitestone[\igotriangle]}. \par
+\verb|{\Large \blackstone[11]}| --- some text {\Large \blackstone[11]} and {\Large \whitestone[\igosquare]}. \par 
+\verb|{\LARGE \blackstone[12]}| --- some text {\LARGE \blackstone[12]} and {\LARGE \whitestone[\igocircle]}. \par 
+\verb|{\huge \blackstone[15]}|  --- some text {\huge \blackstone[15]} and {\huge \whitestone[\igocross]}. \par 
+\verb|{\Huge \blackstone[20]}|  --- some text {\Huge \blackstone[20]} and {\Huge \whitestone[\igotriangle]}. \par
+
+Relation of sizes between stones and text may be changed a little if you use another initial size for normal text, for example 11pt or 12pt.
+
+\subsection{Multiple Gobans}
+
+It may be useful to work on more than one goban simultaneously, e.g. to save intermediate positions in a game in order to display them later of explore further variations. \[\verb|\usegoban{n}|\] serves that purpose by selecting another goban. Goban \#$1$ is the one used by default. Copy commands are available to make full use of this feature : \[\verb|\copyfromgoban{n}|\] copies the content of goban \#$n$ to the current working goban while \[\verb|\copytogoban{n}|\] copies the current goban to goban \#$n$. Note that all gobans have the same size.
+
+For backward compatibility, the alternative spelling \verb|\copygoban| may be used in place of \verb|\copyfromgoban|.
+
+\subsection{Geometric Transformations}
+
+Lastly, the following commands may be used to perform basic transformations on a position :
+\begin{enumerate}
+	\item
+		\verb|\rotategoban| rotates the board by $180^\circ$;
+	\item
+		\verb|\rotategobanleft| rotates the board counterclockwise by $90^\circ$;
+	\item
+		\verb|\rotategobanright| rotates the board clockwise by $90^\circ$;
+	\item
+		\verb|\hflipgoban| mirrors the board through a vertical axis;
+	\item
+		\verb|\vflipgoban| mirrors the board through an horizontal axis;
+	\item
+		\verb|\mirrorgoban| mirrors the board through a diagonal axis.
+\end{enumerate}
+
+\subsection{Fonts}
+
+Package \textit{igo} uses the following font files :
+\begin{description}
+	\item [igo$<$size$>$] contains symbols used to draw the goban, where $<$\textit{size}$>$ is one of \textit{5, 6, 7, 8, 9, 10, 11, 12, 15, 20}. These fonts include the computer modern roman font symbols for letters and digits so they can be drawn on the board. Table~\ref{tab:fonts} summarizes the fonts used by \textit{igo} and the available sizes
+	\item [igo$<$color$>$$<$n$>$$<$size$>$] contains stone glyphs, where $<$\textit{size}$>$ is as above, $<$\textit{color}$>$ is \textit{black} or \textit{white} and $<$\textit{n}$>$ is a roman numeral number, as three font files are needed to hold stone glyphs up to $361$, the number of intersections on a $19 \times 19$ goban. This should be enough to render almost all Go games.
+\end{description}
+These fonts have been created by Hanna Ko{\l}odziejska and (only slightly) altered by myself and N. Nemov.
+
+\begin{table}[htb] 
+	\caption{Summary of font sizes used by \textit{igo}}
+	\label{tab:fonts}
+	\begin{center}
+		\begin{tabular}{llrl}
+			\hline
+			\multicolumn{1}{c}{\TeX\ Command} & \multicolumn{2}{c}{Fonts} & \multicolumn{1}{c}{Go board size} \\
+			\hline \hline
+			\verb|\tiny|         & igo5  &  (cmr5) & \verb|\igofontsize{5}|  \\
+			\verb|\scriptsize|   & igo6  &  (cmr6) & \verb|\igofontsize{6}|  \\
+			\verb|\footnotesize| & igo7  &  (cmr7) & \verb|\igofontsize{7}|  \\
+			\verb|\small|        & igo8  &  (cmr8) & \verb|\igofontsize{8}|  \\
+			\verb|\normalsize|   & igo9  &  (cmr9) & \verb|\igofontsize{9}|  \\
+			\verb|\large|        & igo10 & (cmr10) & \verb|\smallgoban| \\
+			\verb|\Large|        & igo11 & (cmr10) & \verb|\igofontsize{11}| \\
+			\verb|\LARGE|        & igo12 & (cmr10) & \verb|\igofontsize{12}| \\
+			\verb|\huge|         & igo15 & (cmr12) & \verb|\normalgoban|     \\
+			\verb|\Huge|         & igo20 & (cmr17) & \verb|\largegoban|      \\
+			\hline \hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\section{About this Document}
+
+This is the official user manual and reference for package \textit{igo} version 0.60, written by {\'E}tienne Dupuis in April 2003, enhanced by Nikolay Nemov in December 2005 and further improved two months later, after receiving valuable feedback (and help) by Frank Mittelbach. The author wishes to express his gratitude to Victor Eijkhout, author of \textit{\TeX by Topic}\footnote{Eijkhout, Victor, \textit{\TeX by Topic, A \TeX nicians's Reference}, Electronic Version 1.0, December 2001, \copyright 1991, 2001. Available at \url{http://www.eijkhout.net/}.} and \textit{The ultimate loop macro}\footnote{Eijkhout, Victor, \textit{The ultimate loop macro}, in MAPS 24, Nederlandstalige \TeX\ Gebruikersgroep, pages 49-51. Available at \url{http://www.ntg.nl/}. File \texttt{repeat.tex} may be downloaded from \url{http://www.ctan.org/}. Note that \textit{igo} requires version 0.93 or above.} and the users of \verb|fr.comp.text.tex|, for their help in better understanding the \TeX\ language.
+
+\end{document}

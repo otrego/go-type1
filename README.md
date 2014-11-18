@@ -1,13 +1,15 @@
 # Go: Type 1
 
 This is a repository dedicated to storing the Type1 font versions of popular Go
-fonts. In particular, this repo contains the Type1 versions of:
+fonts. In particular, this repo contains the Type1 versions of fonts:
+
   - Igo
   - Gooe
 
 This work derives from [Vit Brunner (tasuki)](https://github.com/tasuk)
-who created a series of tsumego books using Gooe and was tremendously helped by the existenc
-of [Nyamcoder's work](https://github.com/nyamcoder/tex-src/blob/master/baduk/baduk.tex)
+who created a series of tsumego books using Gooe. Later, it was tremendously
+helped by the existence of [Nyamcoder's
+instructions for Igo](https://github.com/nyamcoder/tex-src/blob/master/baduk/baduk.tex)
 with Igo.
 
 ### What's here
@@ -91,3 +93,5 @@ For more details, see:
     http://macosx-tex.576846.n2.nabble.com/font-install-July-6-td611560.html)
   - [Converting METAFONT to type 1](
     http://www.ntg.nl/eurotex/szabo.pdf)
+  - [Nyamcoder's Baduk work with Igo](https://github.com/nyamcoder/tex-src/blob/master/baduk/baduk.tex)
+
