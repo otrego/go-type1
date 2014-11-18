@@ -28,33 +28,23 @@ There's also:
     - kpsewhich -expand-var "\$TEXMFLOCAL"
     - For me, 
 
-### Installation Steps
+### Installation Steps for Gooe
+Note: mktexlsr=texhash
 
       texhome=$(kpsewhich -expand-var "\$TEXMFHOME")
 
       cd gooe-type1
       texhome=$(kpsewhich -var-value TEXMFHOME)
-      mkdir -p $texhome/fonts/source/gooe
+      mkdir -p $texhome/fonts/map/gooe
       mkdir -p $texhome/tex/latex/gooe
       mkdir -p $texhome/dvips/igo
       cp gooe-fonts/gooemacs.sty $texhome/tex/latex/gooe
-      cp gooe-fonts/gooe.map $texhome/dvips/gooe
-      cp gooe-fonts/*.pfb $texhome/fonts/source/gooe
+      cp gooe-fonts/gooe.map $texhome/fonts/map/dvips/gooe
+      cp gooe-fonts/*.pfb $texhome/fonts/type1/gooe
       texhash $texhome
+      updmap --enable Map=gooe.map
 
       Check that with: kpsewhich gooemacs.sty
-      Should print something like: /Users/kashomon/Library/texmf/tex/latex/gooe/gooemacs.sty
-
-      texlocal=$(kpsewhich -expand-var "\$TEXMLOCAL")
-      mkdir -p $texlocal/doc/latex/gooe && mkdir -p $texlocal/fonts/source/gooe && mkdir -p $texlocal/tex/latex/gooe
-      cp gooe-type1/fonts/gooemacs.sty $texlocal/tex/latex/gooe
-      cp gooe-type1/fonts/*.pfb $texlocal/fonts/source/gooe
-      sudo texhash
-
-      6.) mkdir -p $texhome/dvips/gooe
-      7.) cp gooe-type1/fonts/gooe.map $texhome/dvips/gooe
-      8.) updmap --enable Map=$texhome/dvips/gooe/gooe.map
-
 ### Igo Installation
 
       cd gooe-type1
@@ -71,6 +61,11 @@ There's also:
 
 
       cp igo-type1/igo.map
+      updmap-sys --enable Map=fontname.map
+
+Ideas what worked?
+- In $texlocal dir
+- moving map files to fonts/map
 
 ### Resources
 
