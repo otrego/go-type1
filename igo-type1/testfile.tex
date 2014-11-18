@@ -1,0 +1,38 @@
+\documentclass{article} %% baduk.tex :: mito / nyamcoder %%
+
+% \usepackage{fontspec}
+% \font\kg="HY백송B" at 14pt		% ttf; needs HWP installed -- or choose similar a font
+% \font\kf="HY백송B" at 10pt		%           -- dito --
+% \font\kb="은 자모 바탕" at 10pt		% ttf; Un font collection, download from here: http://kldp.net/projects/unfonts/download
+						% after unzipping and copying to your font folder, in Linux don't forget to run ``fc-cache -fv''
+
+\usepackage{igo}				% not included in TL -- needs extra installation
+\igofontsize{10}
+
+\begin{document}
+\centering
+%\shortstack{
+% \kg 흑으로 백을 잡는 문제\\[20pt]
+%\hspace{.28mm}
+\flushleft\hspace*{1.97cm}
+\begin{minipage}{3.5cm}
+\black{a7,a8,b2,b8,c2,c8,d2,d3,d4,d5,d6,d7,d8}
+\white{a3,a6,b3,b5,c3,c4}
+\showgoban[a1,f10]
+\end{minipage}
+\begin{minipage}{3.5cm}
+% \kb 집을 낼수 없도록 하는 급소를 찾아서 두는 문제입니다.
+\end{minipage}
+%}
+\\[1em]
+%\shortstack{
+\centering
+% \kf 정답\\[.3cm]
+\black[1]{c5}
+\showgoban[a1,f10]\cleargobansymbols\quad
+\white[2]{a4}
+\showgoban[a1,f10]\cleargobansymbols\quad
+\black[3]{b6}\white[\igocross]{a6}
+\showgoban[a1,f10]%\cleargobansymbols
+%}
+\end{document}
