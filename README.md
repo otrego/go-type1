@@ -85,7 +85,7 @@ following at the top:
 
        \usepackage[T1]{fontenc}
 
-For more examples
+For Examples, see the example below and the examples/ directory.
 
 #### The LaTeX structure
 LaTeX starts with some header declarations, followed by begin document, content,
