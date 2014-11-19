@@ -1,23 +1,23 @@
 # Go: Type 1
 
-This is a repository dedicated to storing the Type1 font versions of popular Go
-fonts. In particular, this repo contains the Type1 versions of fonts:
+This is a repository dedicated to storing the Type1 versions of popular fonts
+for the game Go. In particular, this repository contains font information for:
 
   - Igo
   - Gooe
 
-This work derives from [Vit Brunner (tasuki)](https://github.com/tasuk)
-who created a series of tsumego books using the Gooe font. Later, it was
-tremendously helped by the existence of [Nyamcoder's
-instructions for Igo](https://github.com/nyamcoder/tex-src/blob/master/baduk/baduk.tex)
-using the Igo font.
+This work derives from [Vit Brunner (tasuki)](https://github.com/tasuk) who
+created a series of tsumego books using the Type1 Gooe font. Later, this work
+was helped tremendously by the existence of [Nyamcoder's
+instructions](https://github.com/nyamcoder/tex-src/blob/master/baduk/baduk.tex)
+for installing the Type1 Igo font.
 
 These packages are designed to work with LaTeX, but there's no reason it
 shouldn't work with a LaTeX compatible compiler like XeTeX.
 
 ### What's here
 
-There are two directories of interest in this repository:
+There are two directories containing font files:
 
       gooe-fonts/
       igo-fonts/
@@ -36,16 +36,14 @@ Installation of these fonts relies heavily on your particular distribution of Te
 You'll be installing the font files in TEXMFHOME.  Assuming you've installed
 TeX, you can find the location of your TEX directories with:
 
-  - $TEXMFHOME: The place to install user-specific files.
-    - kpsewhich -expand-var "\$TEXMFHOME"
+      kpsewhich -expand-var "\$TEXMFHOME"
 
-There's also:
+or
 
-  - $TEXMFLOCAL: The place for site-wide local files
-    - kpsewhich -expand-var "\$TEXMFLOCAL"
+      $(kpsewhich -var-value TEXMFHOME)
 
 ### Installation Steps for Gooe
-If it comes up, know that: mktexlsr=texhash
+You must perform a bit of work for LaTeX to know about your fonts.
 
       cd go-type1
       texhome=$(kpsewhich -var-value TEXMFHOME)
@@ -85,45 +83,48 @@ following at the top:
 
        \usepackage[T1]{fontenc}
 
-For Examples, see the example below and the examples/ directory.
+Then, LaTeX should just use the Type1 font.
+
+See the example below for more information. Ther are also more exmaple TeX files
+in the examples/ directory.
 
 #### The LaTeX structure
 LaTeX starts with some header declarations, followed by begin document, content,
 and lastly, ending the document.
 
-    \documentclass{article}
-    \usepackage{gooemacs} % or igo
-    \usepackage[T1]{fontenc}
+      \documentclass{article}
+      \usepackage{gooemacs} % or igo
+      \usepackage[T1]{fontenc}
 
-    \begin{document}
+      \begin{document}
 
-    % Content goes here
+      % Content goes here
 
-    \end{document}
+      \end{document}
 
 #### Gooe Example
 Here's an example of a simple problem using the Gooe font.
 
-    \begin{center}
-    {\goo
-    \0??<\0??(\0??(\- !(\0??(\0??(\0??(\0??(\0??(\0??(
-    \- ![\- !+\- !+\- !+\- @+\- @+\0??+\0??+\0??+\0??+
-    \0??[\- @+\- @+\- @+\0??+\0??+\0??+\0??+\0??+\0??+
-    \0??[\0??+\0??+\0??*\0??+\0??+\0??+\0??+\0??+\0??*
-    \0??[\- @+\0??+\0??+\0??+\0??+\0??+\0??+\0?l+\0??+
-    \0??[\0??+\0??+\0??+\0??+\0??+\0??+\0??+\0??+\0??+
-    }
-    A Simple Go Problem!
-    \end{center}
+      \begin{center}
+      {\goo
+      \0??<\0??(\0??(\- !(\0??(\0??(\0??(\0??(\0??(\0??(
+      \- ![\- !+\- !+\- !+\- @+\- @+\0??+\0??+\0??+\0??+
+      \0??[\- @+\- @+\- @+\0??+\0??+\0??+\0??+\0??+\0??+
+      \0??[\0??+\0??+\0??*\0??+\0??+\0??+\0??+\0??+\0??*
+      \0??[\- @+\0??+\0??+\0??+\0??+\0??+\0??+\0?l+\0??+
+      \0??[\0??+\0??+\0??+\0??+\0??+\0??+\0??+\0??+\0??+
+      }
+      A Simple Go Problem!
+      \end{center}
 
 #### Igo Example
 Here's the same problem with the Igo font.
 
-    \white{a18,b18,c18,d18,d19}
-    \black{b17,c17,d17,e18,f18,b15}
-    \begin{center}
-    \shortstack{\showgoban[a14,k19]\\ A Simple Go Problem}
-    \end{center}
+      \white{a18,b18,c18,d18,d19}
+      \black{b17,c17,d17,e18,f18,b15}
+      \begin{center}
+      \shortstack{\showgoban[a14,k19]\\ A Simple Go Problem}
+      \end{center}
 
 ### Resources
 
