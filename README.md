@@ -47,8 +47,6 @@ There's also:
 ### Installation Steps for Gooe
 If it comes up, know that: mktexlsr=texhash
 
-      texhome=$(kpsewhich -expand-var "\$TEXMFHOME")
-
       cd go-type1
       texhome=$(kpsewhich -var-value TEXMFHOME)
       echo $texhome   # Should be non empty
@@ -62,7 +60,6 @@ If it comes up, know that: mktexlsr=texhash
       cp gooe-fonts/*.tfm $texhome/fonts/tfm/gooe
       texhash $texhome
       updmap --enable Map=gooe.map
-      updmap
 
 ### Installation Steps for Igo
 Essentially the same as above, but here for completeness
@@ -80,19 +77,57 @@ Essentially the same as above, but here for completeness
       cp igo-fonts/*.tfm $texhome/fonts/tfm/igo
       texhash $texhome
       updmap --enable Map=igo.map
-      updmap
 
-### What's next
+### Using the Fonts
 
 It should just work! What do I mean? Just make sure in your LaTeX, you have the
 following at the top:
 
        \usepackage[T1]{fontenc}
 
+For more examples
+
+#### The LaTeX structure
+LaTeX starts with some header declarations, followed by begin document, content,
+and lastly, ending the document.
+
+    \documentclass{article}
+    \usepackage{gooemacs} % or igo
+    \usepackage[T1]{fontenc}
+
+    \begin{document}
+
+    % Content goes here
+
+    \end{document}
+
+#### Gooe Example
+Here's an example of a simple problem using the Gooe font.
+
+    \begin{center}
+    {\goo
+    \0??<\0??(\0??(\- !(\0??(\0??(\0??(\0??(\0??(\0??(
+    \- ![\- !+\- !+\- !+\- @+\- @+\0??+\0??+\0??+\0??+
+    \0??[\- @+\- @+\- @+\0??+\0??+\0??+\0??+\0??+\0??+
+    \0??[\0??+\0??+\0??*\0??+\0??+\0??+\0??+\0??+\0??*
+    \0??[\- @+\0??+\0??+\0??+\0??+\0??+\0??+\0?l+\0??+
+    \0??[\0??+\0??+\0??+\0??+\0??+\0??+\0??+\0??+\0??+
+    }
+    A Simple Go Problem!
+    \end{center}
+
+#### Igo Example
+Here's the same problem with the Igo font.
+
+    \white{a18,b18,c18,d18,d19}
+    \black{b17,c17,d17,e18,f18,b15}
+    \begin{center}
+    \shortstack{\showgoban[a14,k19]\\ A Simple Go Problem}
+    \end{center}
 
 ### Resources
 
-For more details, see:
+For more details on all of this, see:
 
   - [Tasuki's Tsumego Repo](https://github.com/tasuk/tsumego)
   - [sgf2dg on CPAN](http://search.cpan.org/~reid/Games-Go-Sgf2Dg-4.211/sgf2dg)
