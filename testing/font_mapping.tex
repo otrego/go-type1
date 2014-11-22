@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{igotester}
+\usepackage{gooemacs}
+\usepackage{booktabs}
+
+\begin{document}
+
+\title{Character Mappings for Igo and Gooe}
+\author{Kashomon}
+\maketitle
+
+% {\usefont{T1}{gooegb}{} @}
+% {\usefont{T1}{igoblacki12}{} @}
+% \igocross
+
+% {\selectfont{bfontfamily{gooe}\selectfont @ }
+
+{ \igotestingf \char=322 }
+
+\begin{center}
+
+\begin{tabular}{ccr}
+\toprule
+Rendered  & Character & Series \\
+\midrule
+{\gooegb @ } & @ & gooegb \\
+\bottomrule
+\end{tabular}
+
+\end{center}
+
+\end{document}

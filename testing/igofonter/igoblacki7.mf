@@ -1,0 +1,13 @@
+font_identifier:="IGOBLACKI"; font_size 7pt#;
+
+size#:=7pt#;
+line_thickness#:=.04size#;
+border_line_thickness#:=.1size#;
+
+%%% 
+
+dig_h#:=63/100size#;
+dig_w#:=4/10size#;
+dig_pen#:=1/10size#;
+
+input igoblacki

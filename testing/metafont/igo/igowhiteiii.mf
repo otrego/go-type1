@@ -1,0 +1,1457 @@
+mode_setup;
+
+define_pixels(size);
+define_pixels(line_thickness,border_line_thickness);
+define_pixels(dig_h,dig_w,dig_pen);
+
+picture digit[];
+picture white_circle;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+def digit_zero =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  lft x1=0; y1=.5dig_h;
+  x2=.5dig_w; top y2=dig_h;
+  rt x3=dig_w; y3=.5dig_h;
+  x4=.5dig_w; bot y4=0;
+  draw z1...z2...z3...z4...cycle;
+  digit[0] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_one =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  x1=.5dig_w; bot y1=0;
+  x2=.5dig_w; top y2=dig_h;
+  draw z1--z2;
+  digit[1] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_two =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  lft x1=0; y1=.75dig_h;
+  x2=.5dig_w; top y2=dig_h;
+  rt x3=.8dig_w; y3=.9dig_h;
+  lft x4=0; bot y4=0;
+  draw z1{up}...z2...z3..{(-.8dig_w,-dig_h)}z4;
+  z5=z4;
+  rt x6=dig_w; bot y6=0;
+  draw z5--z6;
+  digit[2] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_three =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  lft x1=.08dig_w; y1=.8dig_h;
+  x2=.5dig_w; top y2=dig_h; 
+  rt x3=.92dig_w; y3=y1;
+  z4=(.5dig_w,.52dig_h);
+  rt x5=dig_w; y5=.2dig_h;
+  x6=.65dig_w; bot y6=0;
+  lft x7=0; y7=y5;
+  draw z1{up}..z2..z3..{left}z4{right}..z5..z6...{up}z7;
+  digit[3] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_four =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  x1=.75dig_w; bot y1=0;
+  x2=x1; top y2=dig_h;
+  lft x3=0; y3=.3dig_h;
+  rt x4=dig_w; y4=y3;
+  draw z1--z2--z3--z4;
+  digit[4] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_five =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  rt x1=.95dig_w; top y1=dig_h;
+  lft x2=.05dig_w; y2=y1;
+  lft x3=0; y3=.45dig_h;
+  z4=(.5dig_w,.6dig_h);
+  rt x5=dig_w; y5=.3dig_h;
+  x6=.65dig_w; bot y6=0;
+  lft x7=0; y7=.15dig_h;
+  draw z1--z2--z3{up}..z4..z5..z6...{up}z7;
+  digit[5] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_six =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  rt x1=dig_w; y1=.8dig_h;
+  x2=.45dig_w; top y2=dig_h;
+  lft x3=0; y3=.5dig_h;
+  x4=.5dig_w; bot y4=0;
+  rt x5=dig_w; y5=.3dig_h;
+  z6=(.53dig_w,.55dig_h);
+  z7=(.03dig_w+.6dig_pen,.25dig_h);
+  draw z1{up}...z2...z3...z4...z5...{left}z6{left}...{(1,-10)}z7;
+  digit[6] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_seven =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  lft x1=0; top y1=dig_h;
+  rt x2=dig_w; y2=y1;
+  lft x3=.2dig_w; bot y3=0;
+  draw z1--z2--z3;
+  digit[7] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_eight =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  lft x1=.08dig_w; y1=.75dig_h;
+  x2=.5dig_w; top y2=dig_h;
+  rt x3=.92dig_w; y3=y1;
+  z4=(.5dig_w,.55dig_h);
+  rt x5=dig_w; y5=.25dig_h;
+  x6=.5dig_w; bot y6=0;
+  lft x7=0; y7=y5;
+  draw z1...z2...z3...z4...cycle; 
+  draw z4...z5...z6...z7...cycle;
+  digit[8] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_nine =
+  currentpicture := nullpicture;
+  currentpicture := digit[6] rotated 180;
+  digit[9] := currentpicture shifted (dig_w,dig_h);
+  clearxy; clearit; clearpen;
+enddef;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+dig_w := 0.8dig_w;
+dig_pen := 0.9dig_pen;
+
+dig_w := .7dig_w;
+dig_h := .9dig_h;
+dig_pen := .8dig_pen;
+
+digit_zero; digit_one; digit_two; digit_three; digit_four;
+digit_five; digit_six; digit_seven; digit_eight; digit_nine;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+beginchar(0,24/22size#,23/22size#,1/22size#); "pion bialy z 256";
+  pickup pencircle scaled line_thickness;
+  lft x1=1/24w; y1=11/24w;
+  rt x2=23/24w; y2=11/24w;
+  draw z1..z2..cycle;
+  white_circle := currentpicture;
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(1,24/22size#,23/22size#,1/22size#); "pion bialy z 257";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(2,24/22size#,23/22size#,1/22size#); "pion bialy z 258";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(3,24/22size#,23/22size#,1/22size#); "pion bialy z 259";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(4,24/22size#,23/22size#,1/22size#); "pion bialy z 260";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(5,24/22size#,23/22size#,1/22size#); "pion bialy z 261";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(6,24/22size#,23/22size#,1/22size#); "pion bialy z 262";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h) 
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(7,24/22size#,23/22size#,1/22size#); "pion bialy z 263";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(8,24/22size#,23/22size#,1/22size#); "pion bialy z 264";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(9,24/22size#,23/22size#,1/22size#); "pion bialy z 265";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(10,24/22size#,23/22size#,1/22size#); "pion bialy z 266";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(11,24/22size#,23/22size#,1/22size#); "pion bialy z 267";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(12,24/22size#,23/22size#,1/22size#); "pion bialy z 268";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)  
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(13,24/22size#,23/22size#,1/22size#); "pion bialy z 269";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(14,24/22size#,23/22size#,1/22size#); "pion bialy z 270";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)  
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(15,24/22size#,23/22size#,1/22size#); "pion bialy z 271";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(16,24/22size#,23/22size#,1/22size#); "pion bialy z 272";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h) 
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(17,24/22size#,23/22size#,1/22size#); "pion bialy z 273";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(18,24/22size#,23/22size#,1/22size#); "pion bialy z 274";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(19,24/22size#,23/22size#,1/22size#); "pion bialy z 275";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(20,24/22size#,23/22size#,1/22size#); "pion bialy z 276";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(21,24/22size#,23/22size#,1/22size#); "pion bialy z 277";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(22,24/22size#,23/22size#,1/22size#); "pion bialy z 278";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(23,24/22size#,23/22size#,1/22size#); "pion bialy z 279";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(24,24/22size#,23/22size#,1/22size#); "pion bialy z 280";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(25,24/22size#,23/22size#,1/22size#); "pion bialy z 281";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(26,24/22size#,23/22size#,1/22size#); "pion bialy z 282";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h) 
+       + digit[8] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(27,24/22size#,23/22size#,1/22size#); "pion bialy z 283";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(28,24/22size#,23/22size#,1/22size#); "pion bialy z 284";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(29,24/22size#,23/22size#,1/22size#); "pion bialy z 285";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(30,24/22size#,23/22size#,1/22size#); "pion bialy z 286";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(31,24/22size#,23/22size#,1/22size#); "pion bialy z 287";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(32,24/22size#,23/22size#,1/22size#); "pion bialy z 288";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(33,24/22size#,23/22size#,1/22size#); "pion bialy z 289";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(34,24/22size#,23/22size#,1/22size#); "pion bialy z 290";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(35,24/22size#,23/22size#,1/22size#); "pion bialy z 291";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(36,24/22size#,23/22size#,1/22size#); "pion bialy z 292";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h) 
+       + digit[9] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(37,24/22size#,23/22size#,1/22size#); "pion bialy z 293";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(38,24/22size#,23/22size#,1/22size#); "pion bialy z 294";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(39,24/22size#,23/22size#,1/22size#); "pion bialy z 295";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(40,24/22size#,23/22size#,1/22size#); "pion bialy z 296";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(41,24/22size#,23/22size#,1/22size#); "pion bialy z 297";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(42,24/22size#,23/22size#,1/22size#); "pion bialy z 298";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(43,24/22size#,23/22size#,1/22size#); "pion bialy z 299";
+  currentpicture := white_circle 
+       + digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(44,24/22size#,23/22size#,1/22size#); "pion bialy z 300";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(45,24/22size#,23/22size#,1/22size#); "pion bialy z 301";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(46,24/22size#,23/22size#,1/22size#); "pion bialy z 302";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h) 
+       + digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(47,24/22size#,23/22size#,1/22size#); "pion bialy z 303";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(48,24/22size#,23/22size#,1/22size#); "pion bialy z 304";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(49,24/22size#,23/22size#,1/22size#); "pion bialy z 305";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(50,24/22size#,23/22size#,1/22size#); "pion bialy z 306";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(51,24/22size#,23/22size#,1/22size#); "pion bialy z 307";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(52,24/22size#,23/22size#,1/22size#); "pion bialy z 308";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(53,24/22size#,23/22size#,1/22size#); "pion bialy z 309";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(54,24/22size#,23/22size#,1/22size#); "pion bialy z 310";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(55,24/22size#,23/22size#,1/22size#); "pion bialy z 311";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(56,24/22size#,23/22size#,1/22size#); "pion bialy z 312";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.4dig_w,11/24w-.5dig_h) 
+       + digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[2] shifted (.5w+.45dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(57,24/22size#,23/22size#,1/22size#); "pion bialy z 313";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(58,24/22size#,23/22size#,1/22size#); "pion bialy z 314";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(59,24/22size#,23/22size#,1/22size#); "pion bialy z 315";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(60,24/22size#,23/22size#,1/22size#); "pion bialy z 316";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(61,24/22size#,23/22size#,1/22size#); "pion bialy z 317";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.45dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(62,24/22size#,23/22size#,1/22size#); "pion bialy z 318";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[8] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(63,24/22size#,23/22size#,1/22size#); "pion bialy z 319";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       + digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[9] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(64,24/22size#,23/22size#,1/22size#); "pion bialy z 320";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(65,24/22size#,23/22size#,1/22size#); "pion bialy z 321";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)   
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(66,24/22size#,23/22size#,1/22size#); "pion bialy z 322";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h) 
+       + digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)    
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(67,24/22size#,23/22size#,1/22size#); "pion bialy z 323";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)   
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(68,24/22size#,23/22size#,1/22size#); "pion bialy z 324";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(69,24/22size#,23/22size#,1/22size#); "pion bialy z 325";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)   
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(70,24/22size#,23/22size#,1/22size#); "pion bialy z 326";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(71,24/22size#,23/22size#,1/22size#); "pion bialy z 327";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)  
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(72,24/22size#,23/22size#,1/22size#); "pion bialy z 328";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(73,24/22size#,23/22size#,1/22size#); "pion bialy z 329";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(74,24/22size#,23/22size#,1/22size#); "pion bialy z 330";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(75,24/22size#,23/22size#,1/22size#); "pion bialy z 331";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h) 
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(76,24/22size#,23/22size#,1/22size#); "pion bialy z 332";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h);  
+showit;
+endchar;
+
+% stop"";
+
+beginchar(77,24/22size#,23/22size#,1/22size#); "pion bialy z 333";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(78,24/22size#,23/22size#,1/22size#); "pion bialy z 334";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(79,24/22size#,23/22size#,1/22size#); "pion bialy z 335";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(80,24/22size#,23/22size#,1/22size#); "pion bialy z 336";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(81,24/22size#,23/22size#,1/22size#); "pion bialy z 337";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(82,24/22size#,23/22size#,1/22size#); "pion bialy z 338";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h) 
+       + digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(83,24/22size#,23/22size#,1/22size#); "pion bialy z 339";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(84,24/22size#,23/22size#,1/22size#); "pion bialy z 340";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.55dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(85,24/22size#,23/22size#,1/22size#); "pion bialy z 341";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.55dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h) 
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(86,24/22size#,23/22size#,1/22size#); "pion bialy z 342";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.55dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h);  
+showit;
+endchar;
+
+% stop"";
+
+beginchar(87,24/22size#,23/22size#,1/22size#); "pion bialy z 343";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.55dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(88,24/22size#,23/22size#,1/22size#); "pion bialy z 344";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.55dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(89,24/22size#,23/22size#,1/22size#); "pion bialy z 345";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.55dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(90,24/22size#,23/22size#,1/22size#); "pion bialy z 346";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.55dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(91,24/22size#,23/22size#,1/22size#); "pion bialy z 347";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.55dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(92,24/22size#,23/22size#,1/22size#); "pion bialy z 348";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.55dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(93,24/22size#,23/22size#,1/22size#); "pion bialy z 349";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.55dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(94,24/22size#,23/22size#,1/22size#); "pion bialy z 350";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(95,24/22size#,23/22size#,1/22size#); "pion bialy z 351";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h) 
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(96,24/22size#,23/22size#,1/22size#); "pion bialy z 352";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h);  
+showit;
+endchar;
+
+% stop"";
+
+beginchar(97,24/22size#,23/22size#,1/22size#); "pion bialy z 353";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(98,24/22size#,23/22size#,1/22size#); "pion bialy z 354";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(99,24/22size#,23/22size#,1/22size#); "pion bialy z 355";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(100,24/22size#,23/22size#,1/22size#); "pion bialy z 356";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(101,24/22size#,23/22size#,1/22size#); "pion bialy z 357";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(102,24/22size#,23/22size#,1/22size#); "pion bialy z 358";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(103,24/22size#,23/22size#,1/22size#); "pion bialy z 359";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(104,24/22size#,23/22size#,1/22size#); "pion bialy z 360";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(105,24/22size#,23/22size#,1/22size#); "pion bialy z 361";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h) 
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(106,24/22size#,23/22size#,1/22size#); "pion bialy z 362";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h);  
+showit;
+endchar;
+
+% stop"";
+
+beginchar(107,24/22size#,23/22size#,1/22size#); "pion bialy z 363";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(108,24/22size#,23/22size#,1/22size#); "pion bialy z 364";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(109,24/22size#,23/22size#,1/22size#); "pion bialy z 365";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(110,24/22size#,23/22size#,1/22size#); "pion bialy z 366";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(111,24/22size#,23/22size#,1/22size#); "pion bialy z 367";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(112,24/22size#,23/22size#,1/22size#); "pion bialy z 368";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(113,24/22size#,23/22size#,1/22size#); "pion bialy z 369";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[6] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(114,24/22size#,23/22size#,1/22size#); "pion bialy z 370";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(115,24/22size#,23/22size#,1/22size#); "pion bialy z 371";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(116,24/22size#,23/22size#,1/22size#); "pion bialy z 372";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(117,24/22size#,23/22size#,1/22size#); "pion bialy z 373";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(118,24/22size#,23/22size#,1/22size#); "pion bialy z 374";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(119,24/22size#,23/22size#,1/22size#); "pion bialy z 375";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(120,24/22size#,23/22size#,1/22size#); "pion bialy z 376";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(121,24/22size#,23/22size#,1/22size#); "pion bialy z 377";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(122,24/22size#,23/22size#,1/22size#); "pion bialy z 378";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(123,24/22size#,23/22size#,1/22size#); "pion bialy z 379";
+  currentpicture := white_circle 
+       + digit[3] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       + digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       + digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+%%%%%%%%%%%%%%%%%%%%%% other symbols %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+beginchar(124,24/22size#,23/22size#,1/22size#); "White stone with cross";
+  pickup pencircle scaled 1.5line_thickness;
+  z1=(.5w+.30size,11/24w+.30size);
+  z2=(.5w+.30size,11/24w-.30size);
+  z3=(.5w-.30size,11/24w-.30size);
+  z4=(.5w-.30size,11/24w+.30size);
+  draw z1--z3;
+  draw z2--z4;
+  addto currentpicture also white_circle;
+showit;
+endchar;
+
+% stop"";
+
+beginchar(125,24/22size#,23/22size#,1/22size#); "White stone with circle";
+  pickup pencircle scaled 1.5line_thickness;
+  z1=(.5w,11/24w+.28size);
+  z2=(.5w+.28size,11/24w);
+  z3=(.5w,11/24w-.28size);
+  z4=(.5w-.28size,11/24w);
+  draw z1...z2...z3...z4...cycle;
+  addto currentpicture also white_circle;
+showit;
+endchar;
+
+% stop"";
+
+beginchar(126,24/22size#,23/22size#,1/22size#); "White stone with square";
+  pickup pencircle scaled 1.5line_thickness;
+  z1=(.5w+.28size,11/24w+.28size);
+  z2=(.5w+.28size,11/24w-.28size);
+  z3=(.5w-.28size,11/24w-.28size);
+  z4=(.5w-.28size,11/24w+.28size);
+  draw z1--z2--z3--z4--cycle;
+  addto currentpicture also white_circle;
+showit;
+endchar;
+
+% stop"";
+
+beginchar(127,24/22size#,23/22size#,1/22size#); "White stone with triangle";
+  pickup pencircle scaled 1.5line_thickness;
+  lft x1=.08size+1/24w+.02size;
+  bot y1=.24size+.02size;
+  x2=.5w;
+  top y2=.98size-.02size;
+  rt x3=.92size+1/24w-.02size;
+  bot y3=.24size+.02size;
+  draw z1--z2--z3--cycle;
+  addto currentpicture also white_circle;
+showit;
+endchar;
+
+% stop"";
+
+end;
+

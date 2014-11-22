@@ -1,0 +1,1437 @@
+mode_setup;
+
+define_pixels(size);
+define_pixels(line_thickness,border_line_thickness);
+define_pixels(dig_h,dig_w,dig_pen);
+
+picture digit[];
+picture black_circle;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+def digit_zero =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  lft x1=0; y1=.5dig_h;
+  x2=.5dig_w; top y2=dig_h;
+  rt x3=dig_w; y3=.5dig_h;
+  x4=.5dig_w; bot y4=0;
+  draw z1...z2...z3...z4...cycle;
+  digit[0] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_one =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  x1=.5dig_w; bot y1=0;
+  x2=.5dig_w; top y2=dig_h;
+  draw z1--z2;
+  digit[1] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_two =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  lft x1=0; y1=.75dig_h;
+  x2=.5dig_w; top y2=dig_h;
+  rt x3=.8dig_w; y3=.9dig_h;
+  lft x4=0; bot y4=0;
+  draw z1{up}...z2...z3..{(-.8dig_w,-dig_h)}z4;
+  z5=z4;
+  rt x6=dig_w; bot y6=0;
+  draw z5--z6;
+  digit[2] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_three =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  lft x1=.08dig_w; y1=.8dig_h;
+  x2=.5dig_w; top y2=dig_h; 
+  rt x3=.92dig_w; y3=y1;
+  z4=(.5dig_w,.52dig_h);
+  rt x5=dig_w; y5=.2dig_h;
+  x6=.65dig_w; bot y6=0;
+  lft x7=0; y7=y5;
+  draw z1{up}..z2..z3..{left}z4{right}..z5..z6...{up}z7;
+  digit[3] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_four =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  x1=.75dig_w; bot y1=0;
+  x2=x1; top y2=dig_h;
+  lft x3=0; y3=.3dig_h;
+  rt x4=dig_w; y4=y3;
+  draw z1--z2--z3--z4;
+  digit[4] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_five =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  rt x1=.95dig_w; top y1=dig_h;
+  lft x2=.05dig_w; y2=y1;
+  lft x3=0; y3=.45dig_h;
+  z4=(.5dig_w,.6dig_h);
+  rt x5=dig_w; y5=.3dig_h;
+  x6=.65dig_w; bot y6=0;
+  lft x7=0; y7=.15dig_h;
+  draw z1--z2--z3{up}..z4..z5..z6...{up}z7;
+  digit[5] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_six =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  rt x1=dig_w; y1=.8dig_h;
+  x2=.45dig_w; top y2=dig_h;
+  lft x3=0; y3=.5dig_h;
+  x4=.5dig_w; bot y4=0;
+  rt x5=dig_w; y5=.3dig_h;
+  z6=(.53dig_w,.55dig_h);
+  z7=(.03dig_w+.6dig_pen,.25dig_h);
+  draw z1{up}...z2...z3...z4...z5...{left}z6{left}...{(1,-10)}z7;
+  digit[6] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_seven =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  lft x1=0; top y1=dig_h;
+  rt x2=dig_w; y2=y1;
+  lft x3=.2dig_w; bot y3=0;
+  draw z1--z2--z3;
+  digit[7] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_eight =
+  currentpicture := nullpicture;
+  pickup pencircle scaled dig_pen;
+  lft x1=.08dig_w; y1=.75dig_h;
+  x2=.5dig_w; top y2=dig_h;
+  rt x3=.92dig_w; y3=y1;
+  z4=(.5dig_w,.55dig_h);
+  rt x5=dig_w; y5=.25dig_h;
+  x6=.5dig_w; bot y6=0;
+  lft x7=0; y7=y5;
+  draw z1...z2...z3...z4...cycle; 
+  draw z4...z5...z6...z7...cycle;
+  digit[8] := currentpicture;
+  clearxy; clearit; clearpen;
+enddef;
+
+def digit_nine =
+  currentpicture := nullpicture;
+  currentpicture := digit[6] rotated 180;
+  digit[9] := currentpicture shifted (dig_w,dig_h);
+  clearxy; clearit; clearpen;
+enddef;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+dig_w := .7dig_w;
+dig_h := .9dig_h;
+dig_pen := .8dig_pen;
+
+digit_zero; digit_one; digit_two; digit_three; digit_four;
+digit_five; digit_six; digit_seven; digit_eight; digit_nine;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+beginchar(0,24/22size#,23/22size#,1/22size#); "pion czarny z 128";
+  pickup pencircle scaled line_thickness;
+  lft x1=1/24w; y1=11/24w;
+  rt x2=23/24w; y2=11/24w;
+  filldraw z1..z2..cycle;
+  black_circle := currentpicture;
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(1,24/22size#,23/22size#,1/22size#); "pion czarny z 129";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.5dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(2,24/22size#,23/22size#,1/22size#); "pion czarny z 130";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(3,24/22size#,23/22size#,1/22size#); "pion czarny z 131";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.55dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(4,24/22size#,23/22size#,1/22size#); "pion czarny z 132";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(5,24/22size#,23/22size#,1/22size#); "pion czarny z 133";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.7dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(6,24/22size#,23/22size#,1/22size#); "pion czarny z 134";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.75dig_w,11/24w-.5dig_h) 
+       - digit[3] shifted (.5w-.75dig_w,11/24w-.5dig_h)  
+       - digit[4] shifted (.5w+.45dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(7,24/22size#,23/22size#,1/22size#); "pion czarny z 135";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(8,24/22size#,23/22size#,1/22size#); "pion czarny z 136";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(9,24/22size#,23/22size#,1/22size#); "pion czarny z 137";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.7dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(10,24/22size#,23/22size#,1/22size#); "pion czarny z 138";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(11,24/22size#,23/22size#,1/22size#); "pion czarny z 139";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.5dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(12,24/22size#,23/22size#,1/22size#); "pion czarny z 140";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)  
+       - digit[4] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(13,24/22size#,23/22size#,1/22size#); "pion czarny z 141";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.6dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(14,24/22size#,23/22size#,1/22size#); "pion czarny z 142";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)  
+       - digit[4] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(15,24/22size#,23/22size#,1/22size#); "pion czarny z 143";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.75dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(16,24/22size#,23/22size#,1/22size#); "pion czarny z 144";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.65dig_w,11/24w-.5dig_h) 
+       - digit[4] shifted (.5w-.75dig_w,11/24w-.5dig_h)  
+       - digit[4] shifted (.5w+.45dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(17,24/22size#,23/22size#,1/22size#); "pion czarny z 145";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(18,24/22size#,23/22size#,1/22size#); "pion czarny z 146";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(19,24/22size#,23/22size#,1/22size#); "pion czarny z 147";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(20,24/22size#,23/22size#,1/22size#); "pion czarny z 148";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(21,24/22size#,23/22size#,1/22size#); "pion czarny z 149";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.5dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(22,24/22size#,23/22size#,1/22size#); "pion czarny z 150";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(23,24/22size#,23/22size#,1/22size#); "pion czarny z 151";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.55dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(24,24/22size#,23/22size#,1/22size#); "pion czarny z 152";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(25,24/22size#,23/22size#,1/22size#); "pion czarny z 153";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.7dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(26,24/22size#,23/22size#,1/22size#); "pion czarny z 154";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.75dig_w,11/24w-.5dig_h) 
+       - digit[5] shifted (.5w-.75dig_w,11/24w-.5dig_h)  
+       - digit[4] shifted (.5w+.45dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(27,24/22size#,23/22size#,1/22size#); "pion czarny z 155";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(28,24/22size#,23/22size#,1/22size#); "pion czarny z 156";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(29,24/22size#,23/22size#,1/22size#); "pion czarny z 157";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.7dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(30,24/22size#,23/22size#,1/22size#); "pion czarny z 158";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(31,24/22size#,23/22size#,1/22size#); "pion czarny z 159";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.5dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(32,24/22size#,23/22size#,1/22size#); "pion czarny z 160";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(33,24/22size#,23/22size#,1/22size#); "pion czarny z 161";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w-.55dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(34,24/22size#,23/22size#,1/22size#); "pion czarny z 162";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(35,24/22size#,23/22size#,1/22size#); "pion czarny z 163";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w-.7dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(36,24/22size#,23/22size#,1/22size#); "pion czarny z 164";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.75dig_w,11/24w-.5dig_h) 
+       - digit[6] shifted (.5w-.75dig_w,11/24w-.5dig_h)  
+       - digit[4] shifted (.5w+.45dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(37,24/22size#,23/22size#,1/22size#); "pion czarny z 165";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(38,24/22size#,23/22size#,1/22size#); "pion czarny z 166";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(39,24/22size#,23/22size#,1/22size#); "pion czarny z 167";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w-.7dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(40,24/22size#,23/22size#,1/22size#); "pion czarny z 168";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(41,24/22size#,23/22size#,1/22size#); "pion czarny z 169";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.5dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(42,24/22size#,23/22size#,1/22size#); "pion czarny z 170";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(43,24/22size#,23/22size#,1/22size#); "pion czarny z 171";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(44,24/22size#,23/22size#,1/22size#); "pion czarny z 172";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(45,24/22size#,23/22size#,1/22size#); "pion czarny z 173";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w-.7dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(46,24/22size#,23/22size#,1/22size#); "pion czarny z 174";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.75dig_w,11/24w-.5dig_h) 
+       - digit[7] shifted (.5w-.75dig_w,11/24w-.5dig_h)  
+       - digit[4] shifted (.5w+.45dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(47,24/22size#,23/22size#,1/22size#); "pion czarny z 175";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(48,24/22size#,23/22size#,1/22size#); "pion czarny z 176";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(49,24/22size#,23/22size#,1/22size#); "pion czarny z 177";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w-.75dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(50,24/22size#,23/22size#,1/22size#); "pion czarny z 178";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(51,24/22size#,23/22size#,1/22size#); "pion czarny z 179";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.5dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(52,24/22size#,23/22size#,1/22size#); "pion czarny z 180";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(53,24/22size#,23/22size#,1/22size#); "pion czarny z 181";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w-.55dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(54,24/22size#,23/22size#,1/22size#); "pion czarny z 182";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(55,24/22size#,23/22size#,1/22size#); "pion czarny z 183";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w-.7dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(56,24/22size#,23/22size#,1/22size#); "pion czarny z 184";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.75dig_w,11/24w-.5dig_h) 
+       - digit[8] shifted (.5w-.75dig_w,11/24w-.5dig_h)  
+       - digit[4] shifted (.5w+.45dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(57,24/22size#,23/22size#,1/22size#); "pion czarny z 185";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(58,24/22size#,23/22size#,1/22size#); "pion czarny z 186";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(59,24/22size#,23/22size#,1/22size#); "pion czarny z 187";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w-.7dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(60,24/22size#,23/22size#,1/22size#); "pion czarny z 188";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(61,24/22size#,23/22size#,1/22size#); "pion czarny z 189";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w-.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.5dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(62,24/22size#,23/22size#,1/22size#); "pion czarny z 190";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w-.8dig_w,11/24w-.5dig_h)  
+       - digit[0] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(63,24/22size#,23/22size#,1/22size#); "pion czarny z 191";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w-.55dig_w,11/24w-.5dig_h)  
+       - digit[1] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(64,24/22size#,23/22size#,1/22size#); "pion czarny z 192";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w-.8dig_w,11/24w-.5dig_h)  
+       - digit[2] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(65,24/22size#,23/22size#,1/22size#); "pion czarny z 193";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w-.7dig_w,11/24w-.5dig_h)   
+       - digit[3] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(66,24/22size#,23/22size#,1/22size#); "pion czarny z 194";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.75dig_w,11/24w-.5dig_h) 
+       - digit[9] shifted (.5w-.75dig_w,11/24w-.5dig_h)    
+       - digit[4] shifted (.5w+.45dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(67,24/22size#,23/22size#,1/22size#); "pion czarny z 195";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w-.8dig_w,11/24w-.5dig_h)   
+       - digit[5] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(68,24/22size#,23/22size#,1/22size#); "pion czarny z 196";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w-.8dig_w,11/24w-.5dig_h)  
+       - digit[6] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(69,24/22size#,23/22size#,1/22size#); "pion czarny z 197";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.7dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w-.7dig_w,11/24w-.5dig_h)   
+       - digit[7] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(70,24/22size#,23/22size#,1/22size#); "pion czarny z 198";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w-.8dig_w,11/24w-.5dig_h)  
+       - digit[8] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(71,24/22size#,23/22size#,1/22size#); "pion czarny z 199";
+  currentpicture := black_circle 
+       - digit[1] shifted (.5w-1.8dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w-.8dig_w,11/24w-.5dig_h)  
+       - digit[9] shifted (.5w+.5dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(72,24/22size#,23/22size#,1/22size#); "pion czarny z 200";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(73,24/22size#,23/22size#,1/22size#); "pion czarny z 201";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w-.4dig_w,11/24w-.5dig_h)      
+       - digit[1] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(74,24/22size#,23/22size#,1/22size#); "pion czarny z 202";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(75,24/22size#,23/22size#,1/22size#); "pion czarny z 203";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w-.45dig_w,11/24w-.5dig_h) 
+       - digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(76,24/22size#,23/22size#,1/22size#); "pion czarny z 204";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w+.6dig_w,11/24w-.5dig_h);  
+showit;
+endchar;
+
+% stop"";
+
+beginchar(77,24/22size#,23/22size#,1/22size#); "pion czarny z 205";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(78,24/22size#,23/22size#,1/22size#); "pion czarny z 206";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(79,24/22size#,23/22size#,1/22size#); "pion czarny z 207";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w-.45dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(80,24/22size#,23/22size#,1/22size#); "pion czarny z 208";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(81,24/22size#,23/22size#,1/22size#); "pion czarny z 209";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w-.45dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(82,24/22size#,23/22size#,1/22size#); "pion czarny z 210";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.4dig_w,11/24w-.5dig_h) 
+       - digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(83,24/22size#,23/22size#,1/22size#); "pion czarny z 211";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w-.35dig_w,11/24w-.5dig_h)      
+       - digit[1] shifted (.5w+.5dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(84,24/22size#,23/22size#,1/22size#); "pion czarny z 212";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(85,24/22size#,23/22size#,1/22size#); "pion czarny z 213";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h) 
+       - digit[3] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(86,24/22size#,23/22size#,1/22size#); "pion czarny z 214";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w+.4dig_w,11/24w-.5dig_h);  
+showit;
+endchar;
+
+% stop"";
+
+beginchar(87,24/22size#,23/22size#,1/22size#); "pion czarny z 215";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(88,24/22size#,23/22size#,1/22size#); "pion czarny z 216";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(89,24/22size#,23/22size#,1/22size#); "pion czarny z 217";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(90,24/22size#,23/22size#,1/22size#); "pion czarny z 218";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.45dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(91,24/22size#,23/22size#,1/22size#); "pion czarny z 219";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.4dig_w,11/24w-.5dig_h)
+       - digit[1] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.45dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(92,24/22size#,23/22size#,1/22size#); "pion czarny z 220";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(93,24/22size#,23/22size#,1/22size#); "pion czarny z 221";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.4dig_w,11/24w-.5dig_h)      
+       - digit[1] shifted (.5w+.6dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(94,24/22size#,23/22size#,1/22size#); "pion czarny z 222";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w+.6dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(95,24/22size#,23/22size#,1/22size#); "pion czarny z 223";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h) 
+       - digit[3] shifted (.5w+.6dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(96,24/22size#,23/22size#,1/22size#); "pion czarny z 224";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w+.55dig_w,11/24w-.5dig_h);  
+showit;
+endchar;
+
+% stop"";
+
+beginchar(97,24/22size#,23/22size#,1/22size#); "pion czarny z 225";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w+.6dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(98,24/22size#,23/22size#,1/22size#); "pion czarny z 226";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(99,24/22size#,23/22size#,1/22size#); "pion czarny z 227";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w+.6dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(100,24/22size#,23/22size#,1/22size#); "pion czarny z 228";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(101,24/22size#,23/22size#,1/22size#); "pion czarny z 229";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.6dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(102,24/22size#,23/22size#,1/22size#); "pion czarny z 230";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.7dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(103,24/22size#,23/22size#,1/22size#); "pion czarny z 231";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.4dig_w,11/24w-.5dig_h)      
+       - digit[1] shifted (.5w+.6dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(104,24/22size#,23/22size#,1/22size#); "pion czarny z 232";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(105,24/22size#,23/22size#,1/22size#); "pion czarny z 233";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h) 
+       - digit[3] shifted (.5w+.6dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(106,24/22size#,23/22size#,1/22size#); "pion czarny z 234";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);  
+showit;
+endchar;
+
+% stop"";
+
+beginchar(107,24/22size#,23/22size#,1/22size#); "pion czarny z 235";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w+.6dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(108,24/22size#,23/22size#,1/22size#); "pion czarny z 236";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(109,24/22size#,23/22size#,1/22size#); "pion czarny z 237";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[7] shifted (.5w+.6dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(110,24/22size#,23/22size#,1/22size#); "pion czarny z 238";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[8] shifted (.5w+.7dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(111,24/22size#,23/22size#,1/22size#); "pion czarny z 239";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[3] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[9] shifted (.5w+.6dig_w,11/24w-.5dig_h); 
+showit;
+endchar;
+
+% stop"";
+
+beginchar(112,24/22size#,23/22size#,1/22size#); "pion czarny z 240";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)
+       - digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(113,24/22size#,23/22size#,1/22size#); "pion czarny z 241";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[1] shifted (.5w+.6dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(114,24/22size#,23/22size#,1/22size#); "pion czarny z 242";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(115,24/22size#,23/22size#,1/22size#); "pion czarny z 243";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(116,24/22size#,23/22size#,1/22size#); "pion czarny z 244";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(117,24/22size#,23/22size#,1/22size#); "pion czarny z 245";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(118,24/22size#,23/22size#,1/22size#); "pion czarny z 246";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[6] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(119,24/22size#,23/22size#,1/22size#); "pion czarny z 247";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[7] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(120,24/22size#,23/22size#,1/22size#); "pion czarny z 248";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[8] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(121,24/22size#,23/22size#,1/22size#); "pion czarny z 249";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[4] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[9] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(122,24/22size#,23/22size#,1/22size#); "pion czarny z 250";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[0] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(123,24/22size#,23/22size#,1/22size#); "pion czarny z 251";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.4dig_w,11/24w-.5dig_h)      
+       - digit[1] shifted (.5w+.7dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(124,24/22size#,23/22size#,1/22size#); "pion czarny z 252";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[2] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(125,24/22size#,23/22size#,1/22size#); "pion czarny z 253";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[3] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(126,24/22size#,23/22size#,1/22size#); "pion czarny z 254";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[4] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+beginchar(127,24/22size#,23/22size#,1/22size#); "pion czarny z 255";
+  currentpicture := black_circle 
+       - digit[2] shifted (.5w-1.6dig_w,11/24w-.5dig_h)
+       - digit[5] shifted (.5w-.5dig_w,11/24w-.5dig_h)      
+       - digit[5] shifted (.5w+.65dig_w,11/24w-.5dig_h);
+showit;
+endchar;
+
+% stop"";
+
+end;
+
