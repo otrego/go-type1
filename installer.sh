@@ -1,6 +1,7 @@
 #!/bin/bash
 
-USAGE="installer.sh [-h] <command> [fonts]
+USAGE="===============================================================
+  installer.sh [-h] <command> [fonts]
   Install the Igo/Gooe fonts for LaTeX (Requires existing LaTeX install).
 
   Where command is one of:
@@ -53,13 +54,37 @@ fi
 if [[ $PRIMARY_COMMAND == "uninstall" ]]
   then
   echo "Uninstalling:" $SECONDARY_COMMAND
+  texhome=$(kpsewhich -var-value TEXMFHOME)
+  echo "Uninstalling from Texhome:" $texhome
+  rm $texhome/tex/latex/gooe/*
+  rm $texhome/fonts/map/dvips/gooe/*
+  rm $texhome/fonts/type1/gooe/*
+  rm $texhome/fonts/tfm/gooe/*
+  rmdir $texhome/tex/latex/gooe
+  rmdir $texhome/fonts/map/dvips/gooe
+  rmdir $texhome/fonts/type1/gooe
+  rmdir $texhome/fonts/tfm/gooe
+  texhash $texhome
+  updmap --disable Map=gooe.map
   exit 0
 elif [[ $PRIMARY_COMMAND == "install" ]]
   then
   echo "Installing:" $SECONDARY_COMMAND
+  texhome=$(kpsewhich -var-value TEXMFHOME)
+  echo "Installing to Texhome:" $texhome
+  mkdir -p $texhome/tex/latex/gooe
+  mkdir -p $texhome/fonts/map/dvips/gooe
+  mkdir -p $texhome/fonts/type1/gooe
+  mkdir -p $texhome/fonts/tfm/gooe
+  cp gooe-fonts/gooemacs.sty $texhome/tex/latex/gooe
+  cp gooe-fonts/gooe.map $texhome/fonts/map/dvips/gooe
+  cp gooe-fonts/*.pfb $texhome/fonts/type1/gooe
+  cp gooe-fonts/*.tfm $texhome/fonts/tfm/gooe
+  texhash $texhome
+  updmap --enable Map=gooe.map
   exit 0
 else
-  echo "Unknown command " $PRIMARY_COMMAND
+  echo "Unknown command:" $PRIMARY_COMMAND
   echo "$USAGE" >&2
   exit 1
 fi
