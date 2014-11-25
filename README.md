@@ -5,6 +5,7 @@ for the game Go. In particular, this repository contains font information for:
 
   - Igo
   - Gooe
+  - Gnos: A modification of the Gooe font series.
 
 This work derives from [Vit Brunner (tasuki)](https://github.com/tasuk) who
 created a series of tsumego books using the Type1 Gooe font. Later, this work
@@ -17,10 +18,11 @@ shouldn't work with a LaTeX compatible compiler like XeTeX.
 
 ### What's here
 
-There are two directories containing font files:
+There are three directories containing font files:
 
-      gooe-fonts/
       igo-fonts/
+      gooe-fonts/
+      gnos-fonts/
 
 In both of these, there are 4 types of files of interest:
 
@@ -42,8 +44,19 @@ or
 
       $(kpsewhich -var-value TEXMFHOME)
 
-### Installation Steps for Gooe
-You must perform a bit of work for LaTeX to know about your fonts.
+### Quick Installation Steps
+The easiest way to install is to use the installer script
+
+      # Install gooe, gnos, igo
+      installer.sh install all
+
+      # Install just gnos
+      installer.sh install gnos
+
+### Long Installation Steps for {Gnos,gooe,igo}
+You must perform a bit of work for LaTeX to know about your fonts, if you want
+to do it by hand. I don't claim to be an expert in LaTeX, but this seems to
+work.
 
       cd go-type1
       texhome=$(kpsewhich -var-value TEXMFHOME)
@@ -58,23 +71,6 @@ You must perform a bit of work for LaTeX to know about your fonts.
       cp gooe-fonts/*.tfm $texhome/fonts/tfm/gooe
       texhash $texhome
       updmap --enable Map=gooe.map
-
-### Installation Steps for Igo
-Essentially the same as above, but here for completeness
-
-      cd go-type1
-      texhome=$(kpsewhich -var-value TEXMFHOME)
-      echo $texhome   # Should be non empty
-      mkdir -p $texhome/tex/latex/igo
-      mkdir -p $texhome/fonts/map/dvips/igo
-      mkdir -p $texhome/fonts/type1/igo
-      mkdir -p $texhome/fonts/tfm/igo
-      cp igo-fonts/igo.sty $texhome/tex/latex/igo
-      cp igo-fonts/igo.map $texhome/fonts/map/dvips/igo
-      cp igo-fonts/*.pfb $texhome/fonts/type1/igo
-      cp igo-fonts/*.tfm $texhome/fonts/tfm/igo
-      texhash $texhome
-      updmap --enable Map=igo.map
 
 ### Using the Fonts
 

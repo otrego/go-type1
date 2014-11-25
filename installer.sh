@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USAGE="===============================================================
+USAGE="=================================================================
   installer.sh [-h] <command> [fonts]
   Install the Igo/Gooe fonts for LaTeX (Requires existing LaTeX install).
 
@@ -31,7 +31,6 @@ if [ -z $TEX_HOME ]
   exit 1
 fi
 
-
 PRIMARY_COMMAND=""
 if [[ $# -gt 0 ]]
   then
@@ -46,42 +45,64 @@ fi
 
 
 SECONDARY_COMMAND="all"
-if [[ $# -gt 1 && ($2 == "gooe" || $2 == "igo" || $2 == "all") ]]
+if [[ $# -gt 1 && ($2 == "gooe" || $2 == "igo" || $2 == "all" || $2 == "gnos") ]]
   then
   SECONDARY_COMMAND=$2
 fi
 
+font_installs=("gooe" "igo" "gnos")
+if [[ $SECONDARY_COMMAND == "gooe" ]]
+  then
+  font_installs=("gooe")
+elif [[ $SECONDARY_COMMAND == "igo" ]]
+  then
+  font_installs=("igo")
+elif [[ $SECONDARY_COMMAND == "gnos" ]]
+  then
+  font_installs=("gnos")
+fi
+
+texhome=$(kpsewhich -var-value TEXMFHOME)
+echo "TEXMFLOCAL:" $texhome
 if [[ $PRIMARY_COMMAND == "uninstall" ]]
   then
-  echo "Uninstalling:" $SECONDARY_COMMAND
-  texhome=$(kpsewhich -var-value TEXMFHOME)
-  echo "Uninstalling from Texhome:" $texhome
-  rm $texhome/tex/latex/gooe/*
-  rm $texhome/fonts/map/dvips/gooe/*
-  rm $texhome/fonts/type1/gooe/*
-  rm $texhome/fonts/tfm/gooe/*
-  rmdir $texhome/tex/latex/gooe
-  rmdir $texhome/fonts/map/dvips/gooe
-  rmdir $texhome/fonts/type1/gooe
-  rmdir $texhome/fonts/tfm/gooe
-  texhash $texhome
-  updmap --disable Map=gooe.map
+  for item in ${font_installs[*]}
+  do
+    mapfile="${item}.map"
+    echo "Uninstalling:" $item
+    rm $texhome/tex/latex/$item/*
+    rm $texhome/fonts/map/dvips/$item/*
+    rm $texhome/fonts/type1/$item/*
+    rm $texhome/fonts/tfm/$item/*
+    rmdir $texhome/tex/latex/$item
+    rmdir $texhome/fonts/map/dvips/$item
+    rmdir $texhome/fonts/type1/$item
+    rmdir $texhome/fonts/tfm/$item
+    texhash $texhome
+    updmap --disable Map=$mapfile
+  done
+  updmap --syncwithtrees
   exit 0
 elif [[ $PRIMARY_COMMAND == "install" ]]
   then
-  echo "Installing:" $SECONDARY_COMMAND
-  texhome=$(kpsewhich -var-value TEXMFHOME)
-  echo "Installing to Texhome:" $texhome
-  mkdir -p $texhome/tex/latex/gooe
-  mkdir -p $texhome/fonts/map/dvips/gooe
-  mkdir -p $texhome/fonts/type1/gooe
-  mkdir -p $texhome/fonts/tfm/gooe
-  cp gooe-fonts/gooemacs.sty $texhome/tex/latex/gooe
-  cp gooe-fonts/gooe.map $texhome/fonts/map/dvips/gooe
-  cp gooe-fonts/*.pfb $texhome/fonts/type1/gooe
-  cp gooe-fonts/*.tfm $texhome/fonts/tfm/gooe
-  texhash $texhome
-  updmap --enable Map=gooe.map
+  for item in ${font_installs[*]}
+  do
+    fontsdir="${item}-fonts"
+    mapfile="${item}.map"
+    echo "Installing:" $item
+    echo "Fonts-directory:" $fontsdir
+    echo "Map File:" $mapfile
+    mkdir -p $texhome/tex/latex/$item
+    mkdir -p $texhome/fonts/map/dvips/$item
+    mkdir -p $texhome/fonts/type1/$item
+    mkdir -p $texhome/fonts/tfm/$item
+    cp $fontsdir/*.sty $texhome/tex/latex/$item
+    cp $fontsdir/*.map $texhome/fonts/map/dvips/$item
+    cp $fontsdir/*.pfb $texhome/fonts/type1/$item
+    cp $fontsdir/*.tfm $texhome/fonts/tfm/$item
+    texhash $texhome
+    updmap --enable Map=$mapfile
+  done
   exit 0
 else
   echo "Unknown command:" $PRIMARY_COMMAND

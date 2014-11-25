@@ -1,9 +1,10 @@
 input paramsa;
 input gobas;
-font_identifier:="gnosb"; font_size 10pt#;
+font_identifier:="gnosw"; font_size 10pt#;
 if unknown cmbase: input cmbase fi
 input paramsb;
-input bodd;
+input wodd;
+
 oddone(1,one);
 oddone(3,three);
 oddone(5,five);
@@ -55,7 +56,7 @@ oddtwo(95,smnine,smfive);
 oddtwo(97,smnine,smseven);
 oddtwo(99,smnine,smnine);
 
-input wodd;
+input bodd;
 evenone(2,two);
 evenone(4,four);
 evenone(6,six);

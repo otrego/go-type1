@@ -114,7 +114,7 @@ beginchar("*",gow#,goh#,0); "Hoshi";
  pickup pensquare scaled smallpen;
  draw z4..z6;
  draw z2..z8;
- pickup pencircle scaled hoshi;
+ pickup pencircle scaled 3pt;
  drawdot z5;
  endchar;
 beginchar("@",gow#,goh#,0); "Black Stone";
