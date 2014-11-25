@@ -16,9 +16,9 @@ beginchar("[",gow#,goh#,0); "Empty vertex, left edge of board";
  x1=x2=x3=0pt;
  x4=x5=x6=.5w;
  x7=x8=x9=w;
- y1=y4=y7=h;
+ y1=y4=y7=.97h; % Modified for thick lines
  y2=y5=y8=.5h;
- y3=y6=y9=0;
+ y3=y6=y9=0.03h; % Modified for thick lines
  pickup pensquare scaled smallpen;
  draw z5..z8;
  pickup pensquare scaled .8pt;
@@ -28,18 +28,18 @@ beginchar("]",gow#,goh#,0); "Empty vertex, right edge of board";
  x1=x2=x3=0pt;
  x4=x5=x6=.5w;
  x7=x8=x9=w;
- y1=y4=y7=h;
+ y1=y4=y7=.97h; % Modified for thick lines
  y2=y5=y8=.5h;
- y3=y6=y9=0;
+ y3=y6=y9=0.03h; % Modified for thick lines
  pickup pensquare scaled smallpen;
  draw z2..z5;
  pickup pensquare scaled .8pt;
  draw z4..z6;
  endchar;
 beginchar("(",gow#,goh#,0); "Empty vertex, top edge of board";
- x1=x2=x3=0pt;
+ x1=x2=x3=0.03h; % Modified for thick lines
  x4=x5=x6=.5w;
- x7=x8=x9=w;
+ x7=x8=x9=.97w; % Modified for thick lines
  y1=y4=y7=h;
  y2=y5=y8=.5h;
  y3=y6=y9=0;
@@ -49,9 +49,9 @@ beginchar("(",gow#,goh#,0); "Empty vertex, top edge of board";
  draw z2..z8;
  endchar;
 beginchar(")",gow#,goh#,0); "Empty vertex, bottom edge of board";
- x1=x2=x3=0pt;
+ x1=x2=x3=0.03h; % Modified for thick lines
  x4=x5=x6=.5w;
- x7=x8=x9=w;
+ x7=x8=x9=.97w; % Modified for thick lines
  y1=y4=y7=h;
  y2=y5=y8=.5h;
  y3=y6=y9=0;
@@ -63,21 +63,21 @@ beginchar(")",gow#,goh#,0); "Empty vertex, bottom edge of board";
 beginchar("<",gow#,goh#,0); "Empty vertex, upper left corner";
  x1=x2=x3=0pt;
  x4=x5=x6=.5w;
- x7=x8=x9=w;
+ x7=x8=x9=0.97w; % Modified for thick lines
  y1=y4=y7=h;
  y2=y5=y8=.5h;
- y3=y6=y9=0;
+ y3=y6=y9=0.03h; % Modified for thick lines
  pickup pensquare scaled .8pt;
  draw z5..z6;
  draw z5..z8;
  endchar;
 beginchar(">",gow#,goh#,0); "Empty vertex, upper right corner";
- x1=x2=x3=0pt;
+ x1=x2=x3=0.03h; % Modified for thick lines
  x4=x5=x6=.5w;
  x7=x8=x9=w;
  y1=y4=y7=h;
  y2=y5=y8=.5h;
- y3=y6=y9=0;
+ y3=y6=y9=0.03h; % Modified for thick lines
  pickup pensquare scaled .8pt;
  draw z2..z5;
  draw z6..z5;
@@ -85,8 +85,8 @@ beginchar(">",gow#,goh#,0); "Empty vertex, upper right corner";
 beginchar(",",gow#,goh#,0); "Empty vertex, lower left corner";
  x1=x2=x3=0pt;
  x4=x5=x6=.5w;
- x7=x8=x9=w;
- y1=y4=y7=h;
+ x7=x8=x9=0.97w; % Modified for thick lines
+ y1=y4=y7=0.97h; % Modified for thick lines
  y2=y5=y8=.5h;
  y3=y6=y9=0;
  pickup pensquare scaled .8pt;
@@ -94,10 +94,10 @@ beginchar(",",gow#,goh#,0); "Empty vertex, lower left corner";
  draw z8..z5;
  endchar;
 beginchar(".",gow#,goh#,0); "Empty vertex, lower right corner";
- x1=x2=x3=0pt;
+ x1=x2=x3=0.03h; % Modified for thick lines
  x4=x5=x6=.5w;
  x7=x8=x9=w;
- y1=y4=y7=h;
+ y1=y4=y7=0.97h; % Modified for thick lines
  y2=y5=y8=.5h;
  y3=y6=y9=0;
  pickup pensquare scaled .8pt;
