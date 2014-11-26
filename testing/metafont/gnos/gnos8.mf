@@ -1,0 +1,4 @@
+input paramsa;
+gow#:=8pt#; goh#=8pt#;
+input gnos.mf
+end;

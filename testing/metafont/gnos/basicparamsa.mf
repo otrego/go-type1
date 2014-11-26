@@ -3,12 +3,15 @@
 % to GOOE. The parameters in paramsb.mf are general parameters of the
 % Computer Modern Roman Typefaces. They control the appearance of the
 % numerals on the stones.
+%
+% basicparamsa is designed to configure fewer params, for the purpos of
+% setting the font size accordingly.
 
 mode_setup;
- em#=6pt#; gow#:=12pt#; goh#=12pt#;
+ em#=6pt#; gow#:=12pt#; goh#:=12pt#;
  smallpen#=.2pt#; widepen#=.4pt#; whitepen#:=.3pt#;
  penwidth#=.5pt#;
- hoshi#=3pt#;
+ hoshi#=2.5pt#;
  thin#:=1/3pt#; medium#:=2/3pt#; thick#:=5/6pt#;
 
 %
@@ -45,4 +48,4 @@ setback=0;
 % fonts, normally 12 points can be scaled down to 10 points and still 
 % be readable on a 300dpi laser printer.
 
-smudge:=1;
+smudge:=0;
