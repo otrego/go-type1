@@ -11,7 +11,8 @@ USAGE="=================================================================
   And the optional fonts is one of
     - gooe
     - igo
-    - all (default)"
+    - gnos (default)
+    - all"
 
 command -v kpsewhich >/dev/null 2>&1 || { 
   echo >&2 "TeX is required, but it is not installed.  Aborting."
@@ -44,7 +45,7 @@ if [[ $PRIMARY_COMMAND == "-h" ||  $PRIMARY_COMMAND == "" ]]
 fi
 
 
-SECONDARY_COMMAND="all"
+SECONDARY_COMMAND="gnos"
 if [[ $# -gt 1 && ($2 == "gooe" || $2 == "igo" || $2 == "all" || $2 == "gnos") ]]
   then
   SECONDARY_COMMAND=$2

@@ -122,6 +122,28 @@ Here's the same problem with the Igo font.
       \shortstack{\showgoban[a14,k19]\\ A Simple Go Problem}
       \end{center}
 
+### Converting METAFONT to Type1
+Converting from METAFONT to Type1 fonts can be a challenge. Here's what I did,
+mostly a record for myself, but it might be useful for you too.
+
+First, some setup:
+
+  * Update homebrew (OSX package manager)
+  * Download mftrace
+  * Install autoconf via homebrew (`brew install autoconf`)
+  * Run autoconf on mftrace's autogen.sh
+  * `brew install potrace` -- font tracing program
+  * `brew install fontforge`
+  * Go back to mftrace and run `./configure` and `make install`
+
+To convert METAFONT to Type1, run:
+
+      mftrace --formats=PFB myfile.mf
+
+To regenerate the TFM files, run:
+
+      mktextfm myfile.mf
+
 ### Resources
 
 For more details on all of this, see:
