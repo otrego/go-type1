@@ -1,6 +1,6 @@
 input paramsa;
 input gobas;
-font_identifier:="gnoswii"; font_size 10pt#;
+font_identifier:="gnoswii"; font_size 12pt#;
 if unknown cmbase: input cmbase fi
 input paramsb;
 input bodd;

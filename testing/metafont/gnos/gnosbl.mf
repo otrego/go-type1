@@ -1,7 +1,7 @@
 input paramsa;
 smudge:=0;
 input gobas;
-font_identifier:="gnosbl"; font_size 10pt#;
+font_identifier:="gnosbl"; font_size 12pt#;
 if unknown cmbase: input cmbase fi
 
 input paramsc;
