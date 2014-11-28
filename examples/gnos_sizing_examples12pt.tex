@@ -1,7 +1,8 @@
 \documentclass[12pt]{article}
 % \usepackage{igo}
 \usepackage{anyfontsize}
-\usepackage{setspace}
+\usepackage[nodisplayskipstretch]{setspace}
+% nodisplayskipstretch
 % \usepackage{gooemacs}
 \usepackage{gnos}
 % \usepackage{setspace}
@@ -28,7 +29,9 @@
 \char91+++@@++++]\\
 !\char64@@++!+++!\\
 \char91\char43\char43\char42+++++*]\\
-\char91+++++++++]\\
+\char91++\gnosEmptyLbl{\scriptsize7}
+\gnosEmptyLbl{\scriptsize12}\gnosOverlap{!}{\scriptsize7}
+\gnosOverlap{!}{\scriptsize12}{\gnosw\char12}{\gnosw\char7}+]\\
 !+++@@++++!\\
 ,!)))!)))!.\\
 }
@@ -42,7 +45,9 @@
 \char91+++@@++++]\\
 !\char64@@++!+++!\\
 \char91\char43\char43\char42+++++*]\\
-\char91+++++++++]\\
+\char91++\gnosEmptyLbl{\scriptsize7}
+\gnosEmptyLbl{\scriptsize12}\gnosOverlap{!}{\scriptsize7}
+\gnosOverlap{!}{\scriptsize12}{\gnosw\char12}{\gnosw\char7}+]\\
 !+++@@++++!\\
 ,!)))!)))!.\\
 }
@@ -57,7 +62,9 @@
 \char91+++@@++++]\\
 !\char64@@++!+++!\\
 \char91\char43\char43\char42+++++*]\\
-\char91+++++++++]\\
+\char91++\gnosEmptyLbl{\scriptsize7}
+\gnosEmptyLbl{\scriptsize12}\gnosOverlap{!}{\scriptsize7}
+\gnosOverlap{!}{\scriptsize12}{\gnosw\char12}{\gnosw\char7}+]\\
 !+++@@++++!\\
 ,!)))!)))!.\\
 }
@@ -66,6 +73,7 @@
 \newpage
 
 {
+% \setstretch{0.93}
 \gnosfontsize{11}
 \gnos%
 <!(!(((((!>\\
@@ -73,7 +81,9 @@
 \char91+++@@++++]\\
 !\char64@@++!+++!\\
 \char91\char43\char43\char42+++++*]\\
-\char91+++++++++]\\
+\char91++\gnosEmptyLbl{\footnotesize7}
+\gnosEmptyLbl{\footnotesize12}\gnosOverlap{!}{\footnotesize7}
+\gnosOverlap{!}{\footnotesize12}{\gnosw\char12}{\gnosw\char7}+]\\
 !+++@@++++!\\
 ,!)))!)))!.\\
 }
@@ -92,7 +102,9 @@
 \char91+++++++++++++++++]\\
 \char91++*{\gnoswi\char11}{\gnoswii\char11}{\gnoswiii\char11}{\gnosbi\char11}{\gnosbii\char11}{\gnosbiii\char11}*++++*++]\\
 \char91+++++++++++++++++]\\
-!+++++++++++++++++!\\
+\char91++++++++++\gnosEmptyLbl{\footnotesize7}
+\gnosEmptyLbl{\footnotesize12}\gnosOverlap{!}{\footnotesize7}
+\gnosOverlap{!}{\footnotesize12}{\gnosw\char12}{\gnosw\char7}+]\\
 ,!))))@)!))))))))!.\\
 }}
 12pt -- Full Symbols (default)
@@ -105,13 +117,16 @@
 \char91+++@@++++]\\
 !\char64@@++!+++!\\
 \char91\char43\char43\char42+++++*]\\
-\char91+++++++++]\\
+\char91++\gnosEmptyLbl{\footnotesize7}
+\gnosEmptyLbl{\footnotesize12}\gnosOverlap{!}{\footnotesize7}
+\gnosOverlap{!}{\footnotesize12}{\gnosw\char12}{\gnosw\char7}+]\\
 !+++@@++++!\\
 ,!)))!)))!.\\
 }
 12pt (default)
 
 \newpage
+{
 {
 \gnosfontsize{14}
 \gnos%
@@ -120,9 +135,12 @@
 \char91+++@@++++]\\
 !\char64@@++!+++!\\
 \char91\char43\char43\char42+++++*]\\
-\char91+++++++++]\\
+\char91++\gnosEmptyLbl{\small7}
+\gnosEmptyLbl{\small12}\gnosOverlap{!}{\small7}
+\gnosOverlap{!}{\small12}{\gnosw\char12}{\gnosw\char7}+]\\
 !+++@@++++!\\
 ,!)))!)))!.\\
+}
 }
 14pt
 
@@ -134,7 +152,9 @@
 \char91+++@@++++]\\
 !\char64@@++!+++!\\
 \char91\char43\char43\char42+++++*]\\
-\char91+++++++++]\\
+\char91++\gnosEmptyLbl{\normalsize7}
+\gnosEmptyLbl{\normalsize12}\gnosOverlap{!}{\normalsize7}
+\gnosOverlap{!}{\normalsize12}{\gnosw\char12}{\gnosw\char7}+]\\
 !+++@@++++!\\
 ,!)))!)))!.\\
 }
@@ -148,7 +168,9 @@
 \char91+++@@++++]\\
 !\char64@@++!+++!\\
 \char91\char43\char43\char42+++++*]\\
-\char91+++++++++]\\
+\char91++\gnosEmptyLbl{\Large7}
+\gnosEmptyLbl{\Large12}\gnosOverlap{!}{\Large7}
+\gnosOverlap{!}{\Large12}{\gnosw\char12}{\gnosw\char7}+]\\
 !+++@@++++!\\
 ,!)))!)))!.\\
 \par
@@ -170,10 +192,45 @@
 \char91+++++++++++++++++]\\
 \char91++*{\gnoswi\char11}{\gnoswii\char11}{\gnoswiii\char11}{\gnosbi\char11}{\gnosbii\char11}{\gnosbiii\char11}*++++*++]\\
 \char91+++++++++++++++++]\\
-!+++++++++++++++++!\\
+\char91++++++++++\gnosEmptyLbl{\Large7}%
+\gnosEmptyLbl{\Large12}\gnosOverlap{!}{\Large7}%
+\gnosOverlap{!}{\Large12}{\gnosw\char12}{\gnosw\char7}+]\\
 ,!))))@)!))))))))!.\\
 }}
 20pt -- Full Symbols
 \end{center}
+
+\newpage
+
+
+\begin{minipage}[t]{0.6\textwidth}
+\gnosfontsize{10}
+\gnos
+<(((((((((((((((((>\\
+\char91+++++++++++++++++]\\
+\char91++\gnosOverlap{!}{\scriptsize{C}}++++++++++++++]\\
+\char91++\gnosEmptyLbl{\scriptsize{D}}+++++*+++++@++]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++\gnosOverlap{@}{\scriptsize\color{white}2}+]\\
+\char91+++++++++++++++\gnosEmptyLbl{\scriptsize{E}}+]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91++*+++++*+++++*\gnosOverlap{!}{\scriptsize1}+]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++\gnosOverlap{@}{\scriptsize\color{white}10}+]\\
+\char91++++++++++++++\gnosOverlap{@}{\scriptsize\color{white}6}\gnosOverlap{!}{\scriptsize3}+]\\
+\char91+\gnosEmptyLbl{\scriptsize{B}}\gnosOverlap{!}{\scriptsize{A}}+++++++++++\gnosOverlap{@}{\scriptsize\color{white}4}++]\\
+\char91++++++++++++++\gnosOverlap{@}{\scriptsize\color{white}8}\gnosOverlap{!}{\scriptsize7}\gnosOverlap{!}{\scriptsize5}]\\
+\char91++!+++++*++++\gnosOverlap{@}{\scriptsize\color{white}12}\gnosOverlap{!}{\scriptsize11}@\gnosOverlap{!}{\scriptsize9}]\\
+\char91++++@+++++@++\gnosOverlap{@}{\scriptsize\color{white}16}\gnosOverlap{!}{\scriptsize15}\gnosOverlap{!}{\scriptsize13}+]\\
+\char91++++++++++++++\gnosOverlap{@}{\scriptsize\color{white}14}++]\\
+,))))))))))))))))).\\
+% \godiagram
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+\setlength{\parskip}{0.5em}
+Black 10 shows fighting spirit. Gu Li (Black) played like this against Lee Sedol in the group stage of the 2012 Samsung Cup.
+\end{minipage}
+
 
 \end{document}

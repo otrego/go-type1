@@ -91,12 +91,12 @@
   \baselineskip=#1pt
 }
 
-\gnosfontsize{12}
+% \gnosfontsize{12}
 
 % Create a label over an intersection
-\def\gnosEmptyLbl#1{\leavevmode\vbox to \gnosIntWd{\vfill\hbox to \gnosIntWd{\hss{\rm #1}\hss}\vfill}}
+\def\gnosEmptyLbl#1{\leavevmode\vbox to \gnosIntWd{\vfill\hbox to \gnosIntWd{\hss{\textsf{#1}}\hss}\vfill}}
 
-\def\gnosOverlap#1#2{\leavevmode{\gnos #1}\llap{\vbox to \gnosIntWd{\vfill\hbox to \gnosIntWd{\hss{\rm #2}\hss}\vfill}}}
+\def\gnosOverlap#1#2{\leavevmode{\gnos #1}\llap{\vbox to \gnosIntWd{\vfill\hbox to \gnosIntWd{\hss{\textsf{#2}}\hss}\vfill}}}
 
 % Stretch values for reference. Note: the base font size is 12pt
 % Calculated as font/12 + .01
