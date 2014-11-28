@@ -19,37 +19,48 @@
 \newcount\gnos@fontsize
 \newbox\gnos@box
 \newdimen\gnos@dimen
+\newdimen\gnos@fontpt
+\gnos@fontsize=12 % Default size
+\gnos@fontpt=12pt % Default font dimension
 
 \def\gnosfontsize#1{%
   \ifnum #1>16\relax%
     \global\gnos@fontsize=20\relax%
+    \global\gnos@fontpt=20pt\relax%
     \gnos@fonts{20}\relax%
   \else%
   \ifnum #1>14\relax%
-  \global\gnos@fontsize=16\relax%
+    \global\gnos@fontsize=16\relax%
+    \global\gnos@fontpt=16pt\relax%
     \gnos@fonts{16}\relax%
   \else%  
   \ifnum #1>12\relax% 
     \global\gnos@fontsize=14\relax%
+    \global\gnos@fontpt=14pt\relax%
     \gnos@fonts{14}\relax%
   \else%
   \ifnum #1>11\relax% 
     \global\gnos@fontsize=12\relax%
+    \global\gnos@fontpt=12pt\relax%
     \gnos@fonts{12}\relax%
   \else%
   \ifnum #1>10\relax% 
     \global\gnos@fontsize=11\relax%
+    \global\gnos@fontpt=11pt\relax%
     \gnos@fonts{11}\relax%
   \else%
   \ifnum #1>9\relax% 
     \global\gnos@fontsize=10\relax%
+    \global\gnos@fontpt=10pt\relax%
     \gnos@fonts{10}\relax%
   \else%
   \ifnum #1>8\relax% 
     \global\gnos@fontsize=9\relax%
+    \global\gnos@fontpt=9pt\relax%
     \gnos@fonts{9}\relax%
   \else%
     \global\gnos@fontsize=#1\relax%
+    \global\gnos@fontpt=8pt\relax%
     \gnos@fonts{8}\relax%
   \fi\fi\fi\fi\fi\fi\fi%
 }
@@ -74,13 +85,18 @@
   \font\gnoswl=gnoswl at #1truept%
   \font\gnosbl=gnosbl at #1truept%
   % Copied from gooemacs.sty
-  \setbox0 \hbox{\gnos +} \global\gnosIntWd=\wd0 \global\gnosIntHt=\ht0 \global\gnosTextAdj=3pt%
+  \setbox0 \hbox{\gnos +}\global\gnosIntWd=\wd0\global\gnosIntHt=\ht0\global\gnosTextAdj=2pt%
   % We should be using baselinestretch, but I can't figure out how to get it
   % working with point values
   \baselineskip=#1pt
 }
 
 \gnosfontsize{12}
+
+% Create a label over an intersection
+\def\gnosEmptyLbl#1{\leavevmode\vbox to \gnosIntWd{\vfill\hbox to \gnosIntWd{\hss{\rm #1}\hss}\vfill}}
+
+\def\gnosOverlap#1#2{\leavevmode{\gnos #1}\llap{\vbox to \gnosIntWd{\vfill\hbox to \gnosIntWd{\hss{\rm #2}\hss}\vfill}}}
 
 % Stretch values for reference. Note: the base font size is 12pt
 % Calculated as font/12 + .01

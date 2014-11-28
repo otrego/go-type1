@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{igo}
+\usepackage{color}
 \usepackage{gooemacs}
 \usepackage{gnos}
 \usepackage[T1]{fontenc}
@@ -30,21 +31,25 @@ A Simple Go Problem!
 \shortstack{\showgoban[a14,k19]\\ A Simple Go Problem}
 \end{center}
 
+\newpage
 \begin{center}
 \section*{Gnos}
-{\gnos%
+{
+\gnosfontsize{14}
+{
+\gnos%
 <!((((((@((!(((((!>\\
 !+1Cc2Ss3Tt4Xx++++!\\
 \char91+@+++++++++++++++]\\
 \char91+@*+++++*+++++*++]\\}
 {\gnosb\char1\char2\char3\char4\char5\char6\char7\char8\char9\char10\char11\char12\char13\char14\char15\char16\char17\char18}{\gnos]\\}
 {\gnosw\char1\char2\char3\char4\char5\char6\char7\char8\char9\char10\char11\char12\char13\char14\char15\char16\char17\char18}{\gnos]\\
-\char91+++++++++++++++++]\\
-\char91++*++{\gnoswiii\char11}+++*++++*++]\\
-\char91+++++++++++++++++]\\
-!+++++++++++++++++!\\
+\char91++*{\gnoswi\char11}{\gnoswii\char11}{\gnoswiii\char11}{\gnosbi\char11}{\gnosbii\char11}{\gnosbiii\char11}+++++*++]\\
+\char91++++{\gnoswl\char1}{\gnosbl\char1}++++++\gnosEmptyLbl{\sffamily{10}}\gnosOverlap{!}{Z}\gnosOverlap{+}{\gnos 2}\gnosOverlap{@}{\color{white}Z}+]\\
+!++++++++\gnosOverlap{+}{\gnos 3}\gnosOverlap{+}{\gnos 4}\gnosOverlap{+}{\gnos 1}++++++!\\
 ,!))))@)!))))))))!.\\
-}
+}}
+14pt
 
 A board full of stuff!
 \end{center}
