@@ -12,113 +12,95 @@
 \font\gnosbl=gnosbl % a-z in italics, on black stones
 \font\gnoswl=gnoswl % a-z in italics
 
-% \font\gnoseight=gnos8 at 8truept
-%%% Base series %%%
-\font\gnoseight=gnos at 8pt
-\font\gnosnine=gnos at 9pt
-\font\gnosten=gnos at 10pt
-\font\gnoseleven=gnos at 11pt
-\font\gnostwelve=gnos at 12pt %Default
-\font\gnosfourteen=gnos at 14pt
-\font\gnossixteen=gnos at 16pt
-\font\gnostwenty=gnos at 20pt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Display size Helpers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% Black stone series %%%
-\font\gnosbeight=gnosb at 8pt
-\font\gnosbnine=gnosb at 9pt
-\font\gnosbten=gnosb at 10pt
-\font\gnosbeleven=gnosb at 11pt
-\font\gnosbtwelve=gnosb at 12pt %Default?
-\font\gnosbfourteen=gnosb at 14pt
-\font\gnosbsixteen=gnosb at 16pt
-\font\gnosbtwenty=gnosb at 20pt
+\newcount\gnos@fontsize
+\newbox\gnos@box
+\newdimen\gnos@dimen
 
-\font\gnosbieight=gnosbi at 8pt
-\font\gnosbinine=gnosbi at 9pt
-\font\gnosbiten=gnosbi at 10pt
-\font\gnosbieleven=gnosbi at 11pt
-\font\gnosbitwelve=gnosbi at 12pt %Default?
-\font\gnosbifourteen=gnosbi at 14pt
-\font\gnosbisixteen=gnosbi at 16pt
-\font\gnosbitwenty=gnosbi at 20pt
-
-\font\gnosbiieight=gnosbii at 8pt
-\font\gnosbiinine=gnosbii at 9pt
-\font\gnosbiiten=gnosbii at 10pt
-\font\gnosbiieleven=gnosbii at 11pt
-\font\gnosbiitwelve=gnosbii at 12pt %Default?
-\font\gnosbiifourteen=gnosbii at 14pt
-\font\gnosbiisixteen=gnosbii at 16pt
-\font\gnosbiitwenty=gnosbii at 20pt
-
-\font\gnosbiiieight=gnosbiii at 8pt
-\font\gnosbiiinine=gnosbiii at 9pt
-\font\gnosbiiiten=gnosbiii at 10pt
-\font\gnosbiiieleven=gnosbiii at 11pt
-\font\gnosbiiitwelve=gnosbiii at 12pt %Default?
-\font\gnosbiiifourteen=gnosbiii at 14pt
-\font\gnosbiiisixteen=gnosbiii at 16pt
-\font\gnosbiiitwenty=gnosbiii at 20pt
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% White stone series %%%
-\font\gnosweight=gnosw at 8pt
-\font\gnoswnine=gnosw at 9pt
-\font\gnoswten=gnosw at 10pt
-\font\gnosweleven=gnosw at 11pt
-\font\gnoswtwelve=gnosw at 12pt %Default?
-\font\gnoswfourteen=gnosw at 14pt
-\font\gnoswsixteen=gnosw at 16pt
-\font\gnoswtwenty=gnosw at 20pt
-
-\font\gnoswieight=gnoswi at 8pt
-\font\gnoswinine=gnoswi at 9pt
-\font\gnoswiten=gnoswi at 10pt
-\font\gnoswieleven=gnoswi at 11pt
-\font\gnoswitwelve=gnoswi at 12pt %Default?
-\font\gnoswifourteen=gnoswi at 14pt
-\font\gnoswisixteen=gnoswi at 16pt
-\font\gnoswitwenty=gnoswi at 20pt
-
-\font\gnoswiieight=gnoswii at 8pt
-\font\gnoswiinine=gnoswii at 9pt
-\font\gnoswiiten=gnoswii at 10pt
-\font\gnoswiieleven=gnoswii at 11pt
-\font\gnoswiitwelve=gnoswii at 12pt %Default?
-\font\gnoswiifourteen=gnoswii at 14pt
-\font\gnoswiisixteen=gnoswii at 16pt
-\font\gnoswiitwenty=gnoswii at 20pt
-
-\font\gnoswiiieight=gnoswiii at 8pt
-\font\gnoswiiinine=gnoswiii at 9pt
-\font\gnoswiiiten=gnoswiii at 10pt
-\font\gnoswiiieleven=gnoswiii at 11pt
-\font\gnoswiiitwelve=gnoswiii at 12pt %Default?
-\font\gnoswiiifourteen=gnoswiii at 14pt
-\font\gnoswiiisixteen=gnoswiii at 16pt
-\font\gnoswiiitwenty=gnoswiii at 20pt
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% Italic label series %%%
-\font\gnosbleight=gnosbl at 8pt
-\font\gnosblnine=gnosbl at 9pt
-\font\gnosblten=gnosbl at 10pt
-\font\gnosbleleven=gnosbl at 11pt
-\font\gnosbltwelve=gnosbl at 12pt %Default?
-\font\gnosblfourteen=gnosbl at 14pt
-\font\gnosblsixteen=gnosbl at 16pt
-\font\gnosbltwenty=gnosbl at 20pt
-
-\font\gnoswleight=gnoswl at 8pt
-\font\gnoswlnine=gnoswl at 9pt
-\font\gnoswlten=gnoswl at 10pt
-\font\gnoswleleven=gnoswl at 11pt
-\font\gnoswltwelve=gnoswl at 12pt %Default?
-\font\gnoswlfourteen=gnoswl at 14pt
-\font\gnoswlsixteen=gnoswl at 16pt
-\font\gnoswltwenty=gnoswl at 20pt
-
-%%% Stretch Values %%%
-\def\gnosTenPtEight{
-  \def\baselinestretch{.67}
+\def\gnosfontsize#1{%
+  \ifnum #1>16\relax%
+    \global\gnos@fontsize=20\relax%
+    \gnos@fonts{20}\relax%
+  \else%
+  \ifnum #1>14\relax%
+  \global\gnos@fontsize=16\relax%
+    \gnos@fonts{16}\relax%
+  \else%  
+  \ifnum #1>12\relax% 
+    \global\gnos@fontsize=14\relax%
+    \gnos@fonts{14}\relax%
+  \else%
+  \ifnum #1>11\relax% 
+    \global\gnos@fontsize=12\relax%
+    \gnos@fonts{12}\relax%
+  \else%
+  \ifnum #1>10\relax% 
+    \global\gnos@fontsize=11\relax%
+    \gnos@fonts{11}\relax%
+  \else%
+  \ifnum #1>9\relax% 
+    \global\gnos@fontsize=10\relax%
+    \gnos@fonts{10}\relax%
+  \else%
+  \ifnum #1>8\relax% 
+    \global\gnos@fontsize=9\relax%
+    \gnos@fonts{9}\relax%
+  \else%
+    \global\gnos@fontsize=#1\relax%
+    \gnos@fonts{8}\relax%
+  \fi\fi\fi\fi\fi\fi\fi%
 }
+
+% Width of a goboard intersection
+\newdimen\gnosIntWd
+% Height of a goboard intersection
+\newdimen\gnosIntHt
+% amount to lower stones in \textstone macro, or raise labes on boards.
+\newdimen\gnosTextAdj
+
+\def\gnos@fonts#1{%
+  \font\gnos=gnos at #1truept%
+  \font\gnosb=gnosb at #1truept%
+  \font\gnosbi=gnosbi at #1truept%
+  \font\gnosbii=gnosbii at #1truept%
+  \font\gnosbiii=gnosbiii at #1truept%
+  \font\gnosw=gnosw at #1truept%
+  \font\gnoswi=gnoswi at #1truept%
+  \font\gnoswii=gnoswii at #1truept%
+  \font\gnoswiii=gnoswiii at #1truept%
+  \font\gnoswl=gnoswl at #1truept%
+  \font\gnosbl=gnosbl at #1truept%
+  % Copied from gooemacs.sty
+  \setbox0 \hbox{\gnos +} \global\gnosIntWd=\wd0 \global\gnosIntHt=\ht0 \global\gnosTextAdj=3pt%
+  % We should be using baselinestretch, but I can't figure out how to get it
+  % working with point values
+  \baselineskip=#1pt
+}
+
+\gnosfontsize{12}
+
+% Stretch values for reference. Note: the base font size is 12pt
+% Calculated as font/12 + .01
+% 10pt base with:
+% 8pt  - \setstretch{0.67}
+% 9pt  - \setstretch{0.76}
+% 10pt - \setstretch{0.84}
+% 11pt - \setstretch{0.93}
+% 12pt - <none>
+% 14pt - \setstretch{1.18}
+% 16pt - \setstretch{1.34}
+% 20pt - \setstretch{1.68}
+%
+% formula: font/14 - .01 (why?)
+% 12pt base with
+% 8pt  - ?
+% 9pt  - \setstretch{0.63}
+% 10pt - \setstretch{0.70}
+% 11pt - \setstretch{0.76}
+% 12pt - \setstretch{0.84}
+% 14pt - \setstretch{0.99}
+% 16pt - \setstretch{1.12}
+% 20pt - \setstretch{1.41}
