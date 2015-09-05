@@ -1,0 +1,51 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% File          : jigofonts.sty
+%% Version       : 1.0.0
+%% Authors       : Josh Hoak (jrhoak@gmail.com)
+%% Purpose       : To expose the fonts in igo.sty for other environments.
+%% Credits       : Based on Hanna Kolodziejska's go.sty version 0.05, 11/1991
+%%               : Which then inspired Étienne Dupuis's igo.sty
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcount\jigofontsize
+\newbox\jigobox
+\newdimen\jigodimen
+
+\def\jigosetfontsize#1{%
+  \ifnum #1>17\relax%
+    \global\jigofontsize=20\relax%
+    \jigofonts{20}\relax%
+  \else%
+  \ifnum #1>13\relax%
+  \global\jigofontsize=15\relax%
+    \jigofonts{15}\relax%
+  \else%
+  \ifnum #1>12\relax% 
+    \global\jigofontsize=12\relax%
+    \jigofonts{12}\relax%
+  \else%
+  \ifnum #1<5\relax%
+    \global\jigofontsize=5\relax%
+    \jigofonts{5}\relax%
+  \else%
+    \global\jigofontsize=#1\relax%
+    \jigofonts{#1}\relax%
+  \fi\fi\fi\fi%
+}
+
+\def\jigofonts#1{%
+  \global\font\jigofont=igo#1 at #1truept%
+  \global\font\jigofontbi=igoblacki#1 at #1truept%
+  \global\font\jigofontwi=igowhitei#1 at #1truept%
+  \global\font\jigofontbii=igoblackii#1 at #1truept%
+  \global\font\jigofontwii=igowhiteii#1 at #1truept%
+  \global\font\jigofontbiii=igoblackiii#1 at #1truept%
+  \global\font\jigofontwiii=igowhiteiii#1 at #1truept%
+  % We don't currently need these.
+  \global\setbox\jigobox=\hbox{\jigofont\char0}%
+  \global\jigodimen=\wd\jigobox%
+}
+
+\def\jigogoban{%
+  \offinterlineskip%
+}
