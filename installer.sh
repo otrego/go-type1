@@ -14,7 +14,9 @@ USAGE="=================================================================
     - gnos (default)
     - all"
 
-command -v kpsewhich >/dev/null 2>&1 || { 
+# kpsewhich is a standalone path lookup tool and expansion for kpathsea. In
+# other words, it manages paths for TeX.
+command -v kpsewhich >/dev/null 2>&1 || {
   echo >&2 "TeX is required, but it is not installed.  Aborting."
   echo "$USAGE" >&2
   exit 1;

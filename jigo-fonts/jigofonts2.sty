@@ -2,7 +2,8 @@
 %% File          : jigofonts.sty
 %% Version       : 1.0.0
 %% Authors       : Josh Hoak (jrhoak@gmail.com)
-%% Purpose       : To expose the fonts in igo.sty directly.
+%% Purpose       : To expose the fonts in igo.sty directly, to make it easier
+%%               : for programmatically generating diagrams.
 %% Credits       : Based on Hanna Kolodziejska's go.sty version 0.05, 11/1991
 %%               : Which then inspired Étienne Dupuis's igo.sty
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -49,9 +50,43 @@
 % Declare the default fontsize to be 12pt
 \jigofonts{12}
 
-\def\rlapstone#1
+% Magic overlapping foncution which overlaps two glyphs
+\def\jigolap#1#2{%
+  {%
+  #1%
+  \hskip -\wd\jigobox%
+  #2%
+  }%
+}
+
+% All glyphs are smaller than they should be, which is unfortunate. thus, we
+% have 'fixing' glyphs for each of the 9 base intersection types.
+
+% We use abbreviations for brevity in the generated tex.
+\def\jigofixm{{\jigofont\char10}}    % fix middle
+\def\jigofixl{{\jigofont\char11}}    % fix left
+\def\jigofixr{{\jigofont\char12}}    % fix right
+\def\jigofixt{{\jigofont\char13}}    % fix top
+\def\jigofixb{{\jigofont\char14}}    % fix bottom
+\def\jigofixbr{{\jigofont\char15}}   % fix bottom right
+\def\jigofixbl{{\jigofont\char16}}   % fix bottom left
+\def\jigofixtr{{\jigofont\char17}}   % fix top right
+\def\jigofixtl{{\jigofont\char18}}   % fix top  left
+
+\def\jigowstone{{\jigofontwi\char0}}
+
+\def\jigotop{%
+  {\jigofont\char4}%
+}
+
+
+\def\jigolaptest{%
+  \jigolap{\jigofixt}{\jigowstone}
+}
+
+% \def\rlapstone#1
 
 % The Jigo
-\def\jigogoban{%
-  \offinterlineskip%
-}
+% \def\jigogoban{%
+  % \offinterlineskip%
+% }
