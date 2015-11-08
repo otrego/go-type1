@@ -1,17 +1,36 @@
-# Go: Type 1
+# Go Fonts in Postscript Type 1
 
-This is a repository dedicated to storing the Type1 versions of popular fonts
-for the game Go. In particular, this repository contains font information for:
+This is a repository dedicated to storing the Postscript Type1 versions of
+popular fonts for the game
+<a href="https://en.wikipedia.org/wiki/Go_(game)">Go</a>, also known as Igo (囲碁),
+Baduk (바둑), Weiqi (围棋). In particular, this repository contains font
+information for:
 
-  - Igo
-  - Gooe
-  - Gnos: A modification of the Gooe font series.
+  - **Igo**: A font created in 1991 by Hanna Kolodziejska and modified by
+    Etienne Dupuis and others, that evokes the style of the old Ishi press and
+    Kiseido books.
+  - **Gooe**: A font created by Dan Bump and popularized by Reid Augustin's
+    [sgf2dg script](http://search.cpan.org/~reid/Games-Go-Sgf2Dg-4.252/) for
+    creating go books. See also the [Sensei's library
+    article](http://senseis.xmp.net/?Sgf2dg) for more details about usage and
+    history. *Note:* While this repo contains the fonts, it does not contain
+    the sgf2dg script or related content.
+  - **Gnos**: My modification of the Gooe font series, which makes the
+    border-lines a bolder, the star points bigger, and makes it easier to use in
+    scripts.
+  - **Jigo**: My modification of the Igo font series that allows the fonts to be
+    used directly in scripts
+
+All of these fonts are available as Postscript Type 1 fonts, which is an old
+vector graphic font standard that can be used with LaTeX.
 
 This work derives from [Vit Brunner (tasuki)](https://github.com/tasuk) who
 created a series of tsumego books using the Type1 Gooe font. Later, this work
 was helped tremendously by the existence of [Nyamcoder's
 instructions](https://github.com/nyamcoder/tex-src/blob/master/baduk/baduk.tex)
-for installing the Type1 Igo font.
+for installing the Type1 Igo font. Ultimately, these fonts exist to be used in
+[GPub](https://www.github.com/Kashomon/gpub), a Javascript library I created for generating
+Go books.
 
 These packages are designed to work with LaTeX, but there's no reason it
 shouldn't work with a LaTeX compatible compiler like XeTeX.
@@ -30,7 +49,7 @@ In both of these, there are 4 types of files of interest:
   - *.tfm* : the LaTeX font metric files.
   - *.map* : the mapping-declaration files that tell latex how to associate the
     fonts with names
-  - *.sty* : macro files that make it easier to work with the font
+  - *.sty* : Tex macro files that make it easier to work with the font
 
 ### Tex and Tex Distributions.
 
@@ -89,7 +108,7 @@ LaTeX starts with some header declarations, followed by begin document, content,
 and lastly, ending the document.
 
       \documentclass{article}
-      \usepackage{gooemacs} % or igo
+      \usepackage{gnos} % or igo, gooemacs, jigofonts
       \usepackage[T1]{fontenc}
 
       \begin{document}
