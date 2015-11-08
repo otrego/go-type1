@@ -3,22 +3,23 @@
 This is a repository dedicated to storing the Postscript Type1 versions of
 popular fonts for the game
 <a href="https://en.wikipedia.org/wiki/Go_(game)">Go</a>, also known as Igo (囲碁),
-Baduk (바둑), Weiqi (围棋). In particular, this repository contains font
-information for:
+Baduk (바둑), Weiqi (围棋), for use in LaTeX.
 
-  - **Igo**: A font created in 1991 by Hanna Kolodziejska and modified by
+In summary, this repository contains font information for:
+
+*   **Igo**: A font created in 1991 by Hanna Kolodziejska and modified by
     Etienne Dupuis and others, that evokes the style of the old Ishi press and
     Kiseido books.
-  - **Gooe**: A font created by Dan Bump and popularized by Reid Augustin's
+*   **Gooe**: A font created by Dan Bump and popularized by Reid Augustin's
     [sgf2dg script](http://search.cpan.org/~reid/Games-Go-Sgf2Dg-4.252/) for
     creating go books. See also the [Sensei's library
     article](http://senseis.xmp.net/?Sgf2dg) for more details about usage and
     history. *Note:* While this repo contains the fonts, it does not contain
     the sgf2dg script or related content.
-  - **Gnos**: My modification of the Gooe font series, which makes the
+*   **Gnos**: My modification of the Gooe font series, which makes the
     border-lines a bolder, the star points bigger, and makes it easier to use in
     scripts.
-  - **Jigo**: My modification of the Igo font series that allows the fonts to be
+*   **Jigo**: My modification of the Igo font series that allows the fonts to be
     used directly in scripts
 
 All of these fonts are available as Postscript Type 1 fonts, which is an old
@@ -35,11 +36,28 @@ Go books.
 These packages are designed to work with LaTeX, but there's no reason it
 shouldn't work with a LaTeX compatible compiler like XeTeX.
 
+### Recommendations
+
+If you're here trying to decide what fonts to use in generating Go books then
+here are my **recommendations**
+
+1.  If you are planning on creating or using scripts to generate your books:
+    1.  Gnos: Fully featured; Looks great in print form.
+    1.  Gooe: Fully featured, has a less bold-look than Gnos.
+    1.  Jigo: Missing glyphs present in the other two fonts: No marks (e.g.,
+        triangle, square) on empty intersections and no labels on stones other
+        than numbers (e.g., stone labeled with 'a').
+1.  If you are manually creating diagrams yourself only using LaTeX:
+    1.  Igo: Igo is meant for users creating diagrams manually at LaTeX. It
+        comes at the cost of having missing glyphs, being slow to compile, and
+        creating incompatibilities with other LaTeX packages.
+
 ### What's here
 
-There are three directories containing font files:
+There are four directories containing font files:
 
       igo-fonts/
+      jigo-fonts/
       gooe-fonts/
       gnos-fonts/
 
@@ -57,46 +75,56 @@ Installation of these fonts relies heavily on your particular distribution of Te
 You'll be installing the font files in TEXMFHOME.  Assuming you've installed
 TeX, you can find the location of your TEX directories with:
 
-      kpsewhich -expand-var "\$TEXMFHOME"
+```shell
+kpsewhich -expand-var "\$TEXMFHOME"
+```
 
 or
 
-      $(kpsewhich -var-value TEXMFHOME)
+```shell
+$(kpsewhich -var-value TEXMFHOME)
+```
 
 ### Quick Installation Steps
 The easiest way to install is to use the installer script
 
-      # Install gooe, gnos, igo
-      installer.sh install all
+```shell
+# Install gooe, gnos, igo
+installer.sh install all
 
-      # Install just gnos
-      installer.sh install gnos
+# Install just gnos
+installer.sh install gnos
+```
 
 ### Long Installation Steps for {Gnos,gooe,igo}
 You must perform a bit of work for LaTeX to know about your fonts, if you want
 to do it by hand. I don't claim to be an expert in TeX/LaTeX, but this seems to
 work.
 
-      cd go-type1
-      texhome=$(kpsewhich -var-value TEXMFHOME)
-      echo $texhome   # Should be non empty
-      mkdir -p $texhome/tex/latex/gooe
-      mkdir -p $texhome/fonts/map/dvips/gooe
-      mkdir -p $texhome/fonts/type1/gooe
-      mkdir -p $texhome/fonts/tfm/gooe
-      cp gooe-fonts/gooemacs.sty $texhome/tex/latex/gooe
-      cp gooe-fonts/gooe.map $texhome/fonts/map/dvips/gooe
-      cp gooe-fonts/*.pfb $texhome/fonts/type1/gooe
-      cp gooe-fonts/*.tfm $texhome/fonts/tfm/gooe
-      texhash $texhome
-      updmap --enable Map=gooe.map
+```shell
+cd go-type1
+texhome=$(kpsewhich -var-value TEXMFHOME)
+echo $texhome   # Should be non empty
+mkdir -p $texhome/tex/latex/gooe
+mkdir -p $texhome/fonts/map/dvips/gooe
+mkdir -p $texhome/fonts/type1/gooe
+mkdir -p $texhome/fonts/tfm/gooe
+cp gooe-fonts/gooemacs.sty $texhome/tex/latex/gooe
+cp gooe-fonts/gooe.map $texhome/fonts/map/dvips/gooe
+cp gooe-fonts/*.pfb $texhome/fonts/type1/gooe
+cp gooe-fonts/*.tfm $texhome/fonts/tfm/gooe
+texhash $texhome
+updmap --enable Map=gooe.map
+```
 
 ### Using the Fonts
 
 It should just work! What do I mean? Just make sure in your LaTeX, you have the
 following at the top:
 
-       \usepackage[T1]{fontenc}
+```latex
+\usepackage[T1]{fontenc}
+```
 
 Then, LaTeX should just use the Type1 font.
 
@@ -107,52 +135,60 @@ in the examples/ directory.
 LaTeX starts with some header declarations, followed by begin document, content,
 and lastly, ending the document.
 
-      \documentclass{article}
-      \usepackage{gnos} % or igo, gooemacs, jigofonts
-      \usepackage[T1]{fontenc}
+```latex
+\documentclass{article}
+\usepackage{gnos} % or igo, gooemacs, jigofonts
+\usepackage[T1]{fontenc}
 
-      \begin{document}
+\begin{document}
 
-      % Content goes here
+% Content goes here
 
-      \end{document}
+\end{document}
+```
 
 #### Gooe Example
 Here's an example of a simple problem using the Gooe font.
 
-      \begin{center}
-      {\goo
-      \0??<\0??(\0??(\- !(\0??(\0??(\0??(\0??(\0??(\0??(
-      \- ![\- !+\- !+\- !+\- @+\- @+\0??+\0??+\0??+\0??+
-      \0??[\- @+\- @+\- @+\0??+\0??+\0??+\0??+\0??+\0??+
-      \0??[\0??+\0??+\0??*\0??+\0??+\0??+\0??+\0??+\0??*
-      \0??[\- @+\0??+\0??+\0??+\0??+\0??+\0??+\0?l+\0??+
-      \0??[\0??+\0??+\0??+\0??+\0??+\0??+\0??+\0??+\0??+
-      }
-      A Simple Go Problem!
-      \end{center}
+```latex
+\begin{center}
+{\goo
+\0??<\0??(\0??(\- !(\0??(\0??(\0??(\0??(\0??(\0??(
+\- ![\- !+\- !+\- !+\- @+\- @+\0??+\0??+\0??+\0??+
+\0??[\- @+\- @+\- @+\0??+\0??+\0??+\0??+\0??+\0??+
+\0??[\0??+\0??+\0??*\0??+\0??+\0??+\0??+\0??+\0??*
+\0??[\- @+\0??+\0??+\0??+\0??+\0??+\0??+\0?l+\0??+
+\0??[\0??+\0??+\0??+\0??+\0??+\0??+\0??+\0??+\0??+
+}
+A Simple Go Problem!
+\end{center}
+```
 
 #### Igo Example
 Here's the same problem with the Igo font.
 
-      \white{a18,b18,c18,d18,d19}
-      \black{b17,c17,d17,e18,f18,b15}
-      \begin{center}
-      \shortstack{\showgoban[a14,k19]\\ A Simple Go Problem}
-      \end{center}
+```latex
+\white{a18,b18,c18,d18,d19}
+\black{b17,c17,d17,e18,f18,b15}
+\begin{center}
+\shortstack{\showgoban[a14,k19]\\ A Simple Go Problem}
+\end{center}
+```
 
 #### Gnos Example
 Here's the same problem with the Gnos font. Warning: Gnos is not designed to be
 easy to use.  It's meant to be generated by other languages.
 
-      {\gnos%
-      <((!((((((\\
-      !!!!@@++++\\
-      \char91\char64@@++++++\\
-      \char91\char43\char43\char42+++++*\\
-      \char91@++++++++\\
-      \char91+++++++++\\
-      }
+```latex
+{\gnos%
+<((!((((((\\
+!!!!@@++++\\
+\char91\char64@@++++++\\
+\char91\char43\char43\char42+++++*\\
+\char91@++++++++\\
+\char91+++++++++\\
+}
+```
 
 ### Converting METAFONT to Type1
 Converting from METAFONT to Type1 fonts can be a challenge. Here's what I did,
@@ -170,11 +206,15 @@ First, some setup:
 
 To convert METAFONT to Type1, run:
 
-      mftrace --formats=PFB myfile.mf
+```shell
+mftrace --formats=PFB myfile.mf
+```
 
 To regenerate the TFM files, run:
 
-      mktextfm myfile.mf
+```shell
+mktextfm myfile.mf
+```
 
 ### Resources
 
