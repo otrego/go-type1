@@ -1,0 +1,174 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% File          : jigofonts.sty
+%% Version       : 1.0.0
+%% Authors       : Josh Hoak (jrhoak@gmail.com)
+%% Purpose       : To expose the fonts in igo.sty directly, to make it easier
+%%               : for programmatically generating diagrams.
+%% Credits       : Based on Hanna Kolodziejska's go.sty version 0.05, 11/1991
+%%               : Which then inspired Étienne Dupuis's igo.sty
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcount\jigofontsize
+\newbox\jigobox
+\newdimen\jigodimen
+\newdimen\jigofontpt
+
+\def\jigosetfontsize#1{%
+  \ifnum #1>17\relax%
+    \global\jigofontsize=20\relax%
+    \jigofonts{20}\relax%
+  \else%
+  \ifnum #1>13\relax%
+  \global\jigofontsize=15\relax%
+    \jigofonts{15}\relax%
+  \else%
+  \ifnum #1>12\relax% 
+    \global\jigofontsize=12\relax%
+    \jigofonts{12}\relax%
+  \else%
+  \ifnum #1<5\relax%
+    \global\jigofontsize=5\relax%
+    \jigofonts{5}\relax%
+  \else%
+    \global\jigofontsize=#1\relax%
+    \jigofonts{#1}\relax%
+  \fi\fi\fi\fi%
+}
+
+\def\jigofonts#1{%
+  \global\font\jigofont=igo#1 at #1truept%
+  \global\font\jigofontbi=igoblacki#1 at #1truept%
+  \global\font\jigofontwi=igowhitei#1 at #1truept%
+  \global\font\jigofontbii=igoblackii#1 at #1truept%
+  \global\font\jigofontwii=igowhiteii#1 at #1truept%
+  \global\font\jigofontbiii=igoblackiii#1 at #1truept%
+  \global\font\jigofontwiii=igowhiteiii#1 at #1truept%
+  % We don't currently need these.
+  \global\setbox\jigobox=\hbox{\jigofont\char0}%
+  \global\jigodimen=\wd\jigobox%
+  \jigofontpt=#1pt
+}
+
+% Declare the default fontsize to be 12pt
+\jigofonts{12}
+
+% Magic overlapping foncution which overlaps two glyphs. This is used for
+% overlapping fixing glyphs with normal glyphs. Thi
+\def\jigolap#1#2{%
+  {#1%
+  \hskip -\wd\jigobox%
+  #2}%
+}
+
+% Base Glyphs for the board.
+
+\def\jigoboardsp{{\jigofont\char0}}   % star point
+\def\jigoboardmi{{\jigofont\char1}}   % middle of the board
+\def\jigoboardls{{\jigofont\char2}}   % left side
+\def\jigoboardrs{{\jigofont\char3}}   % right side
+\def\jigoboardts{{\jigofont\char4}}   % top side
+\def\jigoboardbs{{\jigofont\char5}}   % bottom side
+\def\jigoboardtl{{\jigofont\char6}}   % top left corner
+\def\jigoboardtr{{\jigofont\char7}}   % top right
+\def\jigoboardbl{{\jigofont\char8}}   % bottom left
+\def\jigoboardbr{{\jigofont\char9}}   % bottom right
+
+% All glyphs are smaller than they should be, which is unfortunate. thus, we
+% have 'fixing' glyphs for each of the 9 base intersection types. These should
+% probably be 'under' any stone/board glyphs: \jigolap{fix}{stone/board}
+
+\def\jigofixmi{{\jigofont\char10}}   % fix middle
+\def\jigofixls{{\jigofont\char11}}   % fix left
+\def\jigofixrs{{\jigofont\char12}}   % fix right
+\def\jigofixts{{\jigofont\char13}}   % fix top
+\def\jigofixbs{{\jigofont\char14}}   % fix bottom
+\def\jigofixtl{{\jigofont\char15}}   % fix top left
+\def\jigofixtr{{\jigofont\char16}}   % fix top right
+\def\jigofixbl{{\jigofont\char17}}   % fix bottom left
+\def\jigofixbr{{\jigofont\char18}}   % fix bottom right
+
+% Shorthands for board overlaps
+\def\jigobsp{\jigolap{\jigofixmi}{\jigoboardsp}}   % star point
+\def\jigobmi{\jigolap{\jigoboardmi}{\jigofixmi}}   % middle of the board
+\def\jigobls{\jigolap{\jigofixls}{\jigoboardls}}   % left side
+\def\jigobrs{\jigolap{\jigofixrs}{\jigoboardrs}}   % right side
+\def\jigobts{\jigolap{\jigofixts}{\jigoboardts}}   % top side
+\def\jigobbs{\jigolap{\jigofixbs}{\jigoboardbs}}   % bottom side
+\def\jigobtl{\jigolap{\jigofixtl}{\jigoboardtl}}   % top left corner
+\def\jigobtr{\jigolap{\jigofixtr}{\jigoboardtr}}   % top right
+\def\jigobbl{\jigolap{\jigofixbl}{\jigoboardbl}}   % bottom left
+\def\jigobbr{\jigolap{\jigofixbr}{\jigoboardbr}}   % bottom right
+
+% Stones without numbers
+\def\jigows{{\jigofontwi\char0}}
+\def\jigobs{{\jigofontbi\char0}}
+
+% Stones with numbers.
+% i   => 1-127
+% ii  => 128-255
+% iii => 256-379
+% White
+\def\jigowslabi#1{{\jigofontwi\char#1}}
+\def\jigowslabii#1{{\jigofontwii\char#1}}
+\def\jigowslabiii#1{{\jigofontwiii\char#1}}
+% Black
+\def\jigobslabi#1{{\jigofontbi\char#1}}
+\def\jigobslabii#1{{\jigofontbii\char#1}}
+\def\jigobslabiii#1{{\jigofontbiii\char#1}}
+
+% White stones with marks
+\def\jigowsxmark{{\jigofontwiii\char124}} % X mark
+\def\jigowsomark{{\jigofontwiii\char125}} % Circle mark
+\def\jigowstmark{{\jigofontwiii\char126}} % Triangle mark
+\def\jigowssmark{{\jigofontwiii\char127}} % Square mark
+% Black stones with marks
+\def\jigobsxmark{{\jigofontbiii\char124}} % X mark
+\def\jigobsomark{{\jigofontbiii\char125}} % Circle mark
+\def\jigobstmark{{\jigofontbiii\char126}} % Triangle mark
+\def\jigobssmark{{\jigofontbiii\char127}} % Square mark
+
+% The rest of the labels.
+% 48-57 => 0-9
+% 65-90 => A-Z
+% 97-122 => a-z
+% ex: X = \jigoelabel{88}
+\def\jigoelabel#1{{\jigofont\char#1}}
+
+\def\jigolaptestlabel#1{%
+  \jigolap{\jigolap{\jigofixts}{\jigows}}{#1}
+}
+% The Jigo
+% \def\jigogoban{%
+  % \offinterlineskip%
+% }
+\def\jigoboard{
+  \offinterlineskip\noindent%
+  \baselineskip=\jigofontpt%
+  \topskip=0pt%
+}
+
+
+% Crazy overlapping macros I don't totally understand that I took from gnos.
+\def\jigoemptylabel#1{\leavevmode\vbox to \jigodimen{\vfill\hbox to \jigodimen{\hss{\textsf{#1}}\hss}\vfill}}
+
+\edef\theprevdepth{\the\prevdepth}\nointerlineskip
+
+\def\jigostonelabel#1#2{%
+  #1\llap{%
+    \vbox to \prevdepth{%
+      \topskip=0pt%
+      \offinterlineskip%
+      \vfill%
+      \hbox to \jigodimen{%
+        \hfill#2\hfill}%
+      \vfill%
+    }%
+  }}%
+    % -\vfill{}}
+
+% Overlap a char on top of a jigo char. The first char *must* be a jigo char.
+% \def\jigostonelabel#1#2{%
+  % #1\llap{%
+    % \vbox to \jigodimen{%
+      % \vfill\hbox to \jigodimen{%
+        % \hss{\textsf{#2}}\hss}\vfill}}}

@@ -1,219 +1,382 @@
 \documentclass{article}
+\usepackage{color}
 \usepackage[T1]{fontenc}
-\usepackage{jigofonts2}
+\usepackage{jigofonts}
 \usepackage{longtable}
 \usepackage{booktabs}
 
 \begin{document}
 
-\title{Character Mappings for Igo}
+\title{Character Mappings for Jigo (Jigofonts)}
 \author{Kashomon}
 \maketitle
 
-\section{Example}
+\newcommand{\tbs}{\textbackslash}
 
+\section{Board Example}
+
+Note: before declaring a Go Board, should use the following declarations:\\
+\tbs{}jigosetfontsize\{12\} -- Set the font size \\
+\tbs{}jigoboard\{12\} -- Set the correct vertical offsets \\
+
+\begin{center}
 \jigosetfontsize{14}
-{\jigofont%
-\char6\jigolaptest\jigotop\char4\char4\char4\char4{\jigofontbi \char0}\char4\char4{\jigofontwi \char 0}\char4\char4\char4\char4\char4\char4\char7\\
-{\jigofontwi\char0}\char1\char88{\jigofontbiii\char125}\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1{\jigofontwi\char0}\\
-\char2\char1{\jigofontbi\char0}\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1{\jigofontwi\char0}\\
-\char2\char1{\jigofontbi\char0}\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char3\\
+{
+\jigoboard
+\jigobtl%
+\jigolap{\jigofixts}{\jigows}%
+\jigobts%
+\jigobts%
+\jigobts%
+\jigobts%
+\jigobts%
+\jigobts%
+\jigolap{\jigofixts}{\jigobs}%
+\jigobts%
+\jigolap{\jigofixts}{\jigows}%
+\jigobts%
+\jigobts%
+\jigobts%
+\jigobts%
+\jigobts%
+\jigobts%
+\jigolap{\jigofixts}{\jigows}%
+\jigobtr\\%
+\jigolap{\jigofixls}{\jigows}%
+\jigobmi%
+\jigoelabel{88}%
+\jigolap{\jigofixmi}{\jigobsomark}%
+\jigolap{\jigofixmi}{\jigowsomark}%
+\jigoelabel{88}%
+\jigolap{\jigofixmi}{\jigobssmark}%
+\jigolap{\jigofixmi}{\jigowssmark}%
+\jigoelabel{88}%
+\jigolap{\jigofixmi}{\jigobstmark}%
+\jigolap{\jigofixmi}{\jigowstmark}%
+\jigoelabel{88}%
+\jigolap{\jigofixmi}{\jigobsxmark}%
+\jigolap{\jigofixmi}{\jigowsxmark}%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigolap{\jigofixrs}{\jigows}\\
+\jigobls%
+\jigobmi%
+\jigolap{\jigofixmi}{\jigobs}%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobrs\\
+\jigobls%
+\jigobmi%
+\jigolap{\jigofixmi}{\jigobs}%
+\jigobsp%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobsp%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobsp%
+\jigobmi%
+\jigobmi%
+\jigobrs\\
+\jigolap{\jigofixls}{\jigobslabi{1}}%
+\jigolap{\jigofixmi}{\jigobslabi{2}}%
+\jigolap{\jigofixmi}{\jigobslabi{3}}%
+\jigolap{\jigofixmi}{\jigobslabi{4}}%
+\jigolap{\jigofixmi}{\jigobslabi{5}}%
+\jigolap{\jigofixmi}{\jigobslabi{6}}%
+\jigolap{\jigofixmi}{\jigobslabi{7}}%
+\jigolap{\jigofixmi}{\jigobslabi{8}}%
+\jigolap{\jigofixmi}{\jigobslabi{9}}%
+\jigolap{\jigofixmi}{\jigobslabi{10}}%
+\jigolap{\jigofixmi}{\jigobslabi{11}}%
+\jigolap{\jigofixmi}{\jigobslabi{12}}%
+\jigolap{\jigofixmi}{\jigobslabi{13}}%
+\jigolap{\jigofixmi}{\jigobslabi{14}}%
+\jigolap{\jigofixmi}{\jigobslabi{15}}%
+\jigolap{\jigofixmi}{\jigobslabi{16}}%
+\jigolap{\jigofixmi}{\jigobslabi{17}}%
+\jigolap{\jigofixmi}{\jigobslabi{18}}%
+\jigobrs\\
+\jigolap{\jigofixls}{\jigowslabi{1}}%
+\jigolap{\jigofixmi}{\jigowslabi{2}}%
+\jigolap{\jigofixmi}{\jigowslabi{3}}%
+\jigolap{\jigofixmi}{\jigowslabi{4}}%
+\jigolap{\jigofixmi}{\jigowslabi{5}}%
+\jigolap{\jigofixmi}{\jigowslabi{6}}%
+\jigolap{\jigofixmi}{\jigowslabi{7}}%
+\jigolap{\jigofixmi}{\jigowslabi{8}}%
+\jigolap{\jigofixmi}{\jigowslabi{9}}%
+\jigolap{\jigofixmi}{\jigowslabi{10}}%
+\jigolap{\jigofixmi}{\jigowslabi{11}}%
+\jigolap{\jigofixmi}{\jigowslabi{12}}%
+\jigolap{\jigofixmi}{\jigowslabi{13}}%
+\jigolap{\jigofixmi}{\jigowslabi{14}}%
+\jigolap{\jigofixmi}{\jigowslabi{15}}%
+\jigolap{\jigofixmi}{\jigowslabi{16}}%
+\jigolap{\jigofixmi}{\jigowslabi{17}}%
+\jigolap{\jigofixmi}{\jigowslabi{18}}%
+\jigobrs\\
+\jigobls\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobrs\\
+\jigobls\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobrs\\
+\jigobls\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobrs\\
+\jigobls%
+\jigobmi%
+\jigobmi%
+\jigobsp%
+\jigolap{\jigofixmi}{\jigobslabi{112}}%
+\jigolap{\jigofixmi}{\jigobslabii{83}}%
+\jigolap{\jigofixmi}{\jigobslabiii{55}}%
+\jigolap{\jigofixmi}{\jigowslabi{112}}%
+\jigolap{\jigofixmi}{\jigowslabii{83}}%
+\jigolap{\jigofixmi}{\jigowslabiii{55}}%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobsp%
+\jigobmi%
+\jigobmi%
+\jigobrs\\
+\jigobls\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobrs\\
+\jigobls\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobrs\\
+\jigobls\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobrs\\
+\jigobls\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobrs\\
+\jigobls\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobrs\\
+\jigobls\jigobmi\jigobmi\jigobsp\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobsp\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobsp\jigobmi\jigobmi\jigobrs\\
+\jigobls
+\jigobmi
+\jigobmi
+\jigostonelabel{\jigolap{\jigofixmi}{\jigows}}{a}%
+\jigostonelabel{\jigolap{\jigofixmi}{\jigobs}}{\color{white}b}%
+\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobmi\jigobrs\\
+\jigolap{\jigofixls}{\jigows}%%%% --- Label Tests Below
+\jigobmi%
+\jigobmi%
+% \jigostonelabel{\jigows}{aa}%
+% \jigostonelabel{\jigobs}{\color{white}b}%
+\jigostonelabel{\jigolap{\jigofixmi}{\jigows}}{aa}%
+\jigostonelabel{\jigolap{\jigofixmi}{\jigobs}}{\color{white}b}%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigobmi%
+\jigolap{\jigofixrs}{\jigows}\\
+\jigobbl%
+\jigolap{\jigofixbs}{\jigows}%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigobbs%
+\jigolap{\jigofixbs}{\jigows}%
+\jigobbr%
+\\
 }
+\end{center}
+
+\newpage
+\section{Composite Examples}
+
+\begin{center}
+\begin{longtable}{ccc}
+\toprule
+Rendered & Macro & Description \\
+\midrule
+\jigostonelabel{\jigolap{\jigofixmi}{\jigows}}{a} &
+\tbs{}jigostonelabel\{\tbs{}jigolap\{\tbs{}jigofixmi\}\{\tbs{}jigows\}\}\{a\} &
+Black stone label \\ %%%%%%%%
+\jigostonelabel{\jigolap{\jigofixmi}{\jigobs}}{\color{white}b} &
+\tbs{}jigostonelabel\{\tbs{}jigolap\{\tbs{}jigofixmi\}\{\tbs{}jigobs\}\}\{\tbs{}color\{white\}b\} &
+White stone label \\ %%%%%%%%
+\midrule
+\bottomrule
+\end{longtable}
+\end{center}
+
+\section{Inline Text}
+
+After {\raisebox{-.45em}{\jigostonelabel{\jigows}{12}}}, it was all over.  The
+{\raisebox{-.45em}{\jigobstmark}} were easily captured.
 
 \section{Char Mapping}
 
 \jigosetfontsize{12}
 
 \begin{center}
-\begin{longtable}{ccc}
+\begin{longtable}{cccc}
 \toprule
-Rendered  & Character & Series \\
+Rendered  & Character & Macro & Series \\
 \midrule
-{\jigofont \char0} & char0 (\char0) & igofont\\
-{\jigofont \char1} & char1 (\char1) & igofont\\
-{\jigofont \char2} & char2 (\char2) & igofont\\
-{\jigofont \char3} & char3 (\char3) & igofont\\
-{\jigofont \char4} & char4 (\char4) & igofont\\
-{\jigofont \char5} & char5 (\char5) & igofont\\
-{\jigofont \char6} & char6 (\char6) & igofont\\
-{\jigofont \char7} & char7 (\char7) & igofont\\
-{\jigofont \char8} & char8 (\char8) & igofont\\
-{\jigofont \char9} & char9 (\char9) & igofont\\
-{\jigofont \char10} & char10 (\char10) & igofont\\
-{\jigofont \char11} & char11 (\char11) & igofont\\
-{\jigofont \char12} & char12 (\char12) & igofont\\
-{\jigofont \char13} & char13 (\char13) & igofont\\
-{\jigofont \char14} & char14 (\char14) & igofont\\
-{\jigofont \char15} & char15 (\char15) & igofont\\
-{\jigofont \char16} & char16 (\char16) & igofont\\
-{\jigofont \char17} & char17 (\char17) & igofont\\
-{\jigofont \char18} & char18 (\char18) & igofont\\
-{\jigofont \char32} & char32 (\char32) & igofont\\
-{\jigofont \char48} & char48 (\char48) & igofont\\
-{\jigofont \char49} & char49 (\char49) & igofont\\
-{\jigofont \char50} & char50 (\char50) & igofont\\
-{\jigofont \char51} & char51 (\char51) & igofont\\
-{\jigofont \char52} & char52 (\char52) & igofont\\
-{\jigofont \char53} & char53 (\char53) & igofont\\
-{\jigofont \char54} & char54 (\char54) & igofont\\
-{\jigofont \char55} & char55 (\char55) & igofont\\
-{\jigofont \char56} & char56 (\char56) & igofont\\
-{\jigofont \char57} & char57 (\char57) & igofont\\
-{\jigofont \char65} & char65 (\char65) & igofont\\
-{\jigofont \char66} & char66 (\char66) & igofont\\
-{\jigofont \char67} & char67 (\char67) & igofont\\
-{\jigofont \char68} & char68 (\char68) & igofont\\
-{\jigofont \char69} & char69 (\char69) & igofont\\
-{\jigofont \char70} & char70 (\char70) & igofont\\
-{\jigofont \char71} & char71 (\char71) & igofont\\
-{\jigofont \char72} & char72 (\char72) & igofont\\
-{\jigofont \char73} & char73 (\char73) & igofont\\
-{\jigofont \char74} & char74 (\char74) & igofont\\
-{\jigofont \char75} & char75 (\char75) & igofont\\
-{\jigofont \char76} & char76 (\char76) & igofont\\
-{\jigofont \char77} & char77 (\char77) & igofont\\
-{\jigofont \char78} & char78 (\char78) & igofont\\
-{\jigofont \char79} & char79 (\char79) & igofont\\
-{\jigofont \char80} & char80 (\char80) & igofont\\
-{\jigofont \char81} & char81 (\char81) & igofont\\
-{\jigofont \char82} & char82 (\char82) & igofont\\
-{\jigofont \char83} & char83 (\char83) & igofont\\
-{\jigofont \char84} & char84 (\char84) & igofont\\
-{\jigofont \char85} & char85 (\char85) & igofont\\
-{\jigofont \char86} & char86 (\char86) & igofont\\
-{\jigofont \char87} & char87 (\char87) & igofont\\
-{\jigofont \char88} & char88 (\char88) & igofont\\
-{\jigofont \char89} & char89 (\char89) & igofont\\
-{\jigofont \char90} & char90 (\char90) & igofont\\
-{\jigofont \char97} & char97 (\char97) & igofont\\
-{\jigofont \char98} & char98 (\char98) & igofont\\
-{\jigofont \char99} & char99 (\char99) & igofont\\
-{\jigofont \char100} & char100 (\char100) & igofont\\
-{\jigofont \char101} & char101 (\char101) & igofont\\
-{\jigofont \char102} & char102 (\char102) & igofont\\
-{\jigofont \char103} & char103 (\char103) & igofont\\
-{\jigofont \char104} & char104 (\char104) & igofont\\
-{\jigofont \char105} & char105 (\char105) & igofont\\
-{\jigofont \char106} & char106 (\char106) & igofont\\
-{\jigofont \char107} & char107 (\char107) & igofont\\
-{\jigofont \char108} & char108 (\char108) & igofont\\
-{\jigofont \char109} & char109 (\char109) & igofont\\
-{\jigofont \char110} & char110 (\char110) & igofont\\
-{\jigofont \char111} & char111 (\char111) & igofont\\
-{\jigofont \char112} & char112 (\char112) & igofont\\
-{\jigofont \char113} & char113 (\char113) & igofont\\
-{\jigofont \char114} & char114 (\char114) & igofont\\
-{\jigofont \char115} & char115 (\char115) & igofont\\
-{\jigofont \char116} & char116 (\char116) & igofont\\
-{\jigofont \char117} & char117 (\char117) & igofont\\
-{\jigofont \char118} & char118 (\char118) & igofont\\
-{\jigofont \char119} & char119 (\char119) & igofont\\
-{\jigofont \char120} & char120 (\char120) & igofont\\
-{\jigofont \char121} & char121 (\char121) & igofont\\
-{\jigofont \char122} & char122 (\char122) & igofont\\
-{\jigofont \char123} & char123 (\char123) & igofont\\
-{\jigofont \char124} & char124 (\char124) & igofont\\
-{\jigofont \char125} & char125 (\char125) & igofont\\
-{\jigofont \char126} & char126 (\char126) & igofont\\
-{\jigofont \char127} & char127 (\char127) & igofont\\
+{\jigofont \char0} & char0 (\char0) & \tbs{}jigoboardsp & jigofont\\
+{\jigofont \char1} & char1 (\char1) & \tbs{}jigoboardmi & jigofont\\
+{\jigofont \char2} & char2 (\char2) & \tbs{}jigoboardls & jigofont\\
+{\jigofont \char3} & char3 (\char3) & \tbs{}jigoboardrs & jigofont\\
+{\jigofont \char4} & char4 (\char4) & \tbs{}jigoboardts & jigofont\\
+{\jigofont \char5} & char5 (\char5) & \tbs{}jigoboardbs & jigofont\\
+{\jigofont \char6} & char6 (\char6) & \tbs{}jigoboardtl & jigofont\\
+{\jigofont \char7} & char7 (\char7) & \tbs{}jigoboardtr & jigofont\\
+{\jigofont \char8} & char8 (\char8) & \tbs{}jigoboardbl & jigofont\\
+{\jigofont \char9} & char9 (\char9) & \tbs{}jigoboardbr & jigofont\\
+{\jigofont \char10} & char10 (\char10) & \tbs{}jigofixmi & jigofont\\
+{\jigofont \char11} & char11 (\char11) & \tbs{}jigofixls & jigofont\\
+{\jigofont \char12} & char12 (\char12) & \tbs{}jigofixrs & jigofont\\
+{\jigofont \char13} & char13 (\char13) & \tbs{}jigofixts & jigofont\\
+{\jigofont \char14} & char14 (\char14) & \tbs{}jigofixbs & jigofont\\
+{\jigofont \char15} & char15 (\char15) & \tbs{}jigofixtl & jigofont\\
+{\jigofont \char16} & char16 (\char16) & \tbs{}jigofixtr & jigofont\\
+{\jigofont \char17} & char17 (\char17) & \tbs{}jigofixbl & jigofont\\
+{\jigofont \char18} & char18 (\char18) & \tbs{}jigofixbr & jigofont\\
+{\jigofont \char48} & char48 (\char48) & \tbs{}jigoelabel\{48\} & jigofont\\
+{\jigofont \char49} & char49 (\char49) & \tbs{}jigoelabel\{49\} & jigofont\\
+\ldots & \ldots & \ldots & \ldots \\
+{\jigofont \char57} & char57 (\char57) & \tbs{}jigoelabel\{57\} & jigofont\\
+{\jigofont \char65} & char65 (\char65) & \tbs{}jigoelabel\{65\} & jigofont\\
+{\jigofont \char66} & char66 (\char66) & \tbs{}jigoelabel\{66\} & jigofont\\
+\ldots & \ldots & \ldots & \ldots \\
+{\jigofont \char90} & char90 (\char90) & \tbs{}jigoelabel\{90\} & jigofont\\
+{\jigofont \char97} & char97 (\char97) & \tbs{}jigoelabel\{97\} & jigofont\\
+{\jigofont \char98} & char98 (\char98) & \tbs{}jigoelabel\{98\} & jigofont\\
+\ldots & \ldots & \ldots & \ldots \\
+{\jigofont \char122} & char122 (\char122) & \tbs{}jigoelabel\{122\} & jigofont\\
 \midrule
-%%%% igofontbi
-{\jigofontbi \char0} & char0 (\char0) & igofontbi\\
-{\jigofontbi \char1} & char1 (\char1) & igofontbi\\
-{\jigofontbi \char2} & char2 (\char2) & igofontbi\\
-{\jigofontbi \char3} & char3 (\char3) & igofontbi\\
-{\jigofontbi \char4} & char4 (\char4) & igofontbi\\
-{\jigofontbi \char5} & char5 (\char5) & igofontbi\\
-{\jigofontbi \char6} & char6 (\char6) & igofontbi\\
-{\jigofontbi \char7} & char7 (\char7) & igofontbi\\
-{\jigofontbi \char8} & char8 (\char8) & igofontbi\\
-{\jigofontbi \char9} & char9 (\char9) & igofontbi\\
-{\jigofontbi \char10} & char10 (\char10) & igofontbi\\
-\ldots & \ldots & \ldots \\
-{\jigofontbi \char127} & char127 (\char127) & igofontbi\\
+%%%% jigofontbi
+{\jigofontbi \char0} & char0 (\char0) & \tbs{}jigobs & jigofontbi\\
+{\jigofontbi \char1} & char1 (\char1) & \tbs{}jigobslabi\{1\} & jigofontbi\\
+{\jigofontbi \char2} & char2 (\char2) & & jigofontbi\\
+{\jigofontbi \char3} & char3 (\char3) & & jigofontbi\\
+{\jigofontbi \char4} & char4 (\char4) & & jigofontbi\\
+{\jigofontbi \char5} & char5 (\char5) & & jigofontbi\\
+{\jigofontbi \char6} & char6 (\char6) & & jigofontbi\\
+{\jigofontbi \char7} & char7 (\char7) & & jigofontbi\\
+{\jigofontbi \char8} & char8 (\char8) & & jigofontbi\\
+{\jigofontbi \char9} & char9 (\char9) & & jigofontbi\\
+{\jigofontbi \char10} & char10 (\char10) & & jigofontbi\\
+\ldots & \ldots & \ldots & \ldots \\
+{\jigofontbi \char127} & char127 (\char127) & & jigofontbi\\
 \midrule
-%%%% igofontbii
-{\jigofontbii \char0} & char0 (\char0) & igofontbii\\
-{\jigofontbii \char1} & char1 (\char1) & igofontbii\\
-{\jigofontbii \char2} & char2 (\char2) & igofontbii\\
-{\jigofontbii \char3} & char3 (\char3) & igofontbii\\
-{\jigofontbii \char4} & char4 (\char4) & igofontbii\\
-{\jigofontbii \char5} & char5 (\char5) & igofontbii\\
-{\jigofontbii \char6} & char6 (\char6) & igofontbii\\
-{\jigofontbii \char7} & char7 (\char7) & igofontbii\\
-{\jigofontbii \char8} & char8 (\char8) & igofontbii\\
-{\jigofontbii \char9} & char9 (\char9) & igofontbii\\
-{\jigofontbii \char10} & char10 (\char10) & igofontbii\\
-\ldots & \ldots & \ldots \\
-{\jigofontbii \char127} & char127 (\char127) & igofontbii\\
-%%%% igofontbii
+%%%% jigofontbii
+{\jigofontbii \char0} & char0 (\char0) & & jigofontbii\\
+{\jigofontbii \char1} & char1 (\char1) & & jigofontbii\\
+{\jigofontbii \char2} & char2 (\char2) & & jigofontbii\\
+{\jigofontbii \char3} & char3 (\char3) & & jigofontbii\\
+{\jigofontbii \char4} & char4 (\char4) & & jigofontbii\\
+{\jigofontbii \char5} & char5 (\char5) & & jigofontbii\\
+{\jigofontbii \char6} & char6 (\char6) & & jigofontbii\\
+{\jigofontbii \char7} & char7 (\char7) & & jigofontbii\\
+{\jigofontbii \char8} & char8 (\char8) & & jigofontbii\\
+{\jigofontbii \char9} & char9 (\char9) & & jigofontbii\\
+{\jigofontbii \char10} & char10 (\char10) & & jigofontbii\\
+\ldots & \ldots & \ldots & \ldots\\
+{\jigofontbii \char127} & char127 (\char127) & & jigofontbii\\
+%%%% jigofontbii
 \midrule
-{\jigofontbiii \char0} & char0 (\char0) & igofontbiii\\
-{\jigofontbiii \char1} & char1 (\char1) & igofontbiii\\
-{\jigofontbiii \char2} & char2 (\char2) & igofontbiii\\
-{\jigofontbiii \char3} & char3 (\char3) & igofontbiii\\
-{\jigofontbiii \char4} & char4 (\char4) & igofontbiii\\
-{\jigofontbiii \char5} & char5 (\char5) & igofontbiii\\
-{\jigofontbiii \char6} & char6 (\char6) & igofontbiii\\
-{\jigofontbiii \char7} & char7 (\char7) & igofontbiii\\
-{\jigofontbiii \char8} & char8 (\char8) & igofontbiii\\
-{\jigofontbiii \char9} & char9 (\char9) & igofontbiii\\
-{\jigofontbiii \char10} & char10 (\char10) & igofontbiii\\
-\ldots & \ldots & \ldots \\
-{\jigofontbiii \char123} & char123 (\char123) & igofontbiii\\
-{\jigofontbiii \char124} & char124 (\char124) & igofontbiii\\
-{\jigofontbiii \char125} & char125 (\char125) & igofontbiii\\
-{\jigofontbiii \char126} & char126 (\char126) & igofontbiii\\
-{\jigofontbiii \char127} & char127 (\char127) & igofontbiii\\
+{\jigofontbiii \char0} & char0 (\char0) & & jigofontbiii\\
+{\jigofontbiii \char1} & char1 (\char1) & & jigofontbiii\\
+{\jigofontbiii \char2} & char2 (\char2) & & jigofontbiii\\
+{\jigofontbiii \char3} & char3 (\char3) & & jigofontbiii\\
+{\jigofontbiii \char4} & char4 (\char4) & & jigofontbiii\\
+{\jigofontbiii \char5} & char5 (\char5) & & jigofontbiii\\
+{\jigofontbiii \char6} & char6 (\char6) & & jigofontbiii\\
+{\jigofontbiii \char7} & char7 (\char7) & & jigofontbiii\\
+{\jigofontbiii \char8} & char8 (\char8) & & jigofontbiii\\
+{\jigofontbiii \char9} & char9 (\char9) & & jigofontbiii\\
+{\jigofontbiii \char10} & char10 (\char10) & & jigofontbiii\\
+\ldots & \ldots & \ldots & \ldots \\
+{\jigofontbiii \char123} & char123 (\char123) & & jigofontbiii\\
+{\jigofontbiii \char124} & char124 (\char124) & \tbs{}jigobsxmark & jigofontbiii\\
+{\jigofontbiii \char125} & char125 (\char125) & \tbs{}jigobsomark & jigofontbiii\\
+{\jigofontbiii \char126} & char126 (\char126) & \tbs{}jigobssmark & jigofontbiii\\
+{\jigofontbiii \char127} & char127 (\char127) & \tbs{}jigobstmark & jigofontbiii\\
 \midrule
-%%%% igofontwi
-{\jigofontwi \char0} & char0 (\char0) & igofontwi\\
-{\jigofontwi \char1} & char1 (\char1) & igofontwi\\
-{\jigofontwi \char2} & char2 (\char2) & igofontwi\\
-{\jigofontwi \char3} & char3 (\char3) & igofontwi\\
-{\jigofontwi \char4} & char4 (\char4) & igofontwi\\
-{\jigofontwi \char5} & char5 (\char5) & igofontwi\\
-{\jigofontwi \char6} & char6 (\char6) & igofontwi\\
-{\jigofontwi \char7} & char7 (\char7) & igofontwi\\
-{\jigofontwi \char8} & char8 (\char8) & igofontwi\\
-{\jigofontwi \char9} & char9 (\char9) & igofontwi\\
-{\jigofontwi \char10} & char10 (\char10) & igofontwi\\
-\ldots & \ldots & \ldots \\
-{\jigofontwi \char127} & char127 (\char127) & igofontwi\\
+%%%% jigofontwi
+{\jigofontwi \char0} & char0 (\char0) & \tbs{}jigows & jigofontwi\\
+{\jigofontwi \char1} & char1 (\char1) & \tbs{}jigowslabi\{1\} & jigofontwi\\
+{\jigofontwi \char2} & char2 (\char2) & & jigofontwi\\
+{\jigofontwi \char3} & char3 (\char3) & & jigofontwi\\
+{\jigofontwi \char4} & char4 (\char4) & & jigofontwi\\
+{\jigofontwi \char5} & char5 (\char5) & & jigofontwi\\
+{\jigofontwi \char6} & char6 (\char6) & & jigofontwi\\
+{\jigofontwi \char7} & char7 (\char7) & & jigofontwi\\
+{\jigofontwi \char8} & char8 (\char8) & & jigofontwi\\
+{\jigofontwi \char9} & char9 (\char9) & & jigofontwi\\
+{\jigofontwi \char10} & char10 (\char10) & & jigofontwi\\
+\ldots & \ldots & \ldots & \ldots \\
+{\jigofontwi \char127} & char127 (\char127) & & jigofontwi\\
 \midrule
-%%%% igofontwii
-{\jigofontwii \char0} & char0 (\char0) & igofontwii\\
-{\jigofontwii \char1} & char1 (\char1) & igofontwii\\
-{\jigofontwii \char2} & char2 (\char2) & igofontwii\\
-{\jigofontwii \char3} & char3 (\char3) & igofontwii\\
-{\jigofontwii \char4} & char4 (\char4) & igofontwii\\
-{\jigofontwii \char5} & char5 (\char5) & igofontwii\\
-{\jigofontwii \char6} & char6 (\char6) & igofontwii\\
-{\jigofontwii \char7} & char7 (\char7) & igofontwii\\
-{\jigofontwii \char8} & char8 (\char8) & igofontwii\\
-{\jigofontwii \char9} & char9 (\char9) & igofontwii\\
-{\jigofontwii \char10} & char10 (\char10) & igofontwii\\
-\ldots & \ldots & \ldots \\
-{\jigofontwii \char127} & char127 (\char127) & igofontwii\\
-%%%% igofontwii
+%%%% jigofontwii
+{\jigofontwii \char0} & char0 (\char0) & & jigofontwii\\
+{\jigofontwii \char1} & char1 (\char1) & & jigofontwii\\
+{\jigofontwii \char2} & char2 (\char2) & & jigofontwii\\
+{\jigofontwii \char3} & char3 (\char3) & & jigofontwii\\
+{\jigofontwii \char4} & char4 (\char4) & & jigofontwii\\
+{\jigofontwii \char5} & char5 (\char5) & & jigofontwii\\
+{\jigofontwii \char6} & char6 (\char6) & & jigofontwii\\
+{\jigofontwii \char7} & char7 (\char7) & & jigofontwii\\
+{\jigofontwii \char8} & char8 (\char8) & & jigofontwii\\
+{\jigofontwii \char9} & char9 (\char9) & & jigofontwii\\
+{\jigofontwii \char10} & char10 (\char10) & & jigofontwii\\
+\ldots & \ldots & \ldots & \ldots \\
+{\jigofontwii \char127} & char127 (\char127) & & jigofontwii\\
+%%%% jigofontwii
 \midrule
-{\jigofontwiii \char0} & char0 (\char0) & igofontwiii\\
-{\jigofontwiii \char1} & char1 (\char1) & igofontwiii\\
-{\jigofontwiii \char2} & char2 (\char2) & igofontwiii\\
-{\jigofontwiii \char3} & char3 (\char3) & igofontwiii\\
-{\jigofontwiii \char4} & char4 (\char4) & igofontwiii\\
-{\jigofontwiii \char5} & char5 (\char5) & igofontwiii\\
-{\jigofontwiii \char6} & char6 (\char6) & igofontwiii\\
-{\jigofontwiii \char7} & char7 (\char7) & igofontwiii\\
-{\jigofontwiii \char8} & char8 (\char8) & igofontwiii\\
-{\jigofontwiii \char9} & char9 (\char9) & igofontwiii\\
-{\jigofontwiii \char10} & char10 (\char10) & igofontwiii\\
-\ldots & \ldots & \ldots \\
-{\jigofontwiii \char123} & char123 (\char123) & igofontwiii\\
-{\jigofontwiii \char124} & char124 (\char124) & igofontwiii\\
-{\jigofontwiii \char125} & char125 (\char125) & igofontwiii\\
-{\jigofontwiii \char126} & char126 (\char126) & igofontwiii\\
-{\jigofontwiii \char127} & char127 (\char127) & igofontwiii\\
+{\jigofontwiii \char0} & char0 (\char0) & & jigofontwiii\\
+{\jigofontwiii \char1} & char1 (\char1) & & jigofontwiii\\
+{\jigofontwiii \char2} & char2 (\char2) & & jigofontwiii\\
+{\jigofontwiii \char3} & char3 (\char3) & & jigofontwiii\\
+{\jigofontwiii \char4} & char4 (\char4) & & jigofontwiii\\
+{\jigofontwiii \char5} & char5 (\char5) & & jigofontwiii\\
+{\jigofontwiii \char6} & char6 (\char6) & & jigofontwiii\\
+{\jigofontwiii \char7} & char7 (\char7) & & jigofontwiii\\
+{\jigofontwiii \char8} & char8 (\char8) & & jigofontwiii\\
+{\jigofontwiii \char9} & char9 (\char9) & & jigofontwiii\\
+{\jigofontwiii \char10} & char10 (\char10) & & jigofontwiii\\
+\ldots & \ldots & \ldots & \ldots \\
+{\jigofontwiii \char123} & char123 (\char123) & & jigofontwiii\\
+{\jigofontwiii \char124} & char124 (\char124) & \tbs{}jigowsxmark & jigofontwiii\\
+{\jigofontwiii \char125} & char125 (\char125) & \tbs{}jigowstmark & jigofontwiii\\
+{\jigofontwiii \char126} & char126 (\char126) & \tbs{}jigowssmark & jigofontwiii\\
+{\jigofontwiii \char127} & char127 (\char127) & \tbs{}jigowstmark & jigofontwiii\\
 \midrule
 \bottomrule
 \end{longtable}
