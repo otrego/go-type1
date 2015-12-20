@@ -49,7 +49,7 @@ fi
 
 
 SECONDARY_COMMAND="gnos"
-if [[ $# -gt 1 && ($2 == "gooe" || $2 == "igo" || $2 == "all" || $2 == "gnos" || $2 == 'jigo") ]]
+if [[ $# -gt 1 && ($2 == "gooe" || $2 == "igo" || $2 == "all" || $2 == "gnos" || $2 == "jigo") ]]
   then
   SECONDARY_COMMAND=$2
 fi
@@ -67,7 +67,6 @@ elif [[ $SECONDARY_COMMAND == "gnos" ]]
 elif [[ $SECONDARY_COMMAND == "jigo" ]]
   then
   font_installs=("jigo")
-fi
 fi
 
 texhome=$(kpsewhich -var-value TEXMFHOME)
