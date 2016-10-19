@@ -12,7 +12,6 @@ USAGE="=================================================================
     - gooe
     - igo
     - gnos (default)
-    - jigo
     - all"
 
 # kpsewhich is a standalone path lookup tool and expansion for kpathsea. In
@@ -49,12 +48,12 @@ fi
 
 
 SECONDARY_COMMAND="gnos"
-if [[ $# -gt 1 && ($2 == "gooe" || $2 == "igo" || $2 == "all" || $2 == "gnos" || $2 == "jigo") ]]
+if [[ $# -gt 1 && ($2 == "gooe" || $2 == "igo" || $2 == "all" || $2 == "gnos") ]]
   then
   SECONDARY_COMMAND=$2
 fi
 
-font_installs=("gooe" "igo" "gnos" "jigo")
+font_installs=("gooe" "igo" "gnos")
 if [[ $SECONDARY_COMMAND == "gooe" ]]
   then
   font_installs=("gooe")
@@ -64,9 +63,6 @@ elif [[ $SECONDARY_COMMAND == "igo" ]]
 elif [[ $SECONDARY_COMMAND == "gnos" ]]
   then
   font_installs=("gnos")
-elif [[ $SECONDARY_COMMAND == "jigo" ]]
-  then
-  font_installs=("jigo")
 fi
 
 texhome=$(kpsewhich -var-value TEXMFHOME)
