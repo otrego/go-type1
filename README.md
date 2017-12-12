@@ -19,8 +19,9 @@ In summary, this repository contains font information for:
 *   **Gnos**: My modification of the Gooe font series, which makes the
     border-lines a bolder, the star points bigger, and makes it easier to use in
     scripts.
-*   **Jigo**: My modification of the Igo font series that allows the fonts to be
-    used directly in scripts
+*   **Jigo**: My modification of the Igo font series that allows the fonts to
+    be used directly in scripts. This is a work in progress and not currently
+    installed by default.
 
 All of these fonts are available as Postscript Type 1 fonts, which is an old
 vector graphic font standard that can be used with LaTeX.
@@ -44,9 +45,6 @@ here are my **recommendations**
 1.  If you are planning on creating or using scripts to generate your books:
     1.  Gnos: Fully featured; Looks great in print form.
     1.  Gooe: Fully featured, has a less bold-look than Gnos.
-    1.  Jigo: Missing glyphs present in the other two fonts: No marks (e.g.,
-        triangle, square) on empty intersections and no labels on stones other
-        than numbers (e.g., stone labeled with 'a').
 1.  If you are manually creating diagrams yourself only using LaTeX:
     1.  Igo: Igo is meant for users creating diagrams manually at LaTeX. It
         comes at the cost of having missing glyphs, being slow to compile, and
@@ -97,9 +95,8 @@ installer.sh install gnos
 ```
 
 ### Long Installation Steps for {Gnos,gooe,igo}
-You must perform a bit of work for LaTeX to know about your fonts, if you want
-to do it by hand. I don't claim to be an expert in TeX/LaTeX, but this seems to
-work.
+This is not recommended for most user, but this is a record of what I did
+install the fonts by hand initially.
 
 ```shell
 cd go-type1
