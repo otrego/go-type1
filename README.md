@@ -258,11 +258,12 @@ the page was created:
 
 Making a professional-quality book with LaTeX takes quite a bit more work than
 just creating diagrams. In general, professional-grade books need to be
-[PDF/X-1a:2001](https://en.wikipedia.org/wiki/PDF/X) compatible. That means
-additional care is required in the construction of the book.
+[PDF/X-1a:2001](https://en.wikipedia.org/wiki/PDF/X) compatible, which imposes
+several technical requirements on the construction of PDF documents.
+Additionally, you will want to refine the look and feel of the frontmatter,
+page layout, and page size.
 
-Moreover, you will want more detail and care paid to the frontmatter, age
-layout, and page size. I highly recommend taking a look at:
+I highly recommend taking a look at:
 
 * [The Memior class for LaTeX](https://ctan.org/pkg/memoir?lang=en), which has
   an extensive
@@ -275,8 +276,7 @@ You can see a prototype used for
 in book-example/ that was created with
 [GPub](https://github.com/Kashomon/gpub).
 
-* [Raw SGF Source](book-example/
-Fujisawa-Hosai-vs-Go-Seigen-19430225-commentary-An-Younggil-8p.sgf)
+* [Raw SGF Source](book-example/Fujisawa-Hosai-vs-Go-Seigen-19430225-commentary-An-Younggil-8p.sgf)
 * [game\_commentary.tex: Raw source](book-example/game_commentary.tex)
 * [game\_commentary.pdf: PDF Output](book-example/game_commentary.pdf)
 
