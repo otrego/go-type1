@@ -127,7 +127,7 @@ A Simple Go Problem!
 \subtext{(Moves: 45-47)}
 \end{minipage}
 \end{center}
-```latex
+```
 
 ![Gnos Example: Full Symbol Set](gnos-full-symbol-set.png)
 
