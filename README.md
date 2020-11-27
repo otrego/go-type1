@@ -97,36 +97,31 @@ A Simple Go Problem!
 ![Gnos Example](gnos-example.png)
 
 ```latex
-\begin{center}
-\section*{Go Type-1 Fonts}
-\vspace{12pt}
-\begin{minipage}[t]{240pt}
-\gnosfontsize{12}
-{\gnos%
-<(((((((((((((((((>\\
-\char91+++++++++++@\gnosOverlap{@}{\color{white}\footnotesize{45}}\gnosOverlap{@}{\color{white}\footnotesize{47}}+++]\\
-\char91++!+@+++!@@!!\gnosOverlap{!}{\footnotesize{46}}!@+]\\
-\char91++*!@+!+!@!++@*@+]\\
-\char91+@+!@+@+@!!++++++]\\
-\char91+++!!@@+@++++++++]\\
-\char91+++++!+++++++++++]\\
+{
+\gnosfontsize{14}
+{
+\gnos%
+<!((((((@((!(((((!>\\
+!+1Cc2Ss3Tt4Xx++++!\\
 \char91+@+++++++++++++++]\\
-\char91+++++++++++++++!+]\\
+\char91+@*+++++*+++++*++]\\}
+{\gnosb\char1\char2\char3\char4\char5\char6\char7\char8\char9\char10\char11\char12\char13\char14\char15\char16\char17\char18}{\gnos]\\}
+{\gnosw\char1\char2\char3\char4\char5\char6\char7\char8\char9\char10\char11\char12\char13\char14\char15\char16\char17\char18}{\gnos]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
 \char91++*+++++*+++++*++]\\
 \char91+++++++++++++++++]\\
 \char91+++++++++++++++++]\\
-\char91++++++++++++++!++]\\
-\char91+!+++++++++++@!!+]\\
-\char91++++++++++++++!@+]\\
-\char91++*+++++*++++@*@+]\\
-\char91++!+++++++++++@++]\\
 \char91+++++++++++++++++]\\
-,))))))))))))))))).\\
-}
-\centerline{\textit{\textbf{Diagram 23}}}
-\subtext{(Moves: 45-47)}
-\end{minipage}
-\end{center}
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91++*{\gnoswi\char11}{\gnoswii\char11}{\gnoswiii\char11}{\gnosbi\char11}{\gnosbii\char11}{\gnosbiii\char11}+++++*++]\\
+\char91++++{\gnoswl\char1}{\gnosbl\char1}++++++\gnosEmptyLbl{\sffamily{10}}\gnosOverlap{!}{Z}\gnosOverlap{+}{\gnos 2}\gnosOverlap{@}{\color{white}Z}+]\\
+!++++++++\gnosOverlap{+}{\gnos 3}\gnosOverlap{+}{\gnos 4}\gnosOverlap{+}{\gnos 1}++++++!\\
+,!))))@)!))))))))!.\\
+}}
+14pt: A board full of stuff!
 ```
 
 ![Gnos Example: Full Symbol Set](gnos-full-symbol-set.png)
