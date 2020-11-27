@@ -102,8 +102,8 @@ You can findthese examples in [examples/full_comparison.tex](examples/full_compa
 
 ### Gnos Examples
 
-As mentioned, Gnos is the recommend font. Here's a simple Tsumego problem using.
-the Gnos font:
+As mentioned above, Gnos is the recommend font. Here's a simple Tsumego problem
+using the Gnos font:
 
 ```latex
 \begin{center}
@@ -150,6 +150,9 @@ Here's a demo of all the symbols supported by Gnos:
 }}
 14pt: A board full of stuff!
 ```
+
+For a full table of all the Gnos symbols, see
+[examples/gnos\_fontmapping.pdf](examples/gnos_fontmapping.pdf)
 
 ![Gnos Example: Full Symbol Set](gnos-full-symbol-set.png)
 
