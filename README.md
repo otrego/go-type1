@@ -1,23 +1,42 @@
-# Go Fonts in Postscript Type 1
+# Go-Type1: Go Postscript Type1 Fonts for LaTeX
 
 ![Go Type1 Demo](go-type1-demo.png)
 
-This is a repository dedicated to storing the Postscript Type1 versions of
-popular fonts for the game <a
+Go-type1 contains vector-graphics fonts for creating professional-quality books
+for the board game <a
 href="https://en.wikipedia.org/wiki/Go_(game)">Go</a>, also known as Igo
-(囲碁), Baduk (바둑), Weiqi (围棋), for use in LaTeX. These are all provided as
-**vector-grahics** fonts rather than rasterized (bitmap) fonts, and so provide
-a much more professional look for e-books and print books.
+(囲碁), Baduk (바둑), Weiqi (围棋), for use in [LaTeX typesetting
+system](https://www.latex-project.org/). The fonts are all provided as **PostScript
+Type1** fonts rather than rasterized (bitmap) fonts, and so provide high
+resolutions for e-books and print books.
+
+## Table of Contents
+
+* [Overview](#overview)
+* [Recommendations](#recommendations)
+* [Installation](#installation)
+* [Examples](#examples)
+  * [Gnos Examples](#gnos-examples)
+  * [Gooe Examples](#gooe-examples)
+  * [Igo Examples](#igo-examples)
+* [Using Gnos in LaTeX](#using-gnos-in-latex)
+  * [The LaTeX Structure](#the-latex-structure)
+  * [Gnos Tips](#gnos-tips)
+  * [Writing a Book](#writing-a-book)
+* [Deep Dive](#deep-dive)
+  * [What's Here](#whats-here)
+  * [Tex and Tex Distributions](#tex-and-tex-distributions)
+  * [Long Installation Steps](#long-installation-steps)
+  * [Converting METAFONT to Type1](#converting-metafont-to-type1)
 
 ## Overview
 
-In summary, this repository contains font information for four fonts:
+In summary, this repository contains TeX font information for four fonts:
 
-*   **Gnos**: My modification of the Gooe font series, which makes the
+*   **Gnos (Recommended)**: My modification of the Gooe font series, which makes the
     border-lines a bolder, the star points bigger, and makes it easier to use
     in scripts. This font was used by GoGameGuru's book
-    [*Relentless*](https://www.amazon.com/Relentless-Lee-Sedol-Gu-Li/dp/0981912184)
-    and is **the recommended font**.
+    [*Relentless*](https://www.amazon.com/Relentless-Lee-Sedol-Gu-Li/dp/0981912184).
 *   **Igo**: A font created in 1991 by Hanna Kolodziejska and modified by
     Etienne Dupuis and others, that evokes the style of the old Ishi press and
     Kiseido books.
@@ -31,13 +50,14 @@ In summary, this repository contains font information for four fonts:
     allow the fonts to be used directly in scripts. This is a work in progress
     and not currently installed by the installer.
 
-**Note**: This repository, Go-Type1, was original created by Kashomon but was
-moved to the *Otrego* Organization in 2020.
+**Note**: This repository, Go-Type1, was original created by Kashomon in 2014
+but was moved to the [*Otrego*
+Organization](https://github.com/otrego/community) in 2020.
 
 All of these fonts are available as Postscript Type 1 fonts, which is an old
 vector graphic font standard that can be used with LaTeX.
 
-This work derives from [Vit Brunner (tasuki)](https://github.com/tasuk) who
+This work derives from [Vit Brunner (tasuki)](https://github.com/tasuki) who
 created a series of tsumego books using the Type1 Gooe font. Later, this work
 was helped tremendously by the existence of [Nyamcoder's
 instructions](https://github.com/nyamcoder/tex-src/blob/master/baduk/baduk.tex)
@@ -48,21 +68,24 @@ created for generating Go books.
 These packages are designed to work with LaTeX, but there's no reason it
 shouldn't work with a LaTeX compatible compiler like XeTeX.
 
-### Recommendations
+## Recommendations
 
 If you're here trying to decide what fonts to use in generating Go books then
-here are my **recommendations**
+here are my **recommendations**:
 
 1.  If you are planning on creating or using scripts to generate your books:
     1.  Gnos (**Recommended**): Fully featured; Looks great in print form.
     1.  Gooe: Fully featured, has a less bold-look than Gnos.
-1.  If you are manually creating diagrams yourself only using LaTeX:
-    1.  Igo: Igo is meant for users creating diagrams manually at LaTeX.
-        However, it comes at the cost of having missing glyphs, being slow to
-        compile, and creating incompatibilities with other LaTeX packages.
 
-## Quick Installation Steps
-The easiest way to install is to use the installer script
+1.  If you are manually creating diagrams yourself only using LaTeX:
+    1.  Igo: Igo is meant for users creating diagrams manually at LaTeX, and is
+        much terser than Gnos or Gooe.  However, it comes at the cost of having
+        fewer glyphs, being slow to compile, and having incompatibilities
+        with other LaTeX packages.
+
+## Installation
+
+On OSX, and Linux the easiest way to install is to use the installer script:
 
 ```shell
 # Install gooe, gnos, igo
@@ -74,11 +97,11 @@ go-type1/installer.sh install gnos
 
 ## Examples
 
-All these examples are present in [examples/full_comparison.tex](examples/full_comparison.tex)
+You can findthese examples in [examples/full_comparison.tex](examples/full_comparison.tex) and the rendered [examples/full_comparison.pdf](examples/full_comparison.pdf)
 
-### Gnos Example
-Here's the same problem with the Gnos font. Warning: Gnos is not designed to be
-easy to use by hand. It's meant to be used in scripts that generate diagrams.
+### Gnos Examples
+
+Here's a simple Tsumego problem with the Gnos font:
 
 ```latex
 \begin{center}
@@ -93,6 +116,8 @@ easy to use by hand. It's meant to be used in scripts that generate diagrams.
 A Simple Go Problem!
 \end{center}
 ```
+
+Here are the full set of symbols supported by Gnos:
 
 ![Gnos Example](gnos-example.png)
 
@@ -126,7 +151,7 @@ A Simple Go Problem!
 
 ![Gnos Example: Full Symbol Set](gnos-full-symbol-set.png)
 
-### Gooe Example
+### Gooe Examples
 Here's an example of a simple problem using the Gooe font.
 
 ```latex
@@ -145,7 +170,7 @@ A Simple Go Problem!
 
 ![Gooe Example](gooe-example.png)
 
-#### Igo Example
+### Igo Examples
 Here's the same problem with the Igo font.
 
 ```latex
@@ -158,15 +183,118 @@ Here's the same problem with the Igo font.
 
 ![Igo Example](igo-example.png)
 
+## Using Gnos in LaTeX
+
+This section will walk you through how to get started with Gnos in LaTeX.
+
+```latex
+\usepackage[T1]{fontenc}
+```
+
+Then, LaTeX should be able use the new Type1 fonts.
+
+See the example below for more information. Ther are also more exmaple TeX files
+in the examples/ directory.
+
+### The LaTeX structure
+LaTeX starts with some header declarations, followed by begin document, content,
+and lastly, ending the document.
+
+```latex
+\documentclass{article}
+\usepackage{gnos} % or igo, gooemacs
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+% Content goes here
+
+\end{document}
+```
+
+### Gnos Tips
+
+Gnos fonts suffer from wrapping problems: it's very easy to get the fonts
+misaligned and end up with bad-looking diagrams. The easiest solution is to
+wrap your diagrams in a LaTeX minipage, which is how the diagram at the top of
+the page was created:
+
+```latex
+\begin{center}
+\section*{Go Type-1 Fonts}
+\vspace{12pt}
+\begin{minipage}[t]{240pt}
+\gnosfontsize{12}
+{\gnos%
+<(((((((((((((((((>\\
+\char91+++++++++++@\gnosOverlap{@}{\color{white}\footnotesize{45}}\gnosOverlap{@}{\color{white}\footnotesize{47}}+++]\\
+\char91++!+@+++!@@!!\gnosOverlap{!}{\footnotesize{46}}!@+]\\
+\char91++*!@+!+!@!++@*@+]\\
+\char91+@+!@+@+@!!++++++]\\
+\char91+++!!@@+@++++++++]\\
+\char91+++++!+++++++++++]\\
+\char91+@+++++++++++++++]\\
+\char91+++++++++++++++!+]\\
+\char91++*+++++*+++++*++]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91++++++++++++++!++]\\
+\char91+!+++++++++++@!!+]\\
+\char91++++++++++++++!@+]\\
+\char91++*+++++*++++@*@+]\\
+\char91++!+++++++++++@++]\\
+\char91+++++++++++++++++]\\
+,))))))))))))))))).\\
+}
+\centerline{\textit{\textbf{Diagram 23}}}
+\subtext{(Moves: 45-47)}
+\end{minipage}
+\end{center}
+```
+
+![Go Type1 Demo](go-type1-demo.png)
+
+### Writing a Book
+
+Making a professional-quality book with LaTeX takes quite a bit more work than
+just creating diagrams. In general, professional-grade books need to be
+[PDF/X-1a:2001](https://en.wikipedia.org/wiki/PDF/X) compatible. That means
+additional care is required in the construction of the book.
+
+Moreover, you will want more detail and care paid to the frontmatter, age
+layout, and page size. I highly recommend taking a look at:
+
+* [The Memior class for LaTeX](https://ctan.org/pkg/memoir?lang=en), which has
+  an extensive
+  [manual](http://tug.ctan.org/tex-archive/macros/latex/contrib/memoir/memman.pdf).
+* [The MemDesign guide](https://ctan.org/pkg/memdesign), which takes a deeper
+  look at the practice of making books.
+
+You can see a prototype used for
+[Relentless](https://www.amazon.com/Relentless-Lee-Sedol-Gu-Li/dp/0981912184)
+in book-example/ that was created with
+[GPub](https://github.com/Kashomon/gpub).
+
+* [Raw SGF Source](book-example/
+Fujisawa-Hosai-vs-Go-Seigen-19430225-commentary-An-Younggil-8p.sgf)
+* [game\_commentary.tex: Raw source](book-example/game_commentary.tex)
+* [game\_commentary.pdf: PDF Output](book-example/game_commentary.pdf)
+
+## Deep Dive
+
+If are interested in the nitty-gritty details of these LaTeX fonts or you want
+to make your own modifications, this section should provide some background.
 
 ### What's here
 
 There are four directories containing font files:
 
-      gnos-fonts/
-      gooe-fonts/
-      igo-fonts/
-      jigo-fonts/ (Experimental)
+```
+gnos-fonts/
+gooe-fonts/
+igo-fonts/
+jigo-fonts/ (Experimental)
+```
 
 In each of these, there are 4 types of files of interest:
 
@@ -176,7 +304,7 @@ In each of these, there are 4 types of files of interest:
     fonts with names
   - *.sty* : Tex macro files that make it easier to work with the font
 
-### Tex and Tex Distributions.
+### Tex and Tex Distributions
 
 Installation of these fonts relies heavily on your particular distribution of
 TeX.  You'll be installing the font files in TEXMFHOME location.  Assuming
@@ -192,7 +320,7 @@ or
 $(kpsewhich -var-value TEXMFHOME)
 ```
 
-### Long Installation Steps for {Gnos,gooe,igo}
+### Long Installation Steps
 This is not recommended for most users, but this is a record of what I did
 install the fonts by hand initially if you get stuck.
 
@@ -212,36 +340,6 @@ texhash $texhome
 updmap --enable Map=gooe.map
 ```
 
-### Using the Fonts
-
-At this point, it should just work! Make sure in your LaTeX, you have the
-following at the top:
-
-```latex
-\usepackage[T1]{fontenc}
-```
-
-Then, LaTeX should be able use the new Type1 fonts.
-
-See the example below for more information. Ther are also more exmaple TeX files
-in the examples/ directory.
-
-#### The LaTeX structure
-LaTeX starts with some header declarations, followed by begin document, content,
-and lastly, ending the document.
-
-```latex
-\documentclass{article}
-\usepackage{gnos} % or igo, gooemacs
-\usepackage[T1]{fontenc}
-
-\begin{document}
-
-% Content goes here
-
-\end{document}
-```
-
 ### Converting METAFONT to Type1
 Converting from METAFONT to Type1 fonts can be a challenge. Here's what I did,
 mostly a record for myself, but it might be useful for you too.
@@ -250,13 +348,13 @@ First, some setup:
 
   * Update homebrew (OSX package manager)
   * Download mftrace
-  * Install autoconf via homebrew (`brew install autoconf`)
-  * Run autoconf on mftrace's autogen.sh
+  * Install `autoconf` via homebrew (`brew install autoconf`)
+  * Run `autoconf` on `mftrace`'s `autogen.sh`
   * `brew install potrace` -- font tracing program
   * `brew install fontforge`
-  * Go back to mftrace and run `./configure` and `make install`
+  * Go back to `mftrace` and run `./configure` and `make install`
 
-To convert METAFONT to Type1, run:
+To convert `METAFONT` to Type1, run:
 
 ```shell
 mftrace --formats=PFB myfile.mf
@@ -268,11 +366,11 @@ To regenerate the TFM files, run:
 mktextfm myfile.mf
 ```
 
-### Resources
+## Resources
 
 For more details on all of this, see:
 
-  - [Tasuki's Tsumego Repo](https://github.com/tasuk/tsumego)
+  - [Tasuki's Tsumego Repo](https://github.com/tasuki/tsumego)
   - [sgf2dg on CPAN](http://search.cpan.org/~reid/Games-Go-Sgf2Dg-4.211/sgf2dg)
   - [Font Intallation Guide](
     http://www.ctan.org/tex-archive/info/Type1fonts/fontinstallationguide/)
