@@ -23,11 +23,12 @@ resolutions for e-books and print books.
   * [The LaTeX Structure](#the-latex-structure)
   * [Gnos Tips](#gnos-tips)
   * [Writing a Book](#writing-a-book)
-* [Deep Dive](#deep-dive)
+* [Font Deep Dive](#deep-dive)
   * [What's Here](#whats-here)
   * [Tex and Tex Distributions](#tex-and-tex-distributions)
   * [Long Installation Steps](#long-installation-steps)
   * [Converting METAFONT to Type1](#converting-metafont-to-type1)
+* [Resources](#resources)
 
 ## Overview
 
@@ -280,10 +281,10 @@ in book-example/ that was created with
 * [game\_commentary.tex: Raw source](book-example/game_commentary.tex)
 * [game\_commentary.pdf: PDF Output](book-example/game_commentary.pdf)
 
-## Deep Dive
+## Font Deep Dive
 
-If are interested in the nitty-gritty details of these LaTeX fonts or you want
-to make your own modifications, this section should provide some background.
+If are interested in the nitty-gritty details of the fonts or you want to make
+your own modifications, this section should provide some helpful background.
 
 ### What's here
 
