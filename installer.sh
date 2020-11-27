@@ -4,6 +4,9 @@ USAGE="=================================================================
   installer.sh [-h] <command> [fonts]
   Install the Igo/Gooe fonts for LaTeX (Requires existing LaTeX install).
 
+  Example: Install all fonts:
+    installer.sh install all
+
   Where command is one of:
     - install
     - uninstall
@@ -51,6 +54,9 @@ SECONDARY_COMMAND="gnos"
 if [[ $# -gt 1 && ($2 == "gooe" || $2 == "igo" || $2 == "all" || $2 == "gnos") ]]
   then
   SECONDARY_COMMAND=$2
+else
+  echo "Unknown go-type1 font: ${2}"
+  exit 1
 fi
 
 font_installs=("gooe" "igo" "gnos")

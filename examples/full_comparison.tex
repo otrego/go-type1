@@ -6,11 +6,60 @@
 % \usepackage{jigofonts} -- Doesn't work currently.
 \usepackage[T1]{fontenc}
 
+\newcommand{\subtext}[1]{\centerline{\textit{#1}}}
+
 \begin{document}
 
 \title{Font Examples}
 \author{Kashomon}
 \maketitle
+
+
+\begin{center}
+\section*{Go Type-1 Fonts}
+\vspace{12pt}
+\begin{minipage}[t]{240pt}
+\gnosfontsize{12}
+{\gnos%
+<(((((((((((((((((>\\
+\char91+++++++++++@\gnosOverlap{@}{\color{white}\footnotesize{45}}\gnosOverlap{@}{\color{white}\footnotesize{47}}+++]\\
+\char91++!+@+++!@@!!\gnosOverlap{!}{\footnotesize{46}}!@+]\\
+\char91++*!@+!+!@!++@*@+]\\
+\char91+@+!@+@+@!!++++++]\\
+\char91+++!!@@+@++++++++]\\
+\char91+++++!+++++++++++]\\
+\char91+@+++++++++++++++]\\
+\char91+++++++++++++++!+]\\
+\char91++*+++++*+++++*++]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91++++++++++++++!++]\\
+\char91+!+++++++++++@!!+]\\
+\char91++++++++++++++!@+]\\
+\char91++*+++++*++++@*@+]\\
+\char91++!+++++++++++@++]\\
+\char91+++++++++++++++++]\\
+,))))))))))))))))).\\
+}
+\centerline{\textit{\textbf{Diagram 23}}}
+\subtext{(Moves: 45-47)}
+\end{minipage}
+\end{center}
+
+\newpage
+
+\begin{center}
+\section*{Gnos}
+{\gnos%
+<((!((((((\\
+!!!!@@++++\\
+\char91\char64@@++++++\\
+\char91\char43\char43\char42+++++*\\
+\char91@++++++++\\
+\char91+++++++++\\
+}
+A Simple Go Problem!
+\end{center}
 
 \begin{center}
 \section*{Gooe}
@@ -25,20 +74,6 @@
 A Simple Go Problem!
 \end{center}
 
-\begin{center}
-\section*{Gnos}
-{\gnos%
-<((!((((((\\
-!!!!@@++++\\
-\char91\char64@@++++++\\
-\char91\char43\char43\char42+++++*\\
-\char91@++++++++\\
-\char91+++++++++\\
-}
-
-A Simple Go Problem!
-\end{center}
-
 \white{a18,b18,c18,d18,d19}
 \black{b17,c17,d17,e18,f18,b15}
 \begin{center}
@@ -48,7 +83,8 @@ A Simple Go Problem!
 
 \newpage
 \begin{center}
-\section*{Gnos}
+\section*{Gnos: Full Symbol Set}
+\vspace{12pt}
 {
 \gnosfontsize{14}
 {
@@ -59,28 +95,37 @@ A Simple Go Problem!
 \char91+@*+++++*+++++*++]\\}
 {\gnosb\char1\char2\char3\char4\char5\char6\char7\char8\char9\char10\char11\char12\char13\char14\char15\char16\char17\char18}{\gnos]\\}
 {\gnosw\char1\char2\char3\char4\char5\char6\char7\char8\char9\char10\char11\char12\char13\char14\char15\char16\char17\char18}{\gnos]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91++*+++++*+++++*++]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
 \char91++*{\gnoswi\char11}{\gnoswii\char11}{\gnoswiii\char11}{\gnosbi\char11}{\gnosbii\char11}{\gnosbiii\char11}+++++*++]\\
 \char91++++{\gnoswl\char1}{\gnosbl\char1}++++++\gnosEmptyLbl{\sffamily{10}}\gnosOverlap{!}{Z}\gnosOverlap{+}{\gnos 2}\gnosOverlap{@}{\color{white}Z}+]\\
 !++++++++\gnosOverlap{+}{\gnos 3}\gnosOverlap{+}{\gnos 4}\gnosOverlap{+}{\gnos 1}++++++!\\
 ,!))))@)!))))))))!.\\
 }}
-14pt
+14pt: A board full of stuff!
 
-\section*{Igo}
+% Jigo is currently experimental
+% \section*{JIgo}
 
-\jigosetfontsize{14}
-{\jigogoban
-{\jigofont%
-\char6{\jigofontwi\char0}\char4\char4\char4\char4\char4{\jigofontbi \char0}\char4\char4{\jigofontwi \char 0}\char4\char4\char4\char4\char4\char4\char7\\
-{\jigofontwi\char0}\char1\char88{\jigofontbiii\char125}\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1{\jigofontwi\char0}\\
-\char2\char1{\jigofontbi\char0}\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1{\jigofontwi\char0}\\
-\char2\char1{\jigofontbi\char0}\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char3\\
-}
-}
+% \jigosetfontsize{14}
+% {\jigogoban
+% {\jigofont%
+% \char6{\jigofontwi\char0}\char4\char4\char4\char4\char4{\jigofontbi \char0}\char4\char4{\jigofontwi \char 0}\char4\char4\char4\char4\char4\char4\char7\\
+% {\jigofontwi\char0}\char1\char88{\jigofontbiii\char125}\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1{\jigofontwi\char0}\\
+% \char2\char1{\jigofontbi\char0}\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1{\jigofontwi\char0}\\
+% \char2\char1{\jigofontbi\char0}\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char1\char3\\
+% }
+% }
 
 % {\rlap{\igo@gobanchar{#1}{#2}}\hskip\wd\igo@box}%
 
-A board full of stuff!
 \end{center}
 
 
