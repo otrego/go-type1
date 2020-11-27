@@ -102,7 +102,8 @@ You can findthese examples in [examples/full_comparison.tex](examples/full_compa
 
 ### Gnos Examples
 
-Here's a simple Tsumego problem with the Gnos font:
+As mentioned, Gnos is the recommend font. Here's a simple Tsumego problem using.
+the Gnos font:
 
 ```latex
 \begin{center}
@@ -118,9 +119,9 @@ A Simple Go Problem!
 \end{center}
 ```
 
-Here are the full set of symbols supported by Gnos:
-
 ![Gnos Example](gnos-example.png)
+
+Here's a demo of all the symbols supported by Gnos:
 
 ```latex
 {
