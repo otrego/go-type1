@@ -151,10 +151,10 @@ Here's a demo of all the symbols supported by Gnos:
 14pt: A board full of stuff!
 ```
 
-For a full table of all the Gnos symbols, see
-[examples/gnos\_fontmapping.pdf](examples/gnos_fontmapping.pdf)
-
 ![Gnos Example: Full Symbol Set](gnos-full-symbol-set.png)
+
+For a full table of all the Gnos symbols, see
+[examples/gnos\_font\_mapping.pdf](examples/gnos_font_mapping.pdf)
 
 ### Gooe Examples
 Here's an example of a simple problem using the Gooe font.
