@@ -2,9 +2,6 @@
 
 ![Go Type1 Demo](go-type1-demo.png)
 
-**Note**: This repository, Go-Type1, was original created by Kashomon but was
-moved to the *Otrego* Organization in 2020.
-
 This is a repository dedicated to storing the Postscript Type1 versions of
 popular fonts for the game <a
 href="https://en.wikipedia.org/wiki/Go_(game)">Go</a>, also known as Igo
@@ -33,6 +30,9 @@ In summary, this repository contains font information for four fonts:
 *   **Jigo**: (Experimental) My attempt at modifying the Igo font series to
     allow the fonts to be used directly in scripts. This is a work in progress
     and not currently installed by the installer.
+
+**Note**: This repository, Go-Type1, was original created by Kashomon but was
+moved to the *Otrego* Organization in 2020.
 
 All of these fonts are available as Postscript Type 1 fonts, which is an old
 vector graphic font standard that can be used with LaTeX.
@@ -74,6 +74,8 @@ go-type1/installer.sh install gnos
 
 ## Examples
 
+All these examples are present in [examples/full_comparison.tex](examples/full_comparison.tex)
+
 ### Gnos Example
 Here's the same problem with the Gnos font. Warning: Gnos is not designed to be
 easy to use by hand. It's meant to be used in scripts that generate diagrams.
@@ -93,6 +95,39 @@ A Simple Go Problem!
 ```
 
 ![Gnos Example](gnos-example.png)
+
+```latex
+\begin{center}
+\section*{Go Type-1 Fonts}
+\vspace{12pt}
+\begin{minipage}[t]{240pt}
+\gnosfontsize{12}
+{\gnos%
+<(((((((((((((((((>\\
+\char91+++++++++++@\gnosOverlap{@}{\color{white}\footnotesize{45}}\gnosOverlap{@}{\color{white}\footnotesize{47}}+++]\\
+\char91++!+@+++!@@!!\gnosOverlap{!}{\footnotesize{46}}!@+]\\
+\char91++*!@+!+!@!++@*@+]\\
+\char91+@+!@+@+@!!++++++]\\
+\char91+++!!@@+@++++++++]\\
+\char91+++++!+++++++++++]\\
+\char91+@+++++++++++++++]\\
+\char91+++++++++++++++!+]\\
+\char91++*+++++*+++++*++]\\
+\char91+++++++++++++++++]\\
+\char91+++++++++++++++++]\\
+\char91++++++++++++++!++]\\
+\char91+!+++++++++++@!!+]\\
+\char91++++++++++++++!@+]\\
+\char91++*+++++*++++@*@+]\\
+\char91++!+++++++++++@++]\\
+\char91+++++++++++++++++]\\
+,))))))))))))))))).\\
+}
+\centerline{\textit{\textbf{Diagram 23}}}
+\subtext{(Moves: 45-47)}
+\end{minipage}
+\end{center}
+```latex
 
 ![Gnos Example: Full Symbol Set](gnos-full-symbol-set.png)
 
