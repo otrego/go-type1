@@ -15,7 +15,12 @@ USAGE="=================================================================
     - gooe
     - igo
     - gnos (default)
-    - all"
+    - all
+
+  Optional Flags
+  -m|--mode {sys|user} whether to install the fonts for user or system. By
+      default, uses user.
+      "
 
 # kpsewhich is a standalone path lookup tool and expansion for kpathsea. In
 # other words, it manages paths for TeX.
@@ -24,6 +29,7 @@ command -v kpsewhich >/dev/null 2>&1 || {
   echo "$USAGE" >&2
   exit 1;
 }
+
 
 # Get directory of this script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -37,45 +43,95 @@ if [ -z $TEX_HOME ]
   exit 1
 fi
 
-PRIMARY_COMMAND=""
-if [[ $# -gt 0 ]]
-  then
-  PRIMARY_COMMAND=$1
-fi
+# Defaults for installation
+FONT_TO_INSTALL=gnos
+INSTALL_MODE=user
+PRIMARY_COMMAND=install
 
-if [[ $PRIMARY_COMMAND == "-h" ||  $PRIMARY_COMMAND == "" ]]
-  then
-  echo "$USAGE" >&2
-  exit 1
-fi
+# Flag processing
+while test $# -gt 0; do
+  case "$1" in
+    -h|--help)
+      echo "$USAGE" >&2
+      exit 0;
+      ;;
+    install)
+      PRIMARY_COMMAND=install
+      shift
+      if [[ $1 == "gooe" || $1 == "igo" || $1 == "all" || $1 == "gnos" ]]
+        then
+        echo "Installing font-family $1"
+        FONT_TO_INSTALL=$1
+        shift
+      else
+        echo "Unknown go-type1 font ${1}. Allowed values are gnos, gooe, igo, all"
+        exit 1
+      fi
+      ;;
+    uninstall)
+      PRIMARY_COMMAND=uninstall
+      shift
+      if [[ $1 == "gooe" || $1 == "igo" || $1 == "all" || $1 == "gnos" ]]
+        then
+        echo "Installing font-family $1"
+        FONT_TO_INSTALL=$1
+        shift
+      else
+        echo "Unknown go-type1 font ${1}. Allowed values are gnos, gooe, igo, all"
+        exit 1
+      fi
+      ;;
+    -m|--mode)
+      shift
+      if [[ $1 == "user" || $1 == "sys" ]]
+        then
+        echo "Install mode: $1"
+        INSTALL_MODE=$1
+        shift
+      else
+        echo "Invalid install mode $1. Must be user|sys"
+        exit 1
+      fi
+      shift
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
 
-
-SECONDARY_COMMAND="gnos"
-if [[ $# -gt 1 && ($2 == "gooe" || $2 == "igo" || $2 == "all" || $2 == "gnos") ]]
+FONT_INSTALLS=("gooe" "igo" "gnos")
+if [[ $FONT_TO_INSTALL == "gooe" ]]
   then
-  SECONDARY_COMMAND=$2
-else
-  echo "Unknown go-type1 font: ${2}"
-  exit 1
-fi
-
-font_installs=("gooe" "igo" "gnos")
-if [[ $SECONDARY_COMMAND == "gooe" ]]
+  FONT_INSTALLS=("gooe")
+elif [[ $FONT_TO_INSTALL == "igo" ]]
   then
-  font_installs=("gooe")
-elif [[ $SECONDARY_COMMAND == "igo" ]]
-  then
-  font_installs=("igo")
+  FONT_INSTALLS=("igo")
 elif [[ $SECONDARY_COMMAND == "gnos" ]]
   then
-  font_installs=("gnos")
+  FONT_INSTALLS=("gnos")
+fi
+
+
+UPDMAP_CMD="updmap"
+if [[ $MODE == "user" ]]
+  then
+  if command -v "updmap-user" &> /dev/null
+  then
+    UPDMAP_CMD=updmap-user
+    exit
+  fi
+elif [[ $MODE == "sys" ]]
+  then
+  UPDMAP_CMD=updmap-sys
 fi
 
 texhome=$(kpsewhich -var-value TEXMFHOME)
-echo "TEXMFLOCAL:" $texhome
+echo "TEXMFLOCAL: $texhome"
+echo "Installer Command: $PRIMARY_COMMAND"
 if [[ $PRIMARY_COMMAND == "uninstall" ]]
   then
-  for item in ${font_installs[*]}
+  for item in ${FONT_INSTALLS[*]}
   do
     mapfile="${item}.map"
     echo "Uninstalling:" $item
@@ -88,13 +144,13 @@ if [[ $PRIMARY_COMMAND == "uninstall" ]]
     rmdir $texhome/fonts/type1/$item
     rmdir $texhome/fonts/tfm/$item
     texhash $texhome
-    updmap --disable Map=$mapfile
+    $UPDMAP_CMD --disable Map=$mapfile
   done
-  updmap --syncwithtrees
+  $UPDMAP_CMD --syncwithtrees
   exit 0
 elif [[ $PRIMARY_COMMAND == "install" ]]
   then
-  for item in ${font_installs[*]}
+  for item in ${FONT_INSTALLS[*]}
   do
     fontsdir="${item}-fonts"
     mapfile="${item}.map"
@@ -110,7 +166,7 @@ elif [[ $PRIMARY_COMMAND == "install" ]]
     cp $fontsdir/*.pfb $texhome/fonts/type1/$item
     cp $fontsdir/*.tfm $texhome/fonts/tfm/$item
     texhash $texhome
-    updmap --enable Map=$mapfile
+    $UPDMAP_CMD --enable Map=$mapfile
   done
   exit 0
 else
