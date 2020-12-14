@@ -44,9 +44,9 @@ if [ -z $TEX_HOME ]
 fi
 
 # Defaults for installation
-FONT_TO_INSTALL=gnos
 INSTALL_MODE=user
 PRIMARY_COMMAND=install
+FONT_TO_INSTALL=gnos
 
 # Flag processing
 while test $# -gt 0; do
@@ -92,7 +92,6 @@ while test $# -gt 0; do
         echo "Invalid install mode $1. Must be user|sys"
         exit 1
       fi
-      shift
       ;;
     *)
       break
@@ -100,18 +99,21 @@ while test $# -gt 0; do
   esac
 done
 
-FONT_INSTALLS=("gooe" "igo" "gnos")
 if [[ $FONT_TO_INSTALL == "gooe" ]]
   then
   FONT_INSTALLS=("gooe")
 elif [[ $FONT_TO_INSTALL == "igo" ]]
   then
   FONT_INSTALLS=("igo")
-elif [[ $SECONDARY_COMMAND == "gnos" ]]
+elif [[ $FONT_TO_INSTALL == "gnos" ]]
   then
   FONT_INSTALLS=("gnos")
+elif [[ $FONT_TO_INSTALL == "all" ]]
+  then
+  FONT_INSTALLS=("gooe" "igo" "gnos")
 fi
 
+echo "Installing fonts: $FONT_INSTALLS"
 
 UPDMAP_CMD="updmap"
 if [[ $MODE == "user" ]]
