@@ -1,11 +1,14 @@
 #!/bin/bash
 
 USAGE="=================================================================
-  installer.sh [-h] <command> [fonts]
+  installer.sh [-h] [-m {sys|user}] <command> <fonts>
   Install the Igo/Gooe fonts for LaTeX (Requires existing LaTeX install).
 
   Example: Install all fonts:
     installer.sh install all
+
+  Example: Install gnos for just user
+    installer.sh -m sys install all
 
   Where command is one of:
     - install
@@ -115,18 +118,20 @@ fi
 
 echo "Installing fonts: $FONT_INSTALLS"
 
+echo "INSTALL_MODE=$INSTALL_MODE"
 UPDMAP_CMD="updmap"
-if [[ $MODE == "user" ]]
+if [[ $INSTALL_MODE == "user" ]]
   then
   if command -v "updmap-user" &> /dev/null
   then
     UPDMAP_CMD=updmap-user
     exit
   fi
-elif [[ $MODE == "sys" ]]
+elif [[ $INSTALL_MODE == "sys" ]]
   then
   UPDMAP_CMD=updmap-sys
 fi
+echo "UPDMAP_CMD=$UPDMAP_CMD"
 
 texhome=$(kpsewhich -var-value TEXMFHOME)
 echo "TEXMFLOCAL: $texhome"
