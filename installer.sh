@@ -125,7 +125,6 @@ if [[ $INSTALL_MODE == "user" ]]
   if command -v "updmap-user" &> /dev/null
   then
     UPDMAP_CMD=updmap-user
-    exit
   fi
 elif [[ $INSTALL_MODE == "sys" ]]
   then
